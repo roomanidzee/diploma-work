@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - preConditions:
+      - runningAs:
+          username: houseblock_user
+
+  - include:
+      file: /migrations/initial/create-main-tables-1.yml
+
+  - include:
+      file: /migrations/initial/create-security-tables-2.yml

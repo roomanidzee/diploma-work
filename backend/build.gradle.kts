@@ -1,17 +1,40 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+project.extra.set("versions", mapOf(
+        "mybatis" to "2.1.1",
+        "kotlin" to "1.3.50",
+        "logback" to "1.2.3",
+        "slf4j" to "1.7.26",
+        "jjwt" to "0.9.1",
+        "jaxb" to "2.3.1",
+        "mapstruct" to "1.3.0.Beta2",
+        "jackson" to "2.10.0",
+        "postgresql" to "42.2.8",
+        "liquibase" to "3.8.0",
+        "kotlintest" to "3.4.2"
+))
+
 plugins {
     id("org.springframework.boot") version "2.2.0.RELEASE"
     id("io.spring.dependency-management") version "1.0.8.RELEASE"
     kotlin("jvm") version "1.3.50"
     kotlin("plugin.spring") version "1.3.50"
+    kotlin("kapt") version "1.3.50"
 }
+
+tasks.bootJar {
+    archiveName = "app.jar"
+}
+
+val versions : Map<String, String> by project.extra
 
 group = "com.romanidze"
 version = "0.0.1"
-java.sourceCompatibility = JavaVersion.VERSION_1_8
 
-val developmentOnly by configurations.creating
+java.sourceCompatibility = JavaVersion.VERSION_11
+java.targetCompatibility = JavaVersion.VERSION_11
+
+val developmentOnly: Configuration by configurations.creating
 configurations {
     runtimeClasspath {
         extendsFrom(developmentOnly)
@@ -20,6 +43,9 @@ configurations {
 
 repositories {
     mavenCentral()
+    mavenLocal()
+    maven(url = "https://jitpack.io")
+    gradlePluginPortal()
 }
 
 dependencies {
@@ -27,13 +53,40 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-mail")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    implementation("org.liquibase:liquibase-core")
-    implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.1")
+
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:${versions["jackson"]}")
+
+    implementation("org.jetbrains.kotlin:kotlin-reflect:${versions["kotlin"]}")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions["kotlin"]}")
+
+    implementation("com.github.pozo.mapstruct-kotlin:mapstruct-kotlin:${versions["mapstruct"]}")
+    compile("org.mapstruct:mapstruct:${versions["mapstruct"]}")
+    kapt("org.mapstruct:mapstruct-processor:${versions["mapstruct"]}")
+    kapt("com.github.pozo.mapstruct-kotlin:mapstruct-kotlin-processor:${versions["mapstruct"]}")
+
+    runtimeOnly("org.postgresql:postgresql:${versions["postgresql"]}")
+    implementation("org.liquibase:liquibase-core:${versions["liquibase"]}")
+    implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:${versions["mybatis"]}")
+
+    compile("org.springframework.boot:spring-boot-configuration-processor")
+    kapt("org.springframework.boot:spring-boot-configuration-processor")
+    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+
     developmentOnly("org.springframework.boot:spring-boot-devtools")
-    runtimeOnly("org.postgresql:postgresql")
+    compile("ch.qos.logback:logback-classic:${versions["logback"]}")
+    compile("ch.qos.logback:logback-access:${versions["logback"]}")
+
+    compile("org.slf4j:slf4j-api:${versions["slf4j"]}")
+    compile("org.slf4j:jul-to-slf4j:${versions["slf4j"]}")
+    compile("org.slf4j:log4j-over-slf4j:${versions["slf4j"]}")
+
+    compile("io.jsonwebtoken:jjwt:${versions["jjwt"]}")
+
+    compile("javax.xml.bind:jaxb-api:${versions["jaxb"]}")
+
+
+    testImplementation("io.kotlintest:kotlintest-runner-junit5:${versions["kotlintest"]}")
+    testImplementation("io.kotlintest:kotlintest-extensions-spring:${versions["kotlintest"]}")
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
     }

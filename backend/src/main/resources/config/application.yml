@@ -1,0 +1,48 @@
+spring:
+
+  application:
+
+    name: houseblock-backend
+
+  datasource:
+
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/houseblock_db
+    username: houseblock_user
+    password: houseblock_pass
+    type: com.zaxxer.hikari.HikariDataSource
+    platform: postgresql
+
+    hikari:
+
+      connection-test-query: SELECT 1
+      minimum-idle: 1
+      maximum-pool-size: 5
+      pool-name: documenti-pool
+
+
+  liquibase:
+
+    change-log: classpath:/migrations/changelog-master.yml
+    database-change-log-lock-table: database_change_log_locking
+    database-change-log-table: database_change_log
+
+server:
+
+  port: 8000
+
+  servlet:
+
+    context-path: /api
+
+jwt:
+
+  properties:
+
+    header: Authorization
+    secret-key: fnreskjdfn4p3ithn3q[04tfraf
+    expires-at: 600
+
+logging:
+
+  config: classpath:logging/logback-spring.xml
