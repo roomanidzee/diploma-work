@@ -1,7 +1,6 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 project.extra.set("versions", mapOf(
-        "mybatis" to "2.1.1",
         "kotlin" to "1.3.50",
         "logback" to "1.2.3",
         "slf4j" to "1.7.26",
@@ -9,13 +8,11 @@ project.extra.set("versions", mapOf(
         "jaxb" to "2.3.1",
         "mapstruct" to "1.3.0.Beta2",
         "jackson" to "2.10.0",
-        "postgresql" to "42.2.8",
-        "liquibase" to "3.8.0",
-        "kotlintest" to "3.4.2"
+        "kotlin_test" to "3.4.2"
 ))
 
 plugins {
-    id("org.springframework.boot") version "2.2.0.RELEASE"
+    id("org.springframework.boot") version "2.2.1.RELEASE"
     id("io.spring.dependency-management") version "1.0.8.RELEASE"
     kotlin("jvm") version "1.3.50"
     kotlin("plugin.spring") version "1.3.50"
@@ -50,9 +47,11 @@ repositories {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
     implementation("org.springframework.boot:spring-boot-starter-mail")
     implementation("org.springframework.boot:spring-boot-starter-security")
-    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-webflux")
+    implementation("org.springframework.boot:spring-boot-starter-batch")
 
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:${versions["jackson"]}")
 
@@ -63,10 +62,6 @@ dependencies {
     compile("org.mapstruct:mapstruct:${versions["mapstruct"]}")
     kapt("org.mapstruct:mapstruct-processor:${versions["mapstruct"]}")
     kapt("com.github.pozo.mapstruct-kotlin:mapstruct-kotlin-processor:${versions["mapstruct"]}")
-
-    runtimeOnly("org.postgresql:postgresql:${versions["postgresql"]}")
-    implementation("org.liquibase:liquibase-core:${versions["liquibase"]}")
-    implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:${versions["mybatis"]}")
 
     compile("org.springframework.boot:spring-boot-configuration-processor")
     kapt("org.springframework.boot:spring-boot-configuration-processor")
@@ -85,11 +80,13 @@ dependencies {
     compile("javax.xml.bind:jaxb-api:${versions["jaxb"]}")
 
 
-    testImplementation("io.kotlintest:kotlintest-runner-junit5:${versions["kotlintest"]}")
-    testImplementation("io.kotlintest:kotlintest-extensions-spring:${versions["kotlintest"]}")
+    testImplementation("io.kotlintest:kotlintest-runner-junit5:${versions["kotlin_test"]}")
+    testImplementation("io.kotlintest:kotlintest-extensions-spring:${versions["kotlin_test"]}")
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
     }
+    testImplementation("org.springframework.security:spring-security-test")
+    testImplementation("io.projectreactor:reactor-test")
     testImplementation("org.springframework.security:spring-security-test")
 }
 

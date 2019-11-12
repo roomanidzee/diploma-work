@@ -1,1 +1,1 @@
-rootProject.name = "houseblock"
+rootProject.name = "studeeper"
