@@ -8,7 +8,8 @@ project.extra.set("versions", mapOf(
         "jaxb" to "2.3.1",
         "mapstruct" to "1.3.0.Beta2",
         "jackson" to "2.10.0",
-        "kotlin_test" to "3.4.2"
+        "kotlin_test" to "3.4.2",
+        "testcontainers" to "1.12.3"
 ))
 
 plugins {
@@ -88,6 +89,7 @@ dependencies {
     testImplementation("org.springframework.security:spring-security-test")
     testImplementation("io.projectreactor:reactor-test")
     testImplementation("org.springframework.security:spring-security-test")
+    testImplementation("org.testcontainers:testcontainers:${versions["testcontainers"]}")
 }
 
 tasks.withType<Test> {
