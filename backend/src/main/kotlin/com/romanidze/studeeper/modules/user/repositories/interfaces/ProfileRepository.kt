@@ -1,12 +1,13 @@
 package com.romanidze.studeeper.modules.user.repositories.interfaces
 
 import com.romanidze.studeeper.components.repositories.interfaces.CRUDRepository
-import com.romanidze.studeeper.modules.user.domain.User
+import com.romanidze.studeeper.modules.user.domain.Profile
 
 /**
- * Interface for UserRepository
+ *
+ * Interface for Profile repository
  *
  * 17.11.2019
  * @author Andrey Romanov
  */
-interface UserRepository: CRUDRepository<User, String>
+interface ProfileRepository: CRUDRepository<Profile, String>

@@ -17,6 +17,10 @@ import reactor.core.publisher.Mono
 @Repository
 class UserRepositoryImpl(private val mongoTemplate: ReactiveMongoTemplate): UserRepository {
 
+    override fun findByID(id: String): Mono<User> {
+        return this.mongoTemplate.findById(id, User::class.java)
+    }
+
     override fun findAll(): Flux<User> {
         return this.mongoTemplate.findAll(User::class.java)
     }

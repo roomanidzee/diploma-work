@@ -24,6 +24,6 @@ class UserServiceImpl(private val userMapper: UserMapper,
         val user = this.userMapper.dtoToDomain(userDTO)
 
         return this.userRepository.save(user)
-                .map { MessageResponseDTO(message="Пользователь сохранён") }
+                .map { MessageResponseDTO(message="User saved.") }
     }
 }

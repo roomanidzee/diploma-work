@@ -12,21 +12,30 @@ import java.util.UUID
 
 /**
  *
- * User entity
+ * Profile entity
  *
  * 17.11.2019
  * @author Andrey Romanov
  */
-@Document(collection = "users")
-@TypeAlias("user")
+@Document(collection = "profiles")
+@TypeAlias("profile")
 @KotlinBuilder
-data class User(
+data class Profile(
         @Id
         val id: String? = UUID.randomUUID().toString(),
 
-        @Field("username")
-        val username: String,
+        @Field("user_id")
+        val userID: String,
 
-        @Field("password")
-        val password: String
+        @Field("surname")
+        val surname: String,
+
+        @Field("name")
+        val name: String,
+
+        @Field("patronymic")
+        val patronymic: String,
+
+        @Field("email")
+        val email: String
 )

@@ -4,14 +4,16 @@ import com.github.pozo.KotlinBuilder
 
 /**
  *
- * DTO for working with User entity
+ * DTO for working with Profile entity
  *
  * 17.11.2019
  * @author Andrey Romanov
- *
  */
 @KotlinBuilder
-data class UserDTO(
-        val id: String,
-        val username: String
+data class ProfileDTO(
+
+  val surname: String,
+  val name: String,
+  val patronymic: String
+
 )

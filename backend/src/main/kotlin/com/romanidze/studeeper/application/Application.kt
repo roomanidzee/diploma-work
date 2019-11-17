@@ -1,18 +1,17 @@
 package com.romanidze.studeeper.application
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.boot.autoconfigure.domain.EntityScan
 import org.springframework.boot.runApplication
 import org.springframework.context.annotation.ComponentScan
-import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRepositories
 
+/**
+ * Main class for all system
+ *
+ * 17.11.2019
+ * @author Andrey Romanov
+ *
+ */
 @SpringBootApplication
-@EnableReactiveMongoRepositories
-
-@EntityScan(basePackages = [
-    "com.romanidze.studeeper.modules.user.domain"
-])
-
 @ComponentScan(
         basePackages = [
             "com.romanidze.studeeper.components",

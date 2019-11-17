@@ -1,12 +1,20 @@
-package com.romanidze.studeeper.modules.user.repositories.interfaces
+package com.romanidze.studeeper.components.repositories.interfaces
 
 import com.mongodb.client.result.DeleteResult
 
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
-interface CRUDRepository<M> {
+/**
+ * Base interface for all repositories
+ *
+ * 17.11.2019
+ * @author Andrey Romanov
+ *
+ */
+interface CRUDRepository<M, ID> {
 
+    fun findByID(id: ID): Mono<M>
     fun findAll(): Flux<M>
     fun save(item: M): Mono<M>
     fun delete(item: M): Mono<DeleteResult>
