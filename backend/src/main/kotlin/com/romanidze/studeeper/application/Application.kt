@@ -14,9 +14,9 @@ import org.springframework.context.annotation.ComponentScan
 @SpringBootApplication
 @ComponentScan(
         basePackages = [
-            "com.romanidze.studeeper.components",
             "com.romanidze.studeeper.config",
-            "com.romanidze.studeeper.modules.user"
+            "com.romanidze.studeeper.modules.user",
+            "com.romanidze.studeeper.modules.security"
         ]
 )
 class Application

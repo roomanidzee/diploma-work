@@ -16,6 +16,13 @@ import reactor.core.publisher.Mono
 
 @Repository
 class UserRepositoryImpl(private val mongoTemplate: ReactiveMongoTemplate): UserRepository {
+    override fun findByUsername(username: String): Mono<User> {
+
+        val findQuery = Query.query(Criteria.where("username").`is`(username))
+
+        return this.mongoTemplate.findOne(findQuery, User::class.java)
+
+    }
 
     override fun findByID(id: String): Mono<User> {
         return this.mongoTemplate.findById(id, User::class.java)

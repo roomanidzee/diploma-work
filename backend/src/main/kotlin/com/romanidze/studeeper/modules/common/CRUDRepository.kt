@@ -1,4 +1,4 @@
-package com.romanidze.studeeper.components.repositories.interfaces
+package com.romanidze.studeeper.modules.common
 
 import com.mongodb.client.result.DeleteResult
 

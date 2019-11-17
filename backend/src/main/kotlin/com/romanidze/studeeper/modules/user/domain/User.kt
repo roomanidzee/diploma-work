@@ -28,5 +28,13 @@ data class User(
         val username: String,
 
         @Field("password")
-        val password: String
+        val password: String,
+
+        @Field("roles")
+        val roles: List<String>,
+
+        @Field("state")
+        val state: String
+
+
 )

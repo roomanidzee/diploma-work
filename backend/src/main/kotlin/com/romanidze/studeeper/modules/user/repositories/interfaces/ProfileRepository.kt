@@ -1,6 +1,6 @@
 package com.romanidze.studeeper.modules.user.repositories.interfaces
 
-import com.romanidze.studeeper.components.repositories.interfaces.CRUDRepository
+import com.romanidze.studeeper.modules.common.CRUDRepository
 import com.romanidze.studeeper.modules.user.domain.Profile
 
 /**
