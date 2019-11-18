@@ -16,6 +16,7 @@ class JWTProperties {
 
     lateinit var header: String
     lateinit var secretKey: String
+    lateinit var prefix: String
     var expiresAt: Long = 1000
 
 }

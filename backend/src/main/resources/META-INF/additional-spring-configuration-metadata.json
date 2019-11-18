@@ -10,19 +10,25 @@
     {
       "name": "jwt.properties.header",
       "type": "java.lang.String",
-      "description": "Название заголовка с токеном.",
+      "description": "Header for JWT token.",
       "sourceType": "com.romanidze.studeeper.modules.security.properties.JWTProperties"
     },
     {
       "name": "jwt.properties.secret-key",
       "type": "java.lang.String",
-      "description": "Ключ подписи JWT - токена.",
+      "description": "JWT signing key.",
       "sourceType": "com.romanidze.studeeper.modules.security.properties.JWTProperties"
     },
     {
       "name": "jwt.properties.expires-at",
       "type": "java.lang.Long",
-      "description": "Срок годности JWT - токена (в секундах).",
+      "description": "JWT expiration time.",
+      "sourceType": "com.romanidze.studeeper.modules.security.properties.JWTProperties"
+    },
+    {
+      "name": "jwt.properties.prefix",
+      "type": "java.lang.String",
+      "description": "JWT Token prefix.",
       "sourceType": "com.romanidze.studeeper.modules.security.properties.JWTProperties"
     }
   ]
