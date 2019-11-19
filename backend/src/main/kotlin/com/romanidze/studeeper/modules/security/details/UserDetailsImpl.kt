@@ -17,22 +17,22 @@ import org.springframework.security.core.userdetails.UserDetails
  */
 class UserDetailsImpl(private var user: User?): UserDetails {
 
-    constructor(id: String, role: String, state: String, username: String) : this(null) {
+    constructor(id: String, roles: List<String>, state: String, username: String) : this(null) {
 
         val existedRoles = enumValues<Role>().map { it.name }
-        val roleCondition: Boolean = existedRoles.any { item -> item == role }
+        val roleCondition: Boolean = existedRoles.any { item -> roles.contains(item) }
 
         val existedStates = enumValues<State>().map { it.name }
         val stateCondition: Boolean = existedStates.any {item -> item == state}
 
-        require(roleCondition) { "No role $role in system" }
+        require(roleCondition) { "No roles like $roles in system" }
 
         require(stateCondition) { "No state $state in system" }
 
         this.user = User(
                 id = id,
                 username = username,
-                roles = mutableListOf(role),
+                roles = roles,
                 state = state,
                 password = ""
         )

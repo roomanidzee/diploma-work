@@ -4,6 +4,7 @@ import com.romanidze.studeeper.modules.security.authentication.JWTAuthentication
 import com.romanidze.studeeper.modules.security.properties.JWTProperties
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.context.SecurityContextHolder
+import org.springframework.security.web.server.authentication.ServerAuthenticationConverter
 import org.springframework.stereotype.Component
 import org.springframework.web.server.ServerWebExchange
 
@@ -22,9 +23,9 @@ import java.util.function.Function
 @Component
 class JWTAuthenticationConverter(
         private val properties: JWTProperties
-): Function<ServerWebExchange, Mono<Authentication>> {
+): ServerAuthenticationConverter {
 
-    override fun apply(t: ServerWebExchange): Mono<Authentication> {
+    override fun convert(t: ServerWebExchange): Mono<Authentication> {
 
         val request = t.request
         val authentication: JWTAuthentication?

@@ -3,6 +3,7 @@ package com.romanidze.studeeper.modules.security.entrypoints
 import org.springframework.http.HttpStatus
 import org.springframework.security.core.AuthenticationException
 import org.springframework.security.web.server.ServerAuthenticationEntryPoint
+import org.springframework.stereotype.Component
 import org.springframework.web.server.ServerWebExchange
 
 import reactor.core.publisher.Mono
@@ -15,6 +16,7 @@ import reactor.core.publisher.Mono
  * @author Andrey Romanov (steampart@gmail.com)
  * @version 1.0
  */
+@Component
 class AuthenticationEntrypoint: ServerAuthenticationEntryPoint {
 
     override fun commence(exchange: ServerWebExchange?, e: AuthenticationException?): Mono<Void> {
