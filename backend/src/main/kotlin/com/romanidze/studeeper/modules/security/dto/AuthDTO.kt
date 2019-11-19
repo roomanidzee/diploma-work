@@ -21,9 +21,16 @@ data class RegistrationDTO(
     val password: String
 )
 
-data class TokenResponseDTO(
+data class RegistrationResponseDTO(
+    val username: String,
+    val state: String
+)
+
+data class LoginResponseDTO(
+
+    val username: String,
     val token: String,
 
-    @JsonProperty("request_time")
-    val requestTime: String
+    @JsonProperty("expiration_time")
+    val expirationTime: String
 )

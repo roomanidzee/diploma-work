@@ -15,7 +15,7 @@ import reactor.core.publisher.Mono
  * @author Andrey Romanov (steampart@gmail.com)
  * @version 1.0
  */
-@Service
+@Service("customUserDetailsService")
 class UserDetailsServiceImpl(private val userRepository: UserRepository): ReactiveUserDetailsService {
 
     override fun findByUsername(username: String?): Mono<UserDetails> {

@@ -70,4 +70,6 @@ class UserDetailsImpl(private var user: User?): UserDetails {
     override fun isAccountNonLocked(): Boolean {
         return State.valueOf(this.user!!.state) != State.BANNED
     }
+
+    fun getUser(): User = this.user!!
 }
