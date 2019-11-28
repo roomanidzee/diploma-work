@@ -8,7 +8,7 @@ spring:
 
     mongodb:
 
-      host: localhost
+      host: std_mongo
       port: 27017
       database: studeeper_db
       username: studeeper_user

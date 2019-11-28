@@ -5,6 +5,7 @@ build/
 
 ### IntelliJ IDEA ###
 .idea
+docker/.env
 *.iws
 *.iml
 *.ipr
