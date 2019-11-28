@@ -1,0 +1,14 @@
+spring:
+
+  application:
+
+    name: studeeper-backend
+
+jwt:
+
+  properties:
+
+    header: Authorization
+    prefix: Bearer
+    secret-key: fnreskjdfn4p3ithn3q[04tfraf
+    expires-at: 600
