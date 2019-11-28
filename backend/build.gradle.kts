@@ -9,7 +9,7 @@ project.extra.set("versions", mapOf(
         "mapstruct" to "1.3.0.Beta2",
         "jackson" to "2.10.0",
         "kotlin_test" to "3.4.2",
-        "testcontainers" to "1.12.3"
+        "fake_mongo" to "1.23.0"
 ))
 
 plugins {
@@ -89,7 +89,7 @@ dependencies {
     testImplementation("org.springframework.security:spring-security-test")
     testImplementation("io.projectreactor:reactor-test")
     testImplementation("org.springframework.security:spring-security-test")
-    testImplementation("org.testcontainers:testcontainers:${versions["testcontainers"]}")
+    testImplementation("de.bwaldvogel:mongo-java-server:${versions["fake_mongo"]}")
 }
 
 tasks.withType<Test> {

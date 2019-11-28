@@ -11,9 +11,7 @@ docker/.env
 *.ipr
 out/
 build
-gradle
-gradlew
-gradlew.bat
+gradle/wrapper/*.jar
 
 ### VS Code ###
 .vscode/
