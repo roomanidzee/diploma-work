@@ -16,7 +16,8 @@ import org.springframework.context.annotation.ComponentScan
         basePackages = [
             "com.romanidze.studeeper.config",
             "com.romanidze.studeeper.modules.user",
-            "com.romanidze.studeeper.modules.security"
+            "com.romanidze.studeeper.modules.security",
+            "com.romanidze.studeeper.modules.graphods"
         ]
 )
 class Application

@@ -14,6 +14,12 @@ spring:
       username: studeeper_user
       password: studeeper_pwd
 
+    neo4j:
+      uri: bolt://std_neo4j
+      username: neo4j
+      password: studeeper_pwd
+
+
 server:
 
   port: 8000

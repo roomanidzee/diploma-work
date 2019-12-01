@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import info.solidsoft.gradle.pitest.PitestPluginExtension
 
 project.extra.set("versions", mapOf(
         "kotlin" to "1.3.50",
@@ -9,12 +10,14 @@ project.extra.set("versions", mapOf(
         "mapstruct" to "1.3.0.Beta2",
         "jackson" to "2.10.0",
         "kotlin_test" to "3.4.2",
-        "fake_mongo" to "1.23.0"
+        "neo4j-bolt" to "3.2.3"
 ))
 
 plugins {
     id("org.springframework.boot") version "2.2.1.RELEASE"
     id("io.spring.dependency-management") version "1.0.8.RELEASE"
+    id("com.adarshr.test-logger") version "2.0.0"
+    id("info.solidsoft.pitest") version "1.4.5"
     kotlin("jvm") version "1.3.50"
     kotlin("plugin.spring") version "1.3.50"
     kotlin("kapt") version "1.3.50"
@@ -52,7 +55,10 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-mail")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
-    implementation("org.springframework.boot:spring-boot-starter-quartz")
+    implementation("org.springframework.boot:spring-boot-starter-batch")
+    implementation("org.springframework.boot:spring-boot-starter-data-neo4j")
+
+    implementation("org.neo4j:neo4j-ogm-bolt-driver:${versions["neo4j-bolt"]}")
 
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:${versions["jackson"]}")
 
@@ -83,13 +89,12 @@ dependencies {
 
     testImplementation("io.kotlintest:kotlintest-runner-junit5:${versions["kotlin_test"]}")
     testImplementation("io.kotlintest:kotlintest-extensions-spring:${versions["kotlin_test"]}")
+    testImplementation("io.kotlintest:kotlintest-plugins-pitest:${versions["kotlin_test"]}")
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
     }
     testImplementation("org.springframework.security:spring-security-test")
     testImplementation("io.projectreactor:reactor-test")
-    testImplementation("org.springframework.security:spring-security-test")
-    testImplementation("de.bwaldvogel:mongo-java-server:${versions["fake_mongo"]}")
 }
 
 tasks.withType<Test> {
@@ -101,4 +106,12 @@ tasks.withType<KotlinCompile> {
         freeCompilerArgs = listOf("-Xjsr305=strict")
         jvmTarget = "1.8"
     }
+}
+
+configure<PitestPluginExtension> {
+
+    testPlugin.set("KotlinTest")
+
+
+    targetClasses.set(listOf("com.romanidze.studeeper.modules.*"))
 }
