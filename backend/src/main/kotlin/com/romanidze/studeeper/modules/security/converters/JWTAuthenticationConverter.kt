@@ -9,8 +9,7 @@ import org.springframework.stereotype.Component
 import org.springframework.web.server.ServerWebExchange
 
 import reactor.core.publisher.Mono
-import reactor.core.publisher.toMono
-import java.util.function.Function
+import reactor.kotlin.core.publisher.toMono
 
 /**
  * 18.11.2019

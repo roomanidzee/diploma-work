@@ -5,8 +5,8 @@ import org.springframework.security.web.server.util.matcher.ServerWebExchangeMat
 import org.springframework.stereotype.Component
 import org.springframework.web.server.ServerWebExchange
 import reactor.core.publisher.Mono
-import reactor.core.publisher.switchIfEmpty
-import reactor.core.publisher.toMono
+import reactor.kotlin.core.publisher.toMono
+import reactor.kotlin.core.publisher.switchIfEmpty
 
 /**
  * 19.11.2019

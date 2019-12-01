@@ -9,7 +9,7 @@ import org.springframework.security.core.Authentication
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.stereotype.Component
 import reactor.core.publisher.Mono
-import reactor.core.publisher.toMono
+import reactor.kotlin.core.publisher.toMono
 
 /**
  * 19.11.2019

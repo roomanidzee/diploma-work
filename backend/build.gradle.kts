@@ -27,6 +27,10 @@ tasks.bootJar {
     archiveName = "app.jar"
 }
 
+tasks.bootRun {
+    jvmArgs = mutableListOf("-Xmx200m", "-Xms200m")
+}
+
 val versions : Map<String, String> by project.extra
 
 group = "com.romanidze"
@@ -46,6 +50,7 @@ repositories {
     mavenCentral()
     mavenLocal()
     maven(url = "https://jitpack.io")
+    maven(url="https://repo.spring.io/milestone")
     gradlePluginPortal()
 }
 
@@ -86,6 +91,8 @@ dependencies {
 
     compile("javax.xml.bind:jaxb-api:${versions["jaxb"]}")
 
+    compile("io.projectreactor.kotlin:reactor-kotlin-extensions:1.0.1.RELEASE")
+
 
     testImplementation("io.kotlintest:kotlintest-runner-junit5:${versions["kotlin_test"]}")
     testImplementation("io.kotlintest:kotlintest-extensions-spring:${versions["kotlin_test"]}")
@@ -111,7 +118,6 @@ tasks.withType<KotlinCompile> {
 configure<PitestPluginExtension> {
 
     testPlugin.set("KotlinTest")
-
 
     targetClasses.set(listOf("com.romanidze.studeeper.modules.*"))
 }
