@@ -1,10 +1,9 @@
 package com.romanidze.studeeper.modules.graphods.domain
 
-import org.neo4j.ogm.annotation.GeneratedValue
-import org.neo4j.ogm.annotation.Id
-import org.neo4j.ogm.annotation.NodeEntity
-import org.neo4j.ogm.annotation.Property
-import org.neo4j.ogm.id.UuidStrategy
+import org.neo4j.springframework.data.core.schema.Id
+import org.neo4j.springframework.data.core.schema.Node
+import org.neo4j.springframework.data.core.schema.Property
+
 import java.time.LocalDateTime
 
 /**
@@ -15,12 +14,11 @@ import java.time.LocalDateTime
  * @author Andrey Romanov (steampart@gmail.com)
  * @version 1.0
  */
-@NodeEntity
+@Node("GraphRecord")
 data class GraphRecord (
 
 
         @Id
-        @GeneratedValue(strategy = UuidStrategy::class)
         val id: String,
 
         @Property(name = "specialization")

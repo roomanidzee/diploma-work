@@ -4,6 +4,9 @@ services:
 
   app:
 
+    networks:
+      - std_network
+
     image: 'romanidze/studeeper_app:latest'
 
     build:
@@ -16,10 +19,16 @@ services:
 
     container_name: std_app
 
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+
     ports:
       - '8000:8000'
 
   mongo:
+
+    networks:
+      - std_network
 
     image: 'bitnami/mongodb:4.2.1'
 
@@ -35,6 +44,9 @@ services:
 
   neo4j:
 
+    networks:
+      - std_network
+
     image: 'bitnami/neo4j:3.5.12'
 
     container_name: std_neo4j
@@ -46,3 +58,6 @@ services:
 
     environment:
       - NEO4J_PASSWORD=studeeper_pwd
+
+networks:
+  std_network:
