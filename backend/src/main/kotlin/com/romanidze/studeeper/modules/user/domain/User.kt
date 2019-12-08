@@ -1,6 +1,8 @@
 package com.romanidze.studeeper.modules.user.domain
 
 import com.github.pozo.KotlinBuilder
+import com.romanidze.studeeper.modules.security.enums.Role
+import com.romanidze.studeeper.modules.security.enums.State
 
 import org.springframework.data.annotation.Id
 import org.springframework.data.annotation.TypeAlias
@@ -31,10 +33,12 @@ data class User(
         val password: String,
 
         @Field("roles")
-        val roles: List<String>,
+        val roles: List<String> = mutableListOf(
+                Role.USER.toString()
+        ).toList(),
 
         @Field("state")
-        val state: String
+        val state: String = State.CONFIRMED.toString()
 
 
 )
