@@ -17,3 +17,8 @@ docker-compose -f docker/docker-compose.yml up -d mongo neo4j
 ```
 ./gradlew test
 ```
+
+3.
+```
+docker-compose -f docker/docker-compose.yml down -v
+```
