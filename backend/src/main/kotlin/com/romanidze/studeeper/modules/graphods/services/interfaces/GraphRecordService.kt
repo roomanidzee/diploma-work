@@ -1,7 +1,8 @@
 package com.romanidze.studeeper.modules.graphods.services.interfaces
 
-import com.romanidze.studeeper.modules.graphods.domain.GraphRecord
+import com.romanidze.studeeper.modules.graphods.dto.GraphRecordDTO
 import reactor.core.publisher.Flux
+import java.time.LocalDateTime
 
 /**
  * 01.12.2019
@@ -13,6 +14,7 @@ import reactor.core.publisher.Flux
  */
 interface GraphRecordService {
 
-    fun getRecordsBySpecialization(specialization: String): Flux<GraphRecord>
+    fun getRecordsBySpecialization(specialization: String): Flux<GraphRecordDTO>
+    fun getRecordsBySpecializationAndGraduate(specialization: String, graduation: LocalDateTime): Flux<GraphRecordDTO>
 
 }

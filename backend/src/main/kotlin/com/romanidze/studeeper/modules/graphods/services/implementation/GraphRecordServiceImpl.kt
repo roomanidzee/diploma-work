@@ -1,10 +1,12 @@
 package com.romanidze.studeeper.modules.graphods.services.implementation
 
-import com.romanidze.studeeper.modules.graphods.domain.GraphRecord
+import com.romanidze.studeeper.modules.graphods.dto.GraphRecordDTO
+import com.romanidze.studeeper.modules.graphods.mappers.GraphRecordMapper
 import com.romanidze.studeeper.modules.graphods.repositories.GraphRecordRepository
 import com.romanidze.studeeper.modules.graphods.services.interfaces.GraphRecordService
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
+import java.time.LocalDateTime
 
 /**
  * 01.12.2019
@@ -13,9 +15,19 @@ import reactor.core.publisher.Flux
  * @version 1.0
  */
 @Service
-class GraphRecordServiceImpl(val repo: GraphRecordRepository): GraphRecordService {
+class GraphRecordServiceImpl(
+        private val repo: GraphRecordRepository,
+        private val mapper: GraphRecordMapper
+): GraphRecordService {
 
-    override fun getRecordsBySpecialization(specialization: String): Flux<GraphRecord> {
+    override fun getRecordsBySpecialization(specialization: String): Flux<GraphRecordDTO> {
         return repo.findBySpecialization(specialization)
+                   .map(this.mapper::domainToDTO)
+    }
+
+    override fun getRecordsBySpecializationAndGraduate(specialization: String, graduation: LocalDateTime): Flux<GraphRecordDTO> {
+        return repo.findBySpecializationAndGraduationAfter(
+                specialization, graduation
+        ).map(this.mapper::domainToDTO)
     }
 }

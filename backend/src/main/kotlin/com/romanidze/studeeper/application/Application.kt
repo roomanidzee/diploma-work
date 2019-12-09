@@ -20,7 +20,9 @@ import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRep
             "com.romanidze.studeeper.config",
             "com.romanidze.studeeper.modules.user",
             "com.romanidze.studeeper.modules.security",
-            "com.romanidze.studeeper.modules.graphods"
+            "com.romanidze.studeeper.modules.graphods",
+            "com.romanidze.studeeper.modules.worker",
+            "com.romanidze.studeeper.modules.employer"
         ]
 )
 @EnableReactiveMongoRepositories(

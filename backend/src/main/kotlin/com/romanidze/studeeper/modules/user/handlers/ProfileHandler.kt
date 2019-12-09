@@ -20,8 +20,7 @@ import reactor.core.publisher.Mono
  * @author Andrey Romanov
  */
 @Component
-class ProfileHandler(
-        private val profileService: ProfileService) {
+class ProfileHandler(private val profileService: ProfileService) {
 
     /**
      *

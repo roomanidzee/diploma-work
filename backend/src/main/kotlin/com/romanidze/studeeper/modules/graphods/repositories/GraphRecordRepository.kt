@@ -18,6 +18,6 @@ import java.time.LocalDateTime
 interface GraphRecordRepository: ReactiveNeo4jRepository<GraphRecord, String> {
 
     fun findBySpecialization(specialization: String): Flux<GraphRecord>
-    fun findBySpecializationAndGraduationAfter(specialization: String, graduation: LocalDateTime)
+    fun findBySpecializationAndGraduationBefore(specialization: String, graduation: LocalDateTime): Flux<GraphRecord>
 
 }

@@ -1,5 +1,6 @@
 package com.romanidze.studeeper.modules.graphods.domain
 
+import com.github.pozo.KotlinBuilder
 import org.neo4j.springframework.data.core.schema.Id
 import org.neo4j.springframework.data.core.schema.Node
 import org.neo4j.springframework.data.core.schema.Property
@@ -14,6 +15,7 @@ import java.time.LocalDateTime
  * @author Andrey Romanov (steampart@gmail.com)
  * @version 1.0
  */
+@KotlinBuilder
 @Node("GraphRecord")
 data class GraphRecord (
 
