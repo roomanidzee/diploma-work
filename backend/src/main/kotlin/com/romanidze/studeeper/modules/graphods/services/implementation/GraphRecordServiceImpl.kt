@@ -26,7 +26,7 @@ class GraphRecordServiceImpl(
     }
 
     override fun getRecordsBySpecializationAndGraduate(specialization: String, graduation: LocalDateTime): Flux<GraphRecordDTO> {
-        return repo.findBySpecializationAndGraduationAfter(
+        return repo.findBySpecializationAndGraduationBefore(
                 specialization, graduation
         ).map(this.mapper::domainToDTO)
     }
