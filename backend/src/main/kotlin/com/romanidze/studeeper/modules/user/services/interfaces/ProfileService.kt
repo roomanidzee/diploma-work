@@ -2,6 +2,7 @@ package com.romanidze.studeeper.modules.user.services.interfaces
 
 import com.romanidze.studeeper.modules.user.dto.MessageResponseDTO
 import com.romanidze.studeeper.modules.user.dto.ProfileDTO
+import org.springframework.security.core.Authentication
 
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
@@ -17,5 +18,6 @@ interface ProfileService {
 
     fun getAllProfiles(): Flux<ProfileDTO>
     fun save(profileDTO: ProfileDTO): Mono<MessageResponseDTO>
+    fun getProfileInfo(authentication: Authentication): Mono<ProfileDTO>
 
 }

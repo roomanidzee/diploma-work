@@ -3,6 +3,7 @@ package com.romanidze.studeeper.modules.security.converters
 import com.romanidze.studeeper.modules.security.authentication.JWTAuthentication
 import com.romanidze.studeeper.modules.security.properties.JWTProperties
 import org.springframework.security.core.Authentication
+import org.springframework.security.core.context.ReactiveSecurityContextHolder
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.web.server.authentication.ServerAuthenticationConverter
 import org.springframework.stereotype.Component

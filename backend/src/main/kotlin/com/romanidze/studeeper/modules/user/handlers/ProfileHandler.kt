@@ -3,6 +3,8 @@ package com.romanidze.studeeper.modules.user.handlers
 import com.romanidze.studeeper.modules.user.dto.MessageResponseDTO
 import com.romanidze.studeeper.modules.user.dto.ProfileDTO
 import com.romanidze.studeeper.modules.user.services.interfaces.ProfileService
+import org.springframework.security.core.context.ReactiveSecurityContextHolder
+import org.springframework.security.core.context.SecurityContext
 
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.server.ServerRequest
@@ -18,7 +20,8 @@ import reactor.core.publisher.Mono
  * @author Andrey Romanov
  */
 @Component
-class ProfileHandler(private val profileService: ProfileService) {
+class ProfileHandler(
+        private val profileService: ProfileService) {
 
     /**
      *
@@ -45,6 +48,19 @@ class ProfileHandler(private val profileService: ProfileService) {
                     ServerResponse.ok()
                             .body(this.profileService.save(it), MessageResponseDTO::class.java)
                 }
+    }
+
+    fun getProfileInfo(req: ServerRequest): Mono<ServerResponse>{
+
+        return ReactiveSecurityContextHolder.getContext()
+                .map(SecurityContext::getAuthentication)
+                .flatMap {
+
+                    ServerResponse.ok()
+                            .body(this.profileService.getProfileInfo(it), ProfileDTO::class.java)
+
+                }
+
     }
 
 }

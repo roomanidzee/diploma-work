@@ -26,6 +26,11 @@ data class RegistrationResponseDTO(
     val state: String
 )
 
+data class TokenInfoDTO(
+    val expired: Boolean,
+    val token: String
+)
+
 data class LoginResponseDTO(
 
     val username: String,

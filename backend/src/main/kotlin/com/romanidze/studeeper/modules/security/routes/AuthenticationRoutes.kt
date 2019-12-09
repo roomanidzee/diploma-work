@@ -22,6 +22,7 @@ class AuthenticationRoutes {
             router {
                 (accept(MediaType.APPLICATION_JSON) and "/api").nest {
                     POST("/security/login", handler::authenticate)
+                    GET("/security/check_token", handler::checkToken)
                 }
             }
 

@@ -45,4 +45,13 @@ class ProfileRepositoryImpl(private val mongoTemplate: ReactiveMongoTemplate): P
         return this.mongoTemplate.findAndModify(updateQuery, updateFunc, Profile::class.java)
 
     }
+
+    override fun findByUser(userID: String): Mono<Profile> {
+
+        val searchQuery = Query.query(Criteria.where("user_id").`is`(userID))
+
+        return this.mongoTemplate.findOne(searchQuery, Profile::class.java)
+
+    }
+
 }
