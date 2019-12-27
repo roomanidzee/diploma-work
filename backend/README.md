@@ -1,24 +1,20 @@
 # studeeper-backend
 
-### Launch for backend part of project
+### Project launch
 ```
 ./gradlew clean build -x test
 docker-compose -f docker/docker-compose.yml up -d
 ```
 
-### Launch for tests of backend
+or
 
-1. 
 ```
+./gradlew clean build -x test
 docker-compose -f docker/docker-compose.yml up -d mongo neo4j
+java -jar -Xmx200m build/libs/app.jar
 ```
 
-2.
+### Tests launch
 ```
 ./gradlew test
-```
-
-3.
-```
-docker-compose -f docker/docker-compose.yml down -v
 ```
