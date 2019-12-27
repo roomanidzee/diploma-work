@@ -5,9 +5,12 @@ ARG JAR_FILE
 ARG JVM_OPTS
 ARG PORT
 
+ENV JVM_OPTS=${JVM_OPTS}
+
 WORKDIR /usr/src/application
 
+COPY ./docker/app/entrypoint.sh /docker-entrypoint.sh
 COPY ${JAR_FILE} app.jar
 EXPOSE ${PORT}
 
-ENTRYPOINT java ${JVM_OPTS} -jar app.jar
+ENTRYPOINT ["/docker-entrypoint.sh"]

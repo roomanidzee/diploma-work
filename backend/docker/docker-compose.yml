@@ -14,13 +14,19 @@ services:
       dockerfile: docker/app/Dockerfile
       args:
         - JAR_FILE=build/libs/app.jar
-        - JVM_OPTS=-Xmx200m -Xms200m
+        - JVM_OPTS=-Xmx200m
         - PORT=8000
 
     container_name: std_app
 
+    depends_on:
+      - mongo
+      - neo4j
+
     environment:
       - SPRING_PROFILES_ACTIVE=docker
+
+    command: launch
 
     ports:
       - '8000:8000'
@@ -61,3 +67,4 @@ services:
 
 networks:
   std_network:
+    driver: bridge
