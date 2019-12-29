@@ -61,7 +61,7 @@ class UserRepositoryTest(repo: UserRepository): WordSpec({
 
             StepVerifier.create(testUpdateSource)
                     .expectNextMatches {
-                        it.id == newUser.id
+                        it.modifiedCount == 1L
                     }
                     .expectComplete()
                     .verify()

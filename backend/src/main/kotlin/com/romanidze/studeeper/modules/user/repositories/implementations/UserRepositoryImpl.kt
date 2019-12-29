@@ -1,6 +1,7 @@
 package com.romanidze.studeeper.modules.user.repositories.implementations
 
 import com.mongodb.client.result.DeleteResult
+import com.mongodb.client.result.UpdateResult
 
 import com.romanidze.studeeper.modules.user.domain.User
 import com.romanidze.studeeper.modules.user.repositories.interfaces.UserRepository
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Repository
 
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
+import reactor.kotlin.core.publisher.toMono
 
 @Repository
 class UserRepositoryImpl(private val mongoTemplate: ReactiveMongoTemplate): UserRepository {
@@ -40,7 +42,7 @@ class UserRepositoryImpl(private val mongoTemplate: ReactiveMongoTemplate): User
         return this.mongoTemplate.remove(item)
     }
 
-    override fun update(item: User): Mono<User> {
+    override fun update(item: User): Mono<UpdateResult> {
 
         val updateQuery = Query.query(Criteria.where("_id").`is`(item.id))
 
@@ -48,7 +50,7 @@ class UserRepositoryImpl(private val mongoTemplate: ReactiveMongoTemplate): User
         updateFunc.set("username", item.username)
         updateFunc.set("password", item.password)
 
-        return this.mongoTemplate.findAndModify(updateQuery, updateFunc, User::class.java)
+        return this.mongoTemplate.updateFirst(updateQuery, updateFunc, User::class.java)
 
     }
 }

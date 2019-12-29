@@ -1,6 +1,7 @@
 package com.romanidze.studeeper.modules.user.repositories.implementations
 
 import com.mongodb.client.result.DeleteResult
+import com.mongodb.client.result.UpdateResult
 
 import com.romanidze.studeeper.modules.user.domain.Profile
 import com.romanidze.studeeper.modules.user.repositories.interfaces.ProfileRepository
@@ -33,7 +34,7 @@ class ProfileRepositoryImpl(private val mongoTemplate: ReactiveMongoTemplate): P
         return this.mongoTemplate.remove(item)
     }
 
-    override fun update(item: Profile): Mono<Profile> {
+    override fun update(item: Profile): Mono<UpdateResult> {
 
         val updateQuery = Query.query(Criteria.where("_id").`is`(item.id))
 
@@ -42,7 +43,7 @@ class ProfileRepositoryImpl(private val mongoTemplate: ReactiveMongoTemplate): P
         updateFunc.set("name", item.name)
         updateFunc.set("patronymic", item.patronymic)
 
-        return this.mongoTemplate.findAndModify(updateQuery, updateFunc, Profile::class.java)
+        return this.mongoTemplate.updateFirst(updateQuery, updateFunc, Profile::class.java)
 
     }
 

@@ -1,6 +1,7 @@
 package com.romanidze.studeeper.modules.common
 
 import com.mongodb.client.result.DeleteResult
+import com.mongodb.client.result.UpdateResult
 
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
@@ -18,6 +19,6 @@ interface CRUDRepository<M, ID> {
     fun findAll(): Flux<M>
     fun save(item: M): Mono<M>
     fun delete(item: M): Mono<DeleteResult>
-    fun update(item: M): Mono<M>
+    fun update(item: M): Mono<UpdateResult>
 
 }
