@@ -25,7 +25,7 @@ data class Profile(
         val id: String? = UUID.randomUUID().toString(),
 
         @Field("user_id")
-        val userID: String,
+        val userID: String?,
 
         @Field("surname")
         val surname: String,
@@ -37,5 +37,5 @@ data class Profile(
         val patronymic: String,
 
         @Field("email")
-        val email: String
+        val email: String?
 )

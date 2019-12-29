@@ -41,14 +41,14 @@ class UserDetailsImpl(private var user: User?): UserDetails {
 
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
 
-        return this.user!!.roles.map {
+        return this.user!!.roles!!.map {
             SimpleGrantedAuthority(it)
         }.toMutableList()
 
     }
 
     override fun isEnabled(): Boolean {
-        return State.valueOf(this.user!!.state) == State.CONFIRMED
+        return State.valueOf(this.user!!.state!!) == State.CONFIRMED
     }
 
     override fun getUsername(): String {
@@ -56,19 +56,19 @@ class UserDetailsImpl(private var user: User?): UserDetails {
     }
 
     override fun isCredentialsNonExpired(): Boolean {
-        return State.valueOf(this.user!!.state) != State.NOT_CONFIRMED
+        return State.valueOf(this.user!!.state!!) != State.NOT_CONFIRMED
     }
 
     override fun getPassword(): String {
-        return this.user!!.password
+        return this.user!!.password!!
     }
 
     override fun isAccountNonExpired(): Boolean {
-        return State.valueOf(this.user!!.state) != State.DELETED
+        return State.valueOf(this.user!!.state!!) != State.DELETED
     }
 
     override fun isAccountNonLocked(): Boolean {
-        return State.valueOf(this.user!!.state) != State.BANNED
+        return State.valueOf(this.user!!.state!!) != State.BANNED
     }
 
     fun getUser(): User = this.user!!

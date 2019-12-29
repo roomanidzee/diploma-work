@@ -48,7 +48,7 @@ class UserRepositoryImpl(private val mongoTemplate: ReactiveMongoTemplate): User
 
         val updateFunc = Update()
         updateFunc.set("username", item.username)
-        updateFunc.set("password", item.password)
+        updateFunc.set("password", item.password!!)
 
         return this.mongoTemplate.updateFirst(updateQuery, updateFunc, User::class.java)
 

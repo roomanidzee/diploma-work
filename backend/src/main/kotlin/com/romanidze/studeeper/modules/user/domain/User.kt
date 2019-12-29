@@ -30,15 +30,15 @@ data class User(
         val username: String,
 
         @Field("password")
-        val password: String,
+        val password: String?,
 
         @Field("roles")
-        val roles: List<String> = mutableListOf(
+        val roles: List<String>? = mutableListOf(
                 Role.USER.toString()
         ).toList(),
 
         @Field("state")
-        val state: String = State.CONFIRMED.toString()
+        val state: String? = State.CONFIRMED.toString()
 
 
 )

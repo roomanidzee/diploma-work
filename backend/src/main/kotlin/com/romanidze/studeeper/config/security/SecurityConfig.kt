@@ -1,6 +1,7 @@
 package com.romanidze.studeeper.config.security
 
 import com.romanidze.studeeper.modules.security.entrypoints.AuthenticationEntrypoint
+import com.romanidze.studeeper.modules.security.enums.Role
 import com.romanidze.studeeper.modules.security.filters.JWTFilter
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -34,10 +35,10 @@ class SecurityConfig(private val filter: JWTFilter,
                 .addFilterAt(filter, SecurityWebFiltersOrder.AUTHENTICATION)
                 .authorizeExchange()
                 .pathMatchers("/api/security/**").permitAll()
-                .pathMatchers("/api/admin/**").hasAuthority("ADMIN")
-                .pathMatchers("/api/info/**").hasAuthority("USER")
-                .pathMatchers("/api/worker/**").hasAuthority("WORKER")
-                .pathMatchers("/api/employer/**").hasAuthority("EMPLOYER")
+                .pathMatchers("/api/admin/**").hasAuthority(Role.ADMIN.toString())
+                .pathMatchers("/api/info/**").hasAuthority(Role.USER.toString())
+                .pathMatchers("/api/worker/**").hasAuthority(Role.WORKER.toString())
+                .pathMatchers("/api/employer/**").hasAuthority(Role.EMPLOYER.toString())
             .and()
                 .httpBasic().disable()
                 .formLogin().disable()

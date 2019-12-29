@@ -33,7 +33,7 @@ class RegistrationServiceImpl(
 
         return userRepo.save(newUser)
                 .map {
-                    RegistrationResponseDTO(it.username, it.state)
+                    RegistrationResponseDTO(it.username, it.state!!)
                 }
 
     }
