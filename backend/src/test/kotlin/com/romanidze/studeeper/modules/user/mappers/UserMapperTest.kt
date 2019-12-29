@@ -29,7 +29,7 @@ class UserMapperTest(mapper: UserMapper): WordSpec({
           username = "test"
         )
 
-        "map user to user dto" {
+        "map domain to dto" {
 
             val result = mapper.domainToDTO(testUser)
 
@@ -38,7 +38,7 @@ class UserMapperTest(mapper: UserMapper): WordSpec({
 
         }
 
-        "map user dto to user" {
+        "map dto to domain" {
 
             val result = mapper.dtoToDomain(testDTO)
 

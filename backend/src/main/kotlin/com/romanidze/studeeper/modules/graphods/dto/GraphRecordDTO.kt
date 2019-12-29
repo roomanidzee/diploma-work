@@ -17,5 +17,5 @@ data class GraphRecordDTO(
   val graduation: LocalDateTime,
 
   @JsonProperty("profile_id")
-  val profileID: Long
+  val profileID: String
 )

@@ -35,7 +35,7 @@ class ProfileMapperTest(mapper: ProfileMapper): WordSpec({
            patronymic = testString
         )
 
-        "map profile to profile dto" {
+        "map domain to dto" {
 
             val result = mapper.domainToDTO(testProfile)
 
@@ -43,7 +43,7 @@ class ProfileMapperTest(mapper: ProfileMapper): WordSpec({
 
         }
 
-        "map profile dto to profile" {
+        "map dto to domain" {
 
             val result = mapper.dtoToDomain(testDTO)
 

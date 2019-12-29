@@ -6,6 +6,7 @@ import org.neo4j.springframework.data.core.schema.Node
 import org.neo4j.springframework.data.core.schema.Property
 
 import java.time.LocalDateTime
+import java.util.UUID
 
 /**
  * 01.12.2019
@@ -19,9 +20,8 @@ import java.time.LocalDateTime
 @Node("GraphRecord")
 data class GraphRecord (
 
-
         @Id
-        val id: String,
+        val id: String? = UUID.randomUUID().toString(),
 
         @Property(name = "specialization")
         val specialization: String,
@@ -30,5 +30,5 @@ data class GraphRecord (
         val graduation: LocalDateTime,
 
         @Property(name = "profile_id")
-        val profileID: Long
+        val profileID: String
 )
