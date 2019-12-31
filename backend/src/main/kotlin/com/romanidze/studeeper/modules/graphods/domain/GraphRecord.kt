@@ -1,9 +1,9 @@
 package com.romanidze.studeeper.modules.graphods.domain
 
 import com.github.pozo.KotlinBuilder
-import org.neo4j.springframework.data.core.schema.Id
-import org.neo4j.springframework.data.core.schema.Node
-import org.neo4j.springframework.data.core.schema.Property
+import org.neo4j.ogm.annotation.Id
+import org.neo4j.ogm.annotation.NodeEntity
+import org.neo4j.ogm.annotation.Property
 
 import java.time.LocalDateTime
 import java.util.UUID
@@ -17,7 +17,7 @@ import java.util.UUID
  * @version 1.0
  */
 @KotlinBuilder
-@Node("GraphRecord")
+@NodeEntity("GraphRecord")
 data class GraphRecord (
 
         @Id

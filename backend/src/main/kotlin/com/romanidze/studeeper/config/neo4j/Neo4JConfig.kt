@@ -1,8 +1,8 @@
 package com.romanidze.studeeper.config.neo4j
 
-import org.neo4j.springframework.data.repository.config.EnableReactiveNeo4jRepositories
 import org.springframework.boot.autoconfigure.domain.EntityScan
 import org.springframework.context.annotation.Configuration
+import org.springframework.data.neo4j.repository.config.EnableNeo4jRepositories
 
 /**
  * 27.12.2019
@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration
  * @version 1.0
  */
 @Configuration
-@EnableReactiveNeo4jRepositories(
+@EnableNeo4jRepositories(
         basePackages = [
             "com.romanidze.studeeper.modules.graphods.repositories"
         ]

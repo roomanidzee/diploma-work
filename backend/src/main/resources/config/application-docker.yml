@@ -14,15 +14,11 @@ spring:
       username: studeeper_user
       password: studeeper_pwd
 
-org:
-  neo4j:
+    neo4j:
+      uri: bolt://std_neo4j:7687
+      username: neo4j
+      password: studeeper_pwd
 
-    driver:
-      uri: "bolt://std_neo4j:7687"
-
-      authentication:
-        username: neo4j
-        password: studeeper_pwd
 
 server:
 

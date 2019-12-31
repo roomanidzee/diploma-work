@@ -6,6 +6,7 @@ import com.romanidze.studeeper.modules.graphods.repositories.GraphRecordReposito
 import com.romanidze.studeeper.modules.graphods.services.interfaces.GraphRecordService
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
+import reactor.kotlin.core.publisher.toFlux
 import java.time.LocalDateTime
 
 /**
@@ -21,13 +22,13 @@ class GraphRecordServiceImpl(
 ): GraphRecordService {
 
     override fun getRecordsBySpecialization(specialization: String): Flux<GraphRecordDTO> {
-        return repo.findBySpecialization(specialization)
+        return repo.findBySpecialization(specialization).toFlux()
                    .map(this.mapper::domainToDTO)
     }
 
     override fun getRecordsBySpecializationAndGraduate(specialization: String, graduation: LocalDateTime): Flux<GraphRecordDTO> {
         return repo.findBySpecializationAndGraduationBefore(
                 specialization, graduation
-        ).map(this.mapper::domainToDTO)
+        ).toFlux().map(this.mapper::domainToDTO)
     }
 }

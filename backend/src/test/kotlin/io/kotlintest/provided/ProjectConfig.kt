@@ -14,17 +14,32 @@ import io.kotlintest.spring.SpringAutowireConstructorExtension
  */
 object ProjectConfig: AbstractProjectConfig() {
 
-    private val execCommand1 = "docker-compose -f docker/docker-compose.yml up -d mongo neo4j"
-    private val execCommand2 = "docker-compose -f docker/docker-compose.yml down -v"
+    private val startCommands = mutableListOf(
+       "docker-compose -f docker/docker-compose.yml up -d mongo neo4j"
+    )
+
+    private val stopCommands = mutableListOf(
+       "docker-compose -f docker/docker-compose.yml down -v",
+       "docker container rm std_mongo std_neo4j"
+    )
 
     override fun beforeAll() {
         super.beforeAll()
-        Runtime.getRuntime().exec(execCommand1)
+
+        startCommands.forEach {
+            Runtime.getRuntime().exec(it)
+        }
+
+        Thread.sleep(20_000)
     }
 
     override fun afterAll() {
         super.afterAll()
-        Runtime.getRuntime().exec(execCommand2)
+
+        stopCommands.forEach {
+            Runtime.getRuntime().exec(it)
+        }
+
     }
 
     override fun extensions(): List<ProjectLevelExtension> = listOf(

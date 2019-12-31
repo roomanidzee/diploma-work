@@ -10,7 +10,7 @@ project.extra.set("versions", mapOf(
         "jackson" to "2.10.0",
         "kotlin_test" to "3.4.2",
         "reactor-kotlin-ext" to "1.0.1.RELEASE",
-        "neo4j" to "1.0.0-beta01"
+        "neo4j-ogm" to "3.2.4"
 ))
 
 plugins {
@@ -59,6 +59,9 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-mail")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
+    implementation("org.springframework.boot:spring-boot-starter-data-neo4j")
+
+    implementation("org.neo4j:neo4j-ogm-bolt-driver:${versions["neo4j-ogm"]}")
 
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:${versions["jackson"]}")
 
@@ -87,9 +90,6 @@ dependencies {
     compile("javax.xml.bind:jaxb-api:${versions["jaxb"]}")
 
     compile("io.projectreactor.kotlin:reactor-kotlin-extensions:${versions["reactor-kotlin-ext"]}")
-
-    compile("org.neo4j.springframework.data:spring-data-neo4j-rx-spring-boot-starter:${versions["neo4j"]}")
-
 
     testImplementation("io.kotlintest:kotlintest-runner-junit5:${versions["kotlin_test"]}")
     testImplementation("io.kotlintest:kotlintest-extensions-spring:${versions["kotlin_test"]}")

@@ -31,7 +31,7 @@ class GraphRecordServiceTest(
            profileID = "test"
         )
 
-        val expectedResult = repo.save(testRecord).block()
+        val expectedResult = repo.save(testRecord)
 
         "aggregate records by specialization" {
 
@@ -39,7 +39,7 @@ class GraphRecordServiceTest(
 
             StepVerifier.create(testSource)
                     .expectNextMatches {
-                        it.specialization == expectedResult!!.specialization
+                        it.specialization == expectedResult.specialization
                     }
                     .expectComplete()
                     .verify()
@@ -55,7 +55,7 @@ class GraphRecordServiceTest(
 
             StepVerifier.create(testSource)
                     .expectNextMatches {
-                        it.specialization == expectedResult!!.specialization
+                        it.specialization == expectedResult.specialization
                     }
                     .expectComplete()
                     .verify()

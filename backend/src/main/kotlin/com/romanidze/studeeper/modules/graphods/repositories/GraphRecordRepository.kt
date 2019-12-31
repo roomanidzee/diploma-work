@@ -1,9 +1,8 @@
 package com.romanidze.studeeper.modules.graphods.repositories
 
 import com.romanidze.studeeper.modules.graphods.domain.GraphRecord
-import org.neo4j.springframework.data.repository.ReactiveNeo4jRepository
+import org.springframework.data.neo4j.repository.Neo4jRepository
 import org.springframework.stereotype.Repository
-import reactor.core.publisher.Flux
 import java.time.LocalDateTime
 
 /**
@@ -15,9 +14,9 @@ import java.time.LocalDateTime
  * @version 1.0
  */
 @Repository
-interface GraphRecordRepository: ReactiveNeo4jRepository<GraphRecord, String> {
+interface GraphRecordRepository: Neo4jRepository<GraphRecord, String> {
 
-    fun findBySpecialization(specialization: String): Flux<GraphRecord>
-    fun findBySpecializationAndGraduationBefore(specialization: String, graduation: LocalDateTime): Flux<GraphRecord>
+    fun findBySpecialization(specialization: String): List<GraphRecord>
+    fun findBySpecializationAndGraduationBefore(specialization: String, graduation: LocalDateTime): List<GraphRecord>
 
 }
