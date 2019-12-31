@@ -18,8 +18,7 @@ org:
   neo4j:
 
     driver:
-      # usage of docker's network
-      uri: "bolt://localhost:7687"
+      uri: "bolt://std_neo4j:7687"
 
       authentication:
         username: neo4j

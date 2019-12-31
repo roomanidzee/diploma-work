@@ -16,6 +16,7 @@ services:
         - JAR_FILE=build/libs/app.jar
         - JVM_OPTS=-Xmx200m
         - PORT=8000
+        - DOCKERIZE_VERSION=v0.6.1
 
     container_name: std_app
 
