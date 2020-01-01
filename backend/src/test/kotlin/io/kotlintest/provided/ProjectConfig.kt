@@ -20,6 +20,7 @@ object ProjectConfig: AbstractProjectConfig() {
     override fun beforeAll() {
         super.beforeAll()
         Runtime.getRuntime().exec(execCommand1)
+        Thread.sleep(10_000)
     }
 
     override fun afterAll() {

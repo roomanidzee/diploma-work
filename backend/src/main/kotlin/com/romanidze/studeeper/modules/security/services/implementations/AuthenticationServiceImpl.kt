@@ -70,7 +70,7 @@ class AuthenticationServiceImpl(
             val dateFormat = "dd.MM.yyyy HH:mm:ss"
             val df = SimpleDateFormat(dateFormat)
 
-            LoginResponseDTO(it.username, token, df.format(time))
+            LoginResponseDTO(it.username, token, df.format(expirationTime))
 
         }.switchIfEmpty(fallback)
 
