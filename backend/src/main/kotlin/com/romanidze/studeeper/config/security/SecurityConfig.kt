@@ -39,6 +39,7 @@ class SecurityConfig(private val filter: JWTFilter,
                 .pathMatchers("/api/info/**").hasAuthority(Role.USER.toString())
                 .pathMatchers("/api/worker/**").hasAuthority(Role.WORKER.toString())
                 .pathMatchers("/api/employer/**").hasAuthority(Role.EMPLOYER.toString())
+                .anyExchange().permitAll() 
             .and()
                 .httpBasic().disable()
                 .formLogin().disable()

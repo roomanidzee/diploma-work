@@ -4,6 +4,8 @@ import io.kotlintest.AbstractProjectConfig
 import io.kotlintest.extensions.ProjectLevelExtension
 import io.kotlintest.spring.SpringAutowireConstructorExtension
 
+import java.time.Duration
+
 /**
  * 28.11.2019
  *
@@ -13,6 +15,8 @@ import io.kotlintest.spring.SpringAutowireConstructorExtension
  * @version 1.0
  */
 object ProjectConfig: AbstractProjectConfig() {
+
+    override val timeout = Duration.ofMillis(20_000)
 
     private val execCommand1 = "docker-compose -f docker/docker-compose.yml up -d mongo"
     private val execCommand2 = "docker-compose -f docker/docker-compose.yml down -v"
@@ -29,6 +33,6 @@ object ProjectConfig: AbstractProjectConfig() {
     }
 
     override fun extensions(): List<ProjectLevelExtension> = listOf(
-            SpringAutowireConstructorExtension
+        SpringAutowireConstructorExtension
     )
 }
