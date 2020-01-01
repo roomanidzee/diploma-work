@@ -9,8 +9,7 @@ project.extra.set("versions", mapOf(
         "mapstruct" to "1.3.0.Beta2",
         "jackson" to "2.10.0",
         "kotlin_test" to "3.4.2",
-        "reactor-kotlin-ext" to "1.0.1.RELEASE",
-        "neo4j-ogm" to "3.2.4"
+        "reactor-kotlin-ext" to "1.0.1.RELEASE"
 ))
 
 plugins {
@@ -59,9 +58,6 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-mail")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
-    implementation("org.springframework.boot:spring-boot-starter-data-neo4j")
-
-    implementation("org.neo4j:neo4j-ogm-bolt-driver:${versions["neo4j-ogm"]}")
 
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:${versions["jackson"]}")
 

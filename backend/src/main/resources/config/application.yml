@@ -1,38 +1,24 @@
 spring:
-
   application:
-
     name: studeeper-backend
 
   data:
-
     mongodb:
-
       host: localhost
       port: 27017
       database: studeeper_db
       username: studeeper_user
       password: studeeper_pwd
 
-    neo4j:
-      uri: bolt://localhost:7687
-      username: neo4j
-      password: studeeper_pwd
-
-
 server:
-
   port: 8000
 
 jwt:
-
   properties:
-
     header: Authorization
     prefix: Bearer
     secret-key: fnreskjdfn4p3ithn3q[04tfraf
     expires-at: 600
 
 logging:
-
   config: classpath:logging/logback-spring.xml

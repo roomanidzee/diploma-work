@@ -1,13 +1,11 @@
-version: '2.4'
+version: "2.4"
 
 services:
-
   app:
-
     networks:
       - std_network
 
-    image: 'romanidze/studeeper_app:latest'
+    image: "romanidze/studeeper_app:latest"
 
     build:
       context: ..
@@ -22,7 +20,6 @@ services:
 
     depends_on:
       - mongo
-      - neo4j
 
     environment:
       - SPRING_PROFILES_ACTIVE=docker
@@ -30,41 +27,23 @@ services:
     command: launch
 
     ports:
-      - '8000:8000'
+      - "8000:8000"
 
   mongo:
-
     networks:
       - std_network
 
-    image: 'bitnami/mongodb:4.2.1'
+    image: "bitnami/mongodb:4.2.1"
 
     container_name: std_mongo
 
     ports:
-      - '27017:27017'
+      - "27017:27017"
 
     environment:
       - MONGODB_USERNAME=studeeper_user
       - MONGODB_PASSWORD=studeeper_pwd
       - MONGODB_DATABASE=studeeper_db
-
-  neo4j:
-
-    networks:
-      - std_network
-
-    image: 'bitnami/neo4j:3.5.12'
-
-    container_name: std_neo4j
-
-    ports:
-      - '7474:7474'
-      - '7473:7473'
-      - '7687:7687'
-
-    environment:
-      - NEO4J_PASSWORD=studeeper_pwd
 
 networks:
   std_network:

@@ -27,7 +27,7 @@ class ProfileRepositoryImpl(private val mongoTemplate: ReactiveMongoTemplate): P
     }
 
     override fun save(item: Profile): Mono<Profile> {
-       return this.mongoTemplate.save(item)
+        return this.mongoTemplate.save(item)
     }
 
     override fun delete(item: Profile): Mono<DeleteResult> {
