@@ -8,7 +8,7 @@ services:
     image: "romanidze/studeeper_app:latest"
 
     build:
-      context: ..
+      context: system_service
       dockerfile: docker/app/Dockerfile
       args:
         - JAR_FILE=build/libs/app.jar
@@ -44,6 +44,22 @@ services:
       - MONGODB_USERNAME=studeeper_user
       - MONGODB_PASSWORD=studeeper_pwd
       - MONGODB_DATABASE=studeeper_db
+
+  clickhouse:
+    networks:
+      - std_network
+
+    image: "yandex/clickhouse-server:19.17.6.36"
+
+    container_name: std_clickhouse
+
+    ports:
+      - "8401:8123"
+      - "8501:9000"
+
+    volumes:
+      - "./docker_config/clickhouse/sql:/docker-entrypoint-initdb.d"
+      - "./docker_config/clickhouse/users:/etc/clickhouse-server/users.d"
 
 networks:
   std_network:
