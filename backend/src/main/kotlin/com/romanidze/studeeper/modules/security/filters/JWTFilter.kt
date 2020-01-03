@@ -1,7 +1,6 @@
 package com.romanidze.studeeper.modules.security.filters
 
 import com.romanidze.studeeper.modules.security.converters.JWTAuthenticationConverter
-import com.romanidze.studeeper.modules.security.entrypoints.AuthenticationEntrypoint
 import com.romanidze.studeeper.modules.security.managers.JWTAuthenticationManager
 import com.romanidze.studeeper.modules.security.matchers.JWTHeadersMatcher
 import org.springframework.security.web.server.authentication.AuthenticationWebFilter
@@ -20,13 +19,11 @@ import org.springframework.stereotype.Component
 class JWTFilter(
         private val manager: JWTAuthenticationManager,
         private val matcher: JWTHeadersMatcher,
-        private val converter: JWTAuthenticationConverter,
-        private val entrypoint: AuthenticationEntrypoint
+        private val converter: JWTAuthenticationConverter
 ): AuthenticationWebFilter(manager){
 
     init {
         setServerAuthenticationConverter(converter)
-        setAuthenticationFailureHandler(ServerAuthenticationEntryPointFailureHandler(entrypoint))
         setRequiresAuthenticationMatcher(matcher)
     }
 

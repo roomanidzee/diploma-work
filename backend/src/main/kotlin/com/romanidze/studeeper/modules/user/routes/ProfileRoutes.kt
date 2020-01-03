@@ -31,6 +31,7 @@ class ProfileRoutes {
 
                     "/info/profile".nest {
                         GET("/", profileHandler::getProfileInfo)
+                        POST("/create", profileHandler::create)
                     }
 
                 }

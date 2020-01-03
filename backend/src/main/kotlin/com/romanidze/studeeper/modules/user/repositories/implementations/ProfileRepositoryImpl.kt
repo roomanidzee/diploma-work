@@ -39,9 +39,12 @@ class ProfileRepositoryImpl(private val mongoTemplate: ReactiveMongoTemplate): P
         val updateQuery = Query.query(Criteria.where("_id").`is`(item.id))
 
         val updateFunc = Update()
+
+        updateFunc.set("user_id", item.userID!!)
         updateFunc.set("surname", item.surname)
         updateFunc.set("name", item.name)
         updateFunc.set("patronymic", item.patronymic)
+        updateFunc.set("email", item.email!!)
 
         return this.mongoTemplate.updateFirst(updateQuery, updateFunc, Profile::class.java)
 

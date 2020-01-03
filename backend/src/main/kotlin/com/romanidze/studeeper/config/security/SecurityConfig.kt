@@ -1,6 +1,5 @@
 package com.romanidze.studeeper.config.security
 
-import com.romanidze.studeeper.modules.security.entrypoints.AuthenticationEntrypoint
 import com.romanidze.studeeper.modules.security.enums.Role
 import com.romanidze.studeeper.modules.security.filters.JWTFilter
 import org.springframework.context.annotation.Bean
@@ -23,15 +22,12 @@ import org.springframework.security.web.server.context.WebSessionServerSecurityC
  */
 @Configuration
 @EnableWebFluxSecurity
-class SecurityConfig(private val filter: JWTFilter,
-                     private val entrypoint: AuthenticationEntrypoint) {
+class SecurityConfig(private val filter: JWTFilter) {
 
     @Bean
     fun securityChain(http: ServerHttpSecurity): SecurityWebFilterChain{
 
-        http.exceptionHandling()
-                .authenticationEntryPoint(entrypoint)
-            .and()
+        http
                 .addFilterAt(filter, SecurityWebFiltersOrder.AUTHENTICATION)
                 .authorizeExchange()
                 .pathMatchers("/api/security/**").permitAll()
@@ -39,7 +35,8 @@ class SecurityConfig(private val filter: JWTFilter,
                 .pathMatchers("/api/info/**").hasAuthority(Role.USER.toString())
                 .pathMatchers("/api/worker/**").hasAuthority(Role.WORKER.toString())
                 .pathMatchers("/api/employer/**").hasAuthority(Role.EMPLOYER.toString())
-                .anyExchange().permitAll() 
+                .pathMatchers("/api/facility/**").hasAuthority(Role.FACILITY.toString())
+                .anyExchange().permitAll()
             .and()
                 .httpBasic().disable()
                 .formLogin().disable()

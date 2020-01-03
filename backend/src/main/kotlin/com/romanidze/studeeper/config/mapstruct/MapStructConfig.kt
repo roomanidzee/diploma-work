@@ -13,8 +13,8 @@ import org.mapstruct.ReportingPolicy
  *
  */
 @MapperConfig(
-        componentModel = "spring",
-        unmappedTargetPolicy = ReportingPolicy.IGNORE,
-        injectionStrategy = InjectionStrategy.CONSTRUCTOR
+   componentModel = "spring",
+   unmappedTargetPolicy = ReportingPolicy.IGNORE,
+   injectionStrategy = InjectionStrategy.CONSTRUCTOR
 )
 interface MapStructConfig

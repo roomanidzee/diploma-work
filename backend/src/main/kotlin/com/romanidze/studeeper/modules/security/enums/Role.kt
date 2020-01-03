@@ -8,5 +8,5 @@ package com.romanidze.studeeper.modules.security.enums
  * @author Andrey Romanov
  */
 enum class Role {
-    ADMIN, USER, WORKER, EMPLOYER
+    ADMIN, USER, WORKER, EMPLOYER, FACILITY
 }

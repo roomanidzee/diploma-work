@@ -1,5 +1,6 @@
 package com.romanidze.studeeper.modules.user.dto
 
+import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.pozo.KotlinBuilder
 
 /**
@@ -12,8 +13,12 @@ import com.github.pozo.KotlinBuilder
 @KotlinBuilder
 data class ProfileDTO(
 
+  @JsonProperty("user_id")
+  val userID: String,
+
   val surname: String,
   val name: String,
-  val patronymic: String
+  val patronymic: String,
+  val email: String
 
 )

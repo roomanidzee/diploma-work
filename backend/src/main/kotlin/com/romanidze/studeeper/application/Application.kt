@@ -17,7 +17,8 @@ import org.springframework.context.annotation.ComponentScan
             "com.romanidze.studeeper.config",
             "com.romanidze.studeeper.modules.user",
             "com.romanidze.studeeper.modules.security",
-            "com.romanidze.studeeper.modules.graphods"
+            "com.romanidze.studeeper.modules.graphods",
+            "com.romanidze.studeeper.modules.employer"
         ]
 )
 class Application
