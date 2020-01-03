@@ -4,8 +4,6 @@ import com.romanidze.studeeper.modules.common.CRUDRepository
 import com.romanidze.studeeper.modules.graphods.domain.GraphRecord
 import reactor.core.publisher.Flux
 
-import java.time.LocalDateTime
-
 /**
  * 01.01.2020
  *
@@ -17,4 +15,5 @@ import java.time.LocalDateTime
 interface GraphRecordRepository: CRUDRepository<GraphRecord, String>{
     fun findByProfileID(profileID: String): Flux<GraphRecord>
     fun findByGroupmates(groupmates: Set<String>): Flux<GraphRecord>
+    fun findByFacilities(facilities: Set<String>): Flux<GraphRecord>
 }

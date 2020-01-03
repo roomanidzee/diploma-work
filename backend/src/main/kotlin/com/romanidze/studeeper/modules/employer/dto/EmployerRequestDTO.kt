@@ -12,6 +12,8 @@ import com.github.pozo.KotlinBuilder
 @KotlinBuilder
 data class EmployerRequestDTO(
 
+    val id: String,
+
     @JsonProperty("vacancy_id")
     val vacancyID: String,
 

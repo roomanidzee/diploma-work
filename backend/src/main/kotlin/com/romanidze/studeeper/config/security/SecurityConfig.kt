@@ -31,6 +31,7 @@ class SecurityConfig(private val filter: JWTFilter) {
                 .addFilterAt(filter, SecurityWebFiltersOrder.AUTHENTICATION)
                 .authorizeExchange()
                 .pathMatchers("/api/security/**").permitAll()
+                .pathMatchers("/api/public/**").permitAll()
                 .pathMatchers("/api/admin/**").hasAuthority(Role.ADMIN.toString())
                 .pathMatchers("/api/info/**").hasAuthority(Role.USER.toString())
                 .pathMatchers("/api/worker/**").hasAuthority(Role.WORKER.toString())

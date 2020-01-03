@@ -67,4 +67,14 @@ class GraphRecordRepositoryImpl(private val mongoTemplate: ReactiveMongoTemplate
 
     }
 
+    override fun findByFacilities(facilities: Set<String>): Flux<GraphRecord> {
+
+        val searchQuery = Query.query(
+            Criteria.where("facility_id").`in`(facilities)
+        )
+
+        return this.mongoTemplate.find(searchQuery, GraphRecord::class.java)
+
+    }
+
 }
