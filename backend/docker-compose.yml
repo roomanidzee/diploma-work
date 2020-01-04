@@ -58,6 +58,17 @@ services:
       - "./docker_config/clickhouse/sql:/docker-entrypoint-initdb.d"
       - "./docker_config/clickhouse/users:/etc/clickhouse-server/users.d"
 
+  redis:
+    networks:
+      - std_network
+
+    image: "redis:5.0.7-alpine"
+
+    container_name: std_redis
+
+    ports:
+      - "6379:6379"
+
 networks:
   std_network:
     driver: bridge
