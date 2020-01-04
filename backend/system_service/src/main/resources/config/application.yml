@@ -4,13 +4,13 @@ spring:
 
   data:
     mongodb:
-      host: localhost
+      host: std_mongo
       port: 27017
       database: studeeper_db
       username: studeeper_user
       password: studeeper_pwd
     clickhouse:
-      host: localhost
+      host: std_clickhouse
       port: 8123
       database: studeeper_db
       user: studeeper_user

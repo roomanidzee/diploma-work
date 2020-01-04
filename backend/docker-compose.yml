@@ -11,8 +11,7 @@ services:
       context: system_service
       dockerfile: docker/app/Dockerfile
       args:
-        - JAR_FILE=build/libs/app.jar
-        - JVM_OPTS=-Xmx200m
+        - PROD_JVM_OPTS=-Xmx200m
         - PORT=8000
         - DOCKERIZE_VERSION=v0.6.1
 
@@ -20,11 +19,9 @@ services:
 
     depends_on:
       - mongo
+      - clickhouse
 
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-
-    command: launch
+    command: launch-prod
 
     ports:
       - "8000:8000"

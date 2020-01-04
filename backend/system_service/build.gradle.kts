@@ -27,7 +27,7 @@ tasks.bootJar {
 }
 
 tasks.bootRun {
-    jvmArgs = mutableListOf("-Xmx200m", "-Xms200m")
+    jvmArgs = mutableListOf("-Xmx200m")
 }
 
 val versions : Map<String, String> by project.extra
