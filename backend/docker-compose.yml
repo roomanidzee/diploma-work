@@ -1,11 +1,11 @@
 version: "2.4"
 
 services:
-  app:
+  system_service:
     networks:
       - std_network
 
-    image: "romanidze/studeeper_app:latest"
+    image: "romanidze/studeeper_system_app:latest"
 
     build:
       context: system_service
@@ -15,15 +15,39 @@ services:
         - PORT=8000
         - DOCKERIZE_VERSION=v0.6.1
 
-    container_name: std_app
+    container_name: std_system_app
 
     depends_on:
       - mongo
+      - redis
 
     command: launch-build
 
     ports:
       - "8000:8000"
+
+  file_service:
+    networks: 
+      - std_network
+
+    image: "romanidze/studeeper_files_app:latest"
+
+    build:
+      context: file_service
+      dockerfile: docker/app/Dockerfile
+      args:
+        - PORT=5000
+
+    container_name: std_files_app
+
+    depends_on: 
+      - system_service
+      - redis
+    
+    command: launch-dev
+
+    ports:
+      - "5000:5000"
 
   mongo:
     networks:
