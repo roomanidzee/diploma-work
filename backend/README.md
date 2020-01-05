@@ -1,6 +1,6 @@
 # studeeper-backend
 
-### Project launch
+### Launch
 ```
 docker-compose up -d
 ```
