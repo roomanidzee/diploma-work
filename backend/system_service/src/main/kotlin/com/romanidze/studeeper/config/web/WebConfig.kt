@@ -19,10 +19,7 @@ class WebConfig: WebFluxConfigurer {
 
     override fun addCorsMappings(registry: CorsRegistry) {
         registry.addMapping("/**")
-                .allowCredentials(true)
-                .allowedHeaders("Content-Language", "EXPIRES")
-                .allowedMethods("GET", "POST", "PUT", "DELETE")
-                .allowedOrigins("http://0.0.0.0")
+                .allowedMethods("*");
     }
 
 }

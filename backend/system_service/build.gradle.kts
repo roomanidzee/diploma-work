@@ -9,8 +9,7 @@ project.extra.set("versions", mapOf(
         "mapstruct" to "1.3.0.Beta2",
         "jackson" to "2.10.0",
         "kotlin_test" to "3.4.2",
-        "reactor-kotlin-ext" to "1.0.1.RELEASE",
-        "clickhouse4j" to "1.4.2"
+        "reactor-kotlin-ext" to "1.0.1.RELEASE"
 ))
 
 plugins {
@@ -59,10 +58,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-mail")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
-    implementation("org.springframework.boot:spring-boot-starter-jdbc")
 
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:${versions["jackson"]}")
-    implementation("cc.blynk.clickhouse:clickhouse4j:${versions["clickhouse4j"]}")
 
     implementation("org.jetbrains.kotlin:kotlin-reflect:${versions["kotlin"]}")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions["kotlin"]}")
