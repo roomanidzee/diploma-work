@@ -19,7 +19,10 @@ RUN wget "https://github.com/jwilder/dockerize/releases/download/${DOCKERIZE_VER
 COPY ./docker/app/entrypoint.sh /docker-entrypoint.sh
 EXPOSE ${PORT}
 
+WORKDIR /usr/app_src
 RUN mkdir /dist
+
 COPY --from=build /home/gradle/app_src/build/libs/*.jar /dist/app.jar
+COPY --from=build /home/gradle/app_src .
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
