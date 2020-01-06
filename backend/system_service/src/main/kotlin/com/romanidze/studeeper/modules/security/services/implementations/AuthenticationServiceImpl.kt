@@ -9,20 +9,24 @@ import com.romanidze.studeeper.modules.security.dto.TokenInfoDTO
 import com.romanidze.studeeper.modules.security.properties.JWTProperties
 import com.romanidze.studeeper.modules.security.services.interfaces.AuthenticationService
 import com.romanidze.studeeper.modules.user.domain.User
+
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.ExpiredJwtException
+
 import org.springframework.beans.factory.annotation.Qualifier
+import org.springframework.data.redis.core.ReactiveRedisOperations
 import org.springframework.security.authentication.AuthenticationServiceException
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.userdetails.ReactiveUserDetailsService
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
+
 import reactor.core.publisher.Mono
 import reactor.kotlin.core.publisher.toMono
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.ZoneId
-import java.util.*
+import java.util.Date
 
 /**
  * 19.11.2019
@@ -36,7 +40,8 @@ class AuthenticationServiceImpl(
         private val detailsService: ReactiveUserDetailsService,
         private val properties: JWTProperties,
         private val encoder: PasswordEncoder,
-        private val jwtComponent: JWTComponent
+        private val jwtComponent: JWTComponent,
+        private val redisOperations: ReactiveRedisOperations<String, String>
 ): AuthenticationService {
 
     override fun loginUser(loginDTO: LoginDTO): Mono<LoginResponseDTO> {
@@ -54,7 +59,8 @@ class AuthenticationServiceImpl(
                 IllegalArgumentException("No such user")
         )
 
-        return user.map {
+
+        val generatedResp = user.flatMap {
 
             if(!this.encoder.matches(password, it.password)){
                 Mono.empty<LoginResponseDTO>()
@@ -67,12 +73,32 @@ class AuthenticationServiceImpl(
 
             val token = this.jwtComponent.generateToken(it, expirationTime)
 
+            this.redisOperations.opsForValue()
+                               .set(token, it.id!!)
+
             val dateFormat = "dd.MM.yyyy HH:mm:ss"
             val df = SimpleDateFormat(dateFormat)
 
-            LoginResponseDTO(it.username, token, df.format(expirationTime))
+            LoginResponseDTO(it.username, token, df.format(expirationTime)).toMono()
 
         }.switchIfEmpty(fallback)
+
+        val tokenSave = generatedResp.flatMap {
+            this.redisOperations.opsForValue()
+                                .set(it.token, it.username)
+        }
+
+        return tokenSave.flatMap {
+
+            if(!it){
+                Mono.error<LoginResponseDTO>(
+                   IllegalArgumentException("Didn't save authorized user's token to Redis")
+                )
+            }
+
+            generatedResp
+
+        }
 
     }
 

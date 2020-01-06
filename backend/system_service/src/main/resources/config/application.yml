@@ -9,12 +9,11 @@ spring:
       database: studeeper_db
       username: studeeper_user
       password: studeeper_pwd
-    clickhouse:
-      host: std_clickhouse
-      port: 8123
-      database: studeeper_db
-      user: default
-      password: ""
+
+  redis:
+    host: std_redis
+    port: 6379
+    database: 0
 
 server:
   port: 8000

@@ -4,11 +4,6 @@
       "name": "jwt.properties",
       "type": "com.romanidze.studeeper.modules.security.properties.JWTProperties",
       "sourceType": "com.romanidze.studeeper.modules.security.properties.JWTProperties"
-    },
-    {
-      "name": "spring.data.clickhouse",
-      "type": "com.romanidze.studeeper.config.clickhouse.ClickHouseJDBCProperties",
-      "sourceType": "com.romanidze.studeeper.config.clickhouse.ClickHouseJDBCProperties"
     }
   ],
   "properties": [
@@ -35,42 +30,6 @@
       "type": "java.lang.String",
       "description": "JWT Token prefix.",
       "sourceType": "com.romanidze.studeeper.modules.security.properties.JWTProperties"
-    },
-    {
-      "name": "spring.data.clickhouse.host",
-      "type": "java.lang.String",
-      "description": "ClickHouse host.",
-      "sourceType": "com.romanidze.studeeper.config.clickhouse.ClickHouseJDBCProperties"
-    },
-    {
-      "name": "spring.data.clickhouse.port",
-      "type": "java.lang.Integer",
-      "description": "ClickHouse port.",
-      "sourceType": "com.romanidze.studeeper.config.clickhouse.ClickHouseJDBCProperties"
-    },
-    {
-      "name": "spring.data.clickhouse.database",
-      "type": "java.lang.String",
-      "description": "ClickHouse database",
-      "sourceType": "com.romanidze.studeeper.config.clickhouse.ClickHouseJDBCProperties"
-    },
-    {
-      "name": "spring.data.clickhouse.user",
-      "type": "java.lang.String",
-      "description": "ClickHouse user.",
-      "sourceType": "com.romanidze.studeeper.config.clickhouse.ClickHouseJDBCProperties"
-    },
-    {
-      "name": "spring.data.clickhouse.password",
-      "type": "java.lang.String",
-      "description": "ClickHouse password.",
-      "sourceType": "com.romanidze.studeeper.config.clickhouse.ClickHouseJDBCProperties"
-    },
-    {
-      "name": "spring.data.clickhouse.connection-pool-size",
-      "type": "java.lang.Integer",
-      "description": "ClickHouse connection pool size.",
-      "sourceType": "com.romanidze.studeeper.config.clickhouse.ClickHouseJDBCProperties"
     }
   ]
 }
