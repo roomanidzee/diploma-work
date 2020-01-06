@@ -4,6 +4,11 @@
       "name": "jwt.properties",
       "type": "com.romanidze.studeeper.modules.security.properties.JWTProperties",
       "sourceType": "com.romanidze.studeeper.modules.security.properties.JWTProperties"
+    },
+    {
+      "name": "files.server",
+      "type": "com.romanidze.studeeper.modules.files.client.FileServiceProperties",
+      "sourceType": "com.romanidze.studeeper.modules.files.client.FileServiceProperties"
     }
   ],
   "properties": [
@@ -30,6 +35,18 @@
       "type": "java.lang.String",
       "description": "JWT Token prefix.",
       "sourceType": "com.romanidze.studeeper.modules.security.properties.JWTProperties"
+    },
+    {
+      "name": "files.server.host",
+      "type": "java.lang.String",
+      "description": "Files server host.",
+      "sourceType": "com.romanidze.studeeper.modules.files.client.FileServiceProperties"
+    },
+    {
+      "name": "files.server.port",
+      "type": "java.lang.String",
+      "description": "Files server port.",
+      "sourceType": "com.romanidze.studeeper.modules.files.client.FileServiceProperties"
     }
   ]
 }

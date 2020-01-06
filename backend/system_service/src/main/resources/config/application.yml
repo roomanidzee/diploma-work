@@ -18,6 +18,11 @@ spring:
 server:
   port: 8000
 
+files:
+  server:
+    host: std_files_app
+    port: 5000
+
 jwt:
   properties:
     header: Authorization

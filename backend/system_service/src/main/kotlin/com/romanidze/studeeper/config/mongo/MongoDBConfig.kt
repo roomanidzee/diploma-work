@@ -13,12 +13,18 @@ import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRep
 @Configuration
 @EnableReactiveMongoRepositories(
         basePackages = [
-            "com.romanidze.studeeper.modules.user.repositories"
+            "com.romanidze.studeeper.modules.user.repositories",
+            "com.romanidze.studeeper.modules.employer.repositories",
+            "com.romanidze.studeeper.modules.graphods.repositories",
+            "com.romanidze.studeeper.modules.files.repositories"
         ]
 )
 @EntityScan(
         basePackages = [
-            "com.romanidze.studeeper.modules.user.domain"
+            "com.romanidze.studeeper.modules.user.domain",
+            "com.romanidze.studeeper.modules.employer.domain",
+            "com.romanidze.studeeper.modules.graphods.domain",
+            "com.romanidze.studeeper.modules.files.domain"
         ]
 )
 class MongoDBConfig

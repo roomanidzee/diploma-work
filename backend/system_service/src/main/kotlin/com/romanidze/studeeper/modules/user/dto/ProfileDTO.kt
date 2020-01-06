@@ -13,6 +13,9 @@ import com.github.pozo.KotlinBuilder
 @KotlinBuilder
 data class ProfileDTO(
 
+  @JsonProperty("profile_id")
+  val id: String,
+
   @JsonProperty("user_id")
   val userID: String,
 

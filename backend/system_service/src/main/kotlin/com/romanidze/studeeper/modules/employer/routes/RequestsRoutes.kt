@@ -21,28 +21,21 @@ class RequestsRoutes {
 
                 (accept(MediaType.APPLICATION_JSON) and "/api").nest {
 
-                    "/worker".nest {
-                        GET("/{worker_id}/requests", handler::getByWorker)
-
+                    "/public".nest {
                         "/requests".nest {
                             GET("/{id}", handler::getByID)
                             GET("/filter", handler::getByStatus)
                             POST("/create", handler::createRequest)
                             PUT("/update", handler::updateRequest)
                         }
+                    }
 
+                    "/worker".nest {
+                        GET("/{worker_id}/requests", handler::getByWorker)
                     }
 
                     "/employer".nest {
                         GET("/{employer_id}/requests", handler::getByEmployer)
-
-                        "/requests".nest {
-                            GET("/{id}", handler::getByID)
-                            GET("/filter", handler::getByStatus)
-                            POST("/create", handler::createRequest)
-                            PUT("/update", handler::updateRequest)
-                        }
-
                     }
 
                 }

@@ -21,13 +21,13 @@ services:
       - mongo
       - redis
 
-    command: launch-build
+    command: launch-prod
 
     ports:
       - "8000:8000"
 
   file_service:
-    networks: 
+    networks:
       - std_network
 
     image: "romanidze/studeeper_files_app:latest"
@@ -40,11 +40,11 @@ services:
 
     container_name: std_files_app
 
-    depends_on: 
+    depends_on:
       - system_service
       - redis
-    
-    command: launch-dev
+
+    command: launch-prod
 
     ports:
       - "5000:5000"

@@ -24,6 +24,8 @@ import org.springframework.security.web.server.context.WebSessionServerSecurityC
 @EnableWebFluxSecurity
 class SecurityConfig(private val filter: JWTFilter) {
 
+    private val allRoles = Role.values().map { it.toString() }
+
     @Bean
     fun securityChain(http: ServerHttpSecurity): SecurityWebFilterChain{
 
@@ -31,9 +33,10 @@ class SecurityConfig(private val filter: JWTFilter) {
                 .addFilterAt(filter, SecurityWebFiltersOrder.AUTHENTICATION)
                 .authorizeExchange()
                 .pathMatchers("/api/security/**").permitAll()
-                .pathMatchers("/api/public/**").permitAll()
+                .pathMatchers("/api/public/**").hasAnyAuthority(*allRoles.toTypedArray())
+                .pathMatchers("/api/files/**").hasAnyAuthority(*allRoles.toTypedArray())
                 .pathMatchers("/api/admin/**").hasAuthority(Role.ADMIN.toString())
-                .pathMatchers("/api/info/**").hasAuthority(Role.USER.toString())
+                .pathMatchers("/api/info/**").hasAnyAuthority(*allRoles.toTypedArray())
                 .pathMatchers("/api/worker/**").hasAuthority(Role.WORKER.toString())
                 .pathMatchers("/api/employer/**").hasAuthority(Role.EMPLOYER.toString())
                 .pathMatchers("/api/facility/**").hasAuthority(Role.FACILITY.toString())
