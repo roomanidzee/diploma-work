@@ -6,7 +6,7 @@ import logger from '../config/logger';
 @Service()
 export class RedisService {
 
-    validateRequest(req: Request): String{
+    validateRequest(req: Request): string{
 
         let jwtToken: string = req.header("Authorization")
         let finalKey: string;
