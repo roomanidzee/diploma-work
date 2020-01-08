@@ -10,6 +10,16 @@
     "start-dev": "nodemon",
     "start-prod": "pm2 start pm2.json"
   },
+  "nodemonConfig": {
+    "watch": [
+      "src"
+    ],
+    "ext": "ts",
+    "ignore": [
+      "src/**/*.spec.ts"
+    ],
+    "exec": "ts-node ./src/app.ts"
+  },
   "dependencies": {
     "body-parser": "^1.19.0",
     "class-transformer": "^0.2.3",
@@ -33,6 +43,7 @@
     "nodemon": "^2.0.2",
     "pm2": "^4.2.1",
     "ts-node": "^8.5.4",
-    "typescript": "^3.7.4"
+    "typescript": "^3.7.4",
+    "typescript-logging": "^0.6.4"
   }
 }
