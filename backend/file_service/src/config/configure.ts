@@ -1,5 +1,5 @@
-const yaml_config = require('config-yml');
 import express = require('express');
+import fileUpload = require('express-fileupload');
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
 const app = express();
@@ -10,5 +10,6 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 app.use(require('express-status-monitor')());
+app.use(fileUpload());
 
 export default app;

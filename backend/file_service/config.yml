@@ -4,3 +4,11 @@ server:
 redis:
   host: std_redis
   port: 6379
+  db: 0
+
+mongo:
+  host: std_mongo
+  port: 27017
+  database: studeeper_db
+  user: studeeper_user
+  password: studeeper_pwd

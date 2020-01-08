@@ -21,8 +21,8 @@ data class FileInfo(
    @Id
    val id: String? = UUID.randomUUID().toString(),
 
-   @Field("profile_id")
-   val profileID: String,
+   @Field("user_id")
+   val userID: String,
 
    @Field("path")
    val path: String,

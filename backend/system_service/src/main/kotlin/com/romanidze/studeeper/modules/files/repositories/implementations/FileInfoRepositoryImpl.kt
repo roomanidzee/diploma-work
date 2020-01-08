@@ -67,7 +67,7 @@ class FileInfoRepositoryImpl(private val mongoTemplate: ReactiveMongoTemplate): 
 
         val updateFunc = Update()
 
-        updateFunc.set("profile_id", item.profileID)
+        updateFunc.set("user_id", item.userID)
         updateFunc.set("path", item.path)
         updateFunc.set("type", item.fileType)
         updateFunc.set("size", item.size)
