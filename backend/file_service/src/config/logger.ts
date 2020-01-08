@@ -1,7 +1,18 @@
-import { Category, CategoryServiceFactory, CategoryConfiguration, LogLevel } from "typescript-logging";
+import {Logger} from "ts-log-debug";
 
-CategoryServiceFactory.setDefaultConfiguration(new CategoryConfiguration(LogLevel.Info));
-
-const logger = new Category("app");
+const logger = new Logger("app");
+logger.appenders
+    .set("std-log", {
+        type: "stdout",
+        levels: ["debug", "info", "trace"]
+    })
+    .set("error-log", {
+        type: "stderr",
+        levels: ["fatal", "error", "warn"],
+        layout: {
+            type: "pattern",
+            pattern: "%d %p %c %X{user} %m%n"
+        }
+    });
 
 export default logger;
