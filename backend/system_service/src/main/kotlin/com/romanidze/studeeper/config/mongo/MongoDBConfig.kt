@@ -16,7 +16,8 @@ import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRep
             "com.romanidze.studeeper.modules.user.repositories",
             "com.romanidze.studeeper.modules.employer.repositories",
             "com.romanidze.studeeper.modules.graphods.repositories",
-            "com.romanidze.studeeper.modules.files.repositories"
+            "com.romanidze.studeeper.modules.files.repositories",
+            "com.romanidze.studeeper.modules.worker.repositories"
         ]
 )
 @EntityScan(
@@ -24,7 +25,8 @@ import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRep
             "com.romanidze.studeeper.modules.user.domain",
             "com.romanidze.studeeper.modules.employer.domain",
             "com.romanidze.studeeper.modules.graphods.domain",
-            "com.romanidze.studeeper.modules.files.domain"
+            "com.romanidze.studeeper.modules.files.domain",
+            "com.romanidze.studeeper.modules.worker.domain"
         ]
 )
 class MongoDBConfig
