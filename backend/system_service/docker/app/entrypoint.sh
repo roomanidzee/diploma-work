@@ -13,14 +13,16 @@ until mongo_ready; do
   >&2 printf '\n'
 done
 
+gradle clean build -x test
+
 cmd="$*"
 
-if [ "$1" = 'launch-build' ]; then
-  gradle clean build -x test && java "$JVM_OPTS" -jar build/libs/app.jar
 elif [ "$1" = 'launch-dev' ]; then
-  gradle clean bootRun
+  gradle bootRun
 elif [ "$1" = 'launch-prod' ]; then
   java "$JVM_OPTS" -jar build/libs/app.jar
+elif [ "$1" = 'launch-tests' ]; then
+  gradle test
 else
   exec "$cmd"
 fi

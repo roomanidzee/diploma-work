@@ -22,9 +22,12 @@ class ProfileServiceTest(service: ProfileService): WordSpec({
         val testString = "testDTO"
 
         val testDTO = ProfileDTO(
+           id = testString, 
            surname = testString,
            name = testString,
-           patronymic = testString
+           patronymic = testString,
+           userID = testString,
+           email = testString
         )
 
         "create profile" {

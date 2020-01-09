@@ -7,5 +7,5 @@ docker-compose up -d
 
 ### Tests launch
 ```
-docker-compose run --rm system_service gradle test
+docker-compose run --rm system_service launch-tests
 ```

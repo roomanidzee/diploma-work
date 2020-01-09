@@ -7,8 +7,6 @@ COPY --chown=gradle:gradle ./docker/app/entrypoint.sh /docker-entrypoint.sh
 
 WORKDIR /code
 
-RUN gradle clean build --no-daemon -x test
-
 ARG PROD_JVM_OPTS
 ARG PORT
 ARG DOCKERIZE_VERSION

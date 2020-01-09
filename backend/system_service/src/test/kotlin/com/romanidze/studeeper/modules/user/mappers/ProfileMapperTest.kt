@@ -30,9 +30,12 @@ class ProfileMapperTest(mapper: ProfileMapper): WordSpec({
         )
 
         val testDTO = ProfileDTO(
+           id = testProfile.id!!, 
            surname = testString,
            name = testString,
-           patronymic = testString
+           patronymic = testString,
+           userID = testProfile.userID!!,
+           email = testProfile.email!!
         )
 
         "map domain to dto" {
