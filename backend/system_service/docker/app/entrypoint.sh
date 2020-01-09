@@ -15,7 +15,7 @@ done
 
 cmd="$*"
 
-elif [ "$1" = 'launch-dev' ]; then
+if [ "$1" = 'launch-dev' ]; then
   gradle bootRun
 elif [ "$1" = 'launch-prod' ]; then
   java "$JVM_OPTS" -jar build/libs/app.jar

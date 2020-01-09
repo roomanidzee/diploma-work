@@ -1,0 +1,74 @@
+version: "2.4"
+
+services: 
+
+  mongo:
+
+    networks:
+      - std_network
+
+    extends:
+
+      file: backend/docker-compose.yml
+      service: mongo
+
+    container_name: std_mongo
+
+  redis:
+
+    networks:
+      - std_network
+
+    extends:
+
+      file: backend/docker-compose.yml
+      service: redis
+
+    container_name: std_redis
+
+  system_backend:
+
+    networks:
+      - std_network
+
+    depends_on:
+      - mongo
+      - redis
+
+    extends: 
+      
+      file: backend/docker-compose.yml
+      service: system_service
+
+    container_name: std_system_app
+
+  files_backend:
+
+    networks:
+      - std_network
+
+    depends_on:
+      - mongo
+      - redis
+
+    extends:
+
+      file: backend/docker-compose.yml
+      service: file_service
+
+    container_name: std_files_app
+
+  frontend:
+
+    networks:
+      - std_network
+
+    extends:
+
+      file: frontend/docker-compose.yml
+      service: studeeper_front
+
+    container_name: std_frontend
+
+networks:
+  std_network:
