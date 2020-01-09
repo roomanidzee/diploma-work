@@ -41,10 +41,10 @@ services:
     container_name: std_files_app
 
     depends_on:
-      - system_service
+      - mongo
       - redis
 
-    command: launch-dev
+    command: launch-prod
 
     ports:
       - "5000:5000"

@@ -1,0 +1,26 @@
+version: "2.4"
+
+services:
+
+  studeeper_front:
+
+    networks:
+      - std_network
+
+    image: "romanidze/std_frontend:latest"
+
+    build:
+      context: system_front
+      dockerfile: docker/app/Dockerfile
+      args:
+        - PORT=3000
+
+    container_name: std_frontend
+
+    command: launch-prod
+
+    ports:
+      - "3000:3000"
+
+networks:
+  std_network:

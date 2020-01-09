@@ -13,8 +13,6 @@ until mongo_ready; do
   >&2 printf '\n'
 done
 
-gradle clean build -x test
-
 cmd="$*"
 
 elif [ "$1" = 'launch-dev' ]; then
