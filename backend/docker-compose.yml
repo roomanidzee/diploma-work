@@ -5,7 +5,7 @@ services:
     networks:
       - std_network
 
-    image: "romanidze/studeeper_system_app:latest"
+    image: "romanidze/std_system_app:latest"
 
     build:
       context: system_service
@@ -30,7 +30,7 @@ services:
     networks:
       - std_network
 
-    image: "romanidze/studeeper_files_app:latest"
+    image: "romanidze/std_files_app:latest"
 
     build:
       context: file_service

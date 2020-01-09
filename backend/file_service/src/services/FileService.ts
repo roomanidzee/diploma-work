@@ -7,9 +7,9 @@ import base_path from "../config/files";
 import { RedisService } from './RedisService';
 import { MongoService, FileObject } from './MongoService';
 
-type FolderInfo = {
-    user_id: string,
-    files: string[]
+type FileInfo = {
+    folder: string,
+    files: FileInfo[] | string
 }
 
 @Service()
@@ -30,7 +30,14 @@ export class FileService {
             fs.mkdirSync(userPath)
         }
 
-        const dirPath = `${userPath}/${fileObj.mimetype}`;
+        const mimeTypeCompare = {
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": "xlsx",
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.template": "docx",
+            "application/pdf": "pdf",
+            "text/csv": "csv"
+        };
+
+        const dirPath = `${userPath}/${mimeTypeCompare[fileObj.mimetype]}`;
 
         if (!fs.existsSync(dirPath)) {
             fs.mkdirSync(dirPath);
@@ -49,26 +56,39 @@ export class FileService {
 
     }
 
-    listFiles(): FolderInfo[] {
+    getFileInfo(): FileInfo[] {
+        return this.listFiles(base_path);
+    }
 
-        let result: FolderInfo[] = [];
+    private listFiles(dirPath: string): FileInfo[] {
 
-        const directories = fs.readdirSync(base_path);
+        let result: FileInfo[] = [];
+
+        const directories = fs.readdirSync(dirPath);
 
         directories.forEach((dir) => {
 
             let files: string[] = [];
-            const userID = path.basename(dir);
+            const folderName = path.basename(dir);
             
             const dirFiles = fs.readdirSync(dir);
 
             dirFiles.forEach((dirFile) => {
-                files.push(dirFile);
-            });
 
-            result.push({
-                user_id: userID,
-                files: files
+                const filePath = path.join(dir, dirFile);
+                const fileStat = fs.lstatSync(filePath);
+                
+                if(fileStat.isDirectory()){
+                    result.push({
+                        folder: dir,
+                        files: this.listFiles(filePath)
+                    });
+                }else{
+                    result.push({
+                        folder: dir,
+                        files: filePath
+                    })
+                }
             });
 
         });

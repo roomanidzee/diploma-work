@@ -10,7 +10,7 @@ export class FileController {
     listFiles(@Req() req: Request, @Res() resp: Response) {
         const fileService = Container.get(FileService);
 
-        return resp.json(fileService.listFiles());
+        return resp.json(fileService.getFileInfo());
 
     }
 
