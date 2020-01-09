@@ -7,17 +7,24 @@ const mongo_config = config.mongo
 const mongoCreds = `${mongo_config.user}:${mongo_config.password}`
 const mongoConn = `${mongo_config.host}:${mongo_config.port}/${mongo_config.database}`
 
-const mongoURI = `mongo://${mongoCreds}@${mongoConn}`
+const mongoURI = `mongodb://${mongoCreds}@${mongoConn}`
 
-connect(mongoURI, (err: any) => {
-    if (err) {
-      logger.error(`MongoDB connection error: ${err.message}`);
-    } else {
-      logger.info("Connection to MongoDB established");
-    }
-});
+connect(
+    mongoURI,
 
-export interface FileInfoInterface extends Document{
+    {
+        useMongoClient: true
+    },
+
+    (err: any) => {
+        if (err) {
+            logger.error(`MongoDB connection error: ${err.message}`);
+        } else {
+            logger.info("Connection to MongoDB established");
+        }
+    });
+
+export interface FileInfoInterface extends Document {
     user_id: string,
     path: string,
     type: string,

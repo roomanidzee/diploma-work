@@ -20,7 +20,7 @@ if [ "$1" = 'launch-build' ]; then
 elif [ "$1" = 'launch-dev' ]; then
   gradle clean bootRun
 elif [ "$1" = 'launch-prod' ]; then
-  java "$JVM_OPTS" -jar /dist/app.jar
+  java "$JVM_OPTS" -jar build/libs/app.jar
 else
   exec "$cmd"
 fi

@@ -44,7 +44,7 @@ services:
       - system_service
       - redis
 
-    command: launch-prod
+    command: launch-dev
 
     ports:
       - "5000:5000"
