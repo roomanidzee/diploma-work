@@ -17,6 +17,9 @@ services:
 
     container_name: std_frontend
 
+    volumes: 
+      - ./system_front:/code
+
     command: launch-prod
 
     ports:

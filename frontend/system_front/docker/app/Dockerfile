@@ -2,7 +2,7 @@ FROM node:13-buster-slim
 
 ARG PORT
 
-WORKDIR /usr/src/application
+WORKDIR /code
 
 COPY . .
 
