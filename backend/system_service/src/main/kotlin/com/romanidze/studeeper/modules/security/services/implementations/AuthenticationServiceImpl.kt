@@ -73,9 +73,6 @@ class AuthenticationServiceImpl(
 
             val token = this.jwtComponent.generateToken(it, expirationTime)
 
-            this.redisOperations.opsForValue()
-                               .set(token, it.id!!)
-
             val dateFormat = "dd.MM.yyyy HH:mm:ss"
             val df = SimpleDateFormat(dateFormat)
 

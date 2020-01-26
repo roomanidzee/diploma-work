@@ -17,7 +17,7 @@ class RedisConfig {
 
     @Bean
     fun redisOperations(
-            factory: ReactiveRedisConnectionFactory
+        factory: ReactiveRedisConnectionFactory
     ): ReactiveRedisOperations<String, String> {
         return ReactiveStringRedisTemplate(factory)
     }

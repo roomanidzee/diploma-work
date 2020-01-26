@@ -9,7 +9,8 @@ project.extra.set("versions", mapOf(
         "mapstruct" to "1.3.0.Beta2",
         "jackson" to "2.10.0",
         "kotlin_test" to "3.4.2",
-        "reactor-kotlin-ext" to "1.0.1.RELEASE"
+        "reactor-kotlin-ext" to "1.0.1.RELEASE",
+        "swagger" to "3.0.0-SNAPSHOT"
 ))
 
 plugins {
@@ -48,7 +49,8 @@ repositories {
     mavenCentral()
     mavenLocal()
     maven(url = "https://jitpack.io")
-    maven(url="https://repo.spring.io/milestone")
+    maven(url = "https://repo.spring.io/milestone")
+    maven(url = "http://oss.jfrog.org/artifactory/oss-snapshot-local/")
     gradlePluginPortal()
 }
 
@@ -87,6 +89,10 @@ dependencies {
     compile("javax.xml.bind:jaxb-api:${versions["jaxb"]}")
 
     compile("io.projectreactor.kotlin:reactor-kotlin-extensions:${versions["reactor-kotlin-ext"]}")
+
+    compile("io.springfox:springfox-swagger2:${versions["swagger"]}")
+    compile("io.springfox:springfox-swagger-ui:${versions["swagger"]}")
+    compile("io.springfox:springfox-spring-webflux:${versions["swagger"]}")
 
     testImplementation("io.kotlintest:kotlintest-runner-junit5:${versions["kotlin_test"]}")
     testImplementation("io.kotlintest:kotlintest-extensions-spring:${versions["kotlin_test"]}")

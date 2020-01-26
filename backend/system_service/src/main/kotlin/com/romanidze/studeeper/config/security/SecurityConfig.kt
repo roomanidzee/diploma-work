@@ -26,12 +26,24 @@ class SecurityConfig(private val filter: JWTFilter) {
 
     private val allRoles = Role.values().map { it.toString() }
 
+    private val swaggerURLs = arrayOf<String>(
+        "/v2/api-docs",
+        "/configuration/ui",
+        "/swagger-resources",
+        "/swagger-resources/**",
+        "/configuration/security",
+        "/configuration/**",
+        "/swagger-ui.html",
+        "/webjars/**"
+    )
+
     @Bean
     fun securityChain(http: ServerHttpSecurity): SecurityWebFilterChain{
 
         http
                 .addFilterAt(filter, SecurityWebFiltersOrder.AUTHENTICATION)
                 .authorizeExchange()
+                .pathMatchers(*swaggerURLs).permitAll()
                 .pathMatchers("/api/security/**").permitAll()
                 .pathMatchers("/api/public/**").hasAnyAuthority(*allRoles.toTypedArray())
                 .pathMatchers("/api/files/**").hasAnyAuthority(*allRoles.toTypedArray())
