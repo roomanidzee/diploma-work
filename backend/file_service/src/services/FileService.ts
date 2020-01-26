@@ -4,7 +4,6 @@ import logger from '../config/logger';
 import * as fs from "fs";
 import * as path from "path";
 import base_path from "../config/files";
-import { RedisService } from './RedisService';
 import { MongoService, FileObject } from './MongoService';
 
 type FileInfo = {
@@ -16,13 +15,10 @@ type FileInfo = {
 export class FileService {
 
     constructor(
-        private mongoService: MongoService,
-        private redisService: RedisService
+        private mongoService: MongoService
     ) { }
 
-    uploadFile(req: Request, fileObj: any): FileObject {
-
-        const userID: string = this.redisService.validateRequest(req);
+    uploadFile(userID: string, fileObj: any): FileObject {
 
         const userPath = `${base_path}/${userID}`;
 

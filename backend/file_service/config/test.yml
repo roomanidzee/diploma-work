@@ -1,0 +1,15 @@
+server:
+  host: localhost
+  port: 5000
+
+redis:
+  host: localhost
+  port: 6380
+  db: 0
+
+mongo:
+  host: localhost
+  port: 27018
+  database: studeeper_db
+  user: studeeper_user
+  password: studeeper_pwd

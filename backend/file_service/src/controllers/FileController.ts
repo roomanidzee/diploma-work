@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { Container } from "typedi";
 import { Controller, Req, Res, Get, Post } from "routing-controllers"
 import { FileService } from "../services/FileService";
+import { RedisService} from "../services/RedisService";
 
 @Controller()
 export class FileController {
@@ -18,9 +19,11 @@ export class FileController {
     createFile(@Req() req: Request, @Res() resp: Response) {
 
         const fileService = Container.get(FileService);
+        const redisService = Container.get(RedisService);
 
-        //@ts-ignore
-        return resp.json(fileService.uploadFile(req, req.files.input_file));
+        const userID = redisService.validateRequest(req);
+        
+        return resp.json(fileService.uploadFile(userID, req.files.input_file));
 
     }
 
