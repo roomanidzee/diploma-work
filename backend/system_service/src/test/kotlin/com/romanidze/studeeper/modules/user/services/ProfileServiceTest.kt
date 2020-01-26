@@ -41,17 +41,6 @@ class ProfileServiceTest(service: ProfileService): WordSpec({
 
         }
 
-        "retrieve all profiles" {
-
-            val testSource = service.getAllProfiles()
-
-            StepVerifier.create(testSource)
-                    .expectNextCount(1)
-                    .expectComplete()
-                    .verify()
-
-        }
-
     }
 
 })

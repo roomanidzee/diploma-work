@@ -38,17 +38,6 @@ class UserRepositoryTest(repo: UserRepository): WordSpec({
 
         }
 
-        "retrieve all users" {
-
-            val testSelectSource: Flux<User> = repo.findAll()
-
-            StepVerifier.create(testSelectSource)
-                    .expectNextCount(1)
-                    .expectComplete()
-                    .verify()
-
-        }
-
         "update user" {
 
             val newUser = User(

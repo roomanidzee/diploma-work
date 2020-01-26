@@ -36,17 +36,6 @@ class UserServiceTest(service: UserService): WordSpec({
 
         }
 
-        "retrieve all users" {
-
-            val testSource = service.getAllUsers()
-
-            StepVerifier.create(testSource)
-                    .expectNextCount(1)
-                    .expectComplete()
-                    .verify()
-
-        }
-
     }
 
 })

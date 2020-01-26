@@ -42,17 +42,6 @@ class ProfileRepositoryTest(repo: ProfileRepository): WordSpec({
 
         }
 
-        "retrieve all profiles" {
-
-            val testSource = repo.findAll()
-
-            StepVerifier.create(testSource)
-                    .expectNextCount(1)
-                    .expectComplete()
-                    .verify()
-
-        }
-
         "update profile" {
 
             val testNewProfile = Profile(
