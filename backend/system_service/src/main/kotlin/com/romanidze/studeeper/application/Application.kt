@@ -20,8 +20,7 @@ import org.springframework.context.annotation.ComponentScan
             "com.romanidze.studeeper.modules.graphods",
             "com.romanidze.studeeper.modules.employer",
             "com.romanidze.studeeper.modules.files",
-            "com.romanidze.studeeper.modules.worker",
-            "com.romanidze.studeeper.modules.exceptions.handlers"
+            "com.romanidze.studeeper.modules.worker"
         ]
 )
 class Application

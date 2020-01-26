@@ -22,12 +22,16 @@ plugins {
     kotlin("kapt") version "1.3.50"
 }
 
-tasks.bootJar {
-    archiveName = "app.jar"
-}
-
-tasks.bootRun {
-    jvmArgs = mutableListOf("-Xmx200m")
+tasks{
+    bootJar {
+        archiveName = "app.jar"
+    }
+    bootRun {
+        jvmArgs = mutableListOf("-Xmx200m")
+    }
+    test {
+        systemProperty("spring.profiles.active", "test")
+    }
 }
 
 val versions : Map<String, String> by project.extra

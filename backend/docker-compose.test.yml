@@ -1,0 +1,28 @@
+version: "2.4"
+
+services:
+
+  mongo:
+     
+    extends: 
+      file: ./docker-compose.yml
+      service: mongo
+
+    ports:
+      - "27018:27017"
+    
+    container_name: std_mongo_test
+
+  redis:
+
+    extends: 
+      file: ./docker-compose.yml
+      service: redis
+
+    ports:
+      - "6380:6379"
+
+    container_name: std_redis_test
+
+networks:
+  std_network:

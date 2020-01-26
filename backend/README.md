@@ -15,6 +15,20 @@ docker-compose up -d
 ```
 
 ### Tests launch
+
+#### Before all
 ```
-docker-compose run --rm system_service launch-tests
+docker-compose -f docker-compose.test.yml up -d
+```
+
+#### For system_service
+
+```
+cd system_service
+./gradlew --no-daemon clean test
+```
+
+#### After all
+```
+docker-compose -f docker-compose.test.yml down -v
 ```
