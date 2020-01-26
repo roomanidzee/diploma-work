@@ -13,12 +13,17 @@ until mongo_ready; do
   >&2 printf '\n'
 done
 
+# need for redownload all dependencies
+gradle clean build --no-daemon -x test;
+
 cmd="$*"
 
 if [ "$1" = 'launch-dev' ]; then
   gradle bootRun
 elif [ "$1" = 'launch-prod' ]; then
   java "$JVM_OPTS" -jar build/libs/app.jar
+elif [ "$1" = 'launch-tests' ]; then
+  gradle test
 else
   exec "$cmd"
 fi

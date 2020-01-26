@@ -1,14 +1,14 @@
 server:
-  host: localhost
+  host: std_files_app
   port: 5000
 
 redis:
-  host: localhost
+  host: std_redis_test
   port: 6380
   db: 0
 
 mongo:
-  host: localhost
+  host: std_mongo_test
   port: 27018
   database: studeeper_db
   user: studeeper_user

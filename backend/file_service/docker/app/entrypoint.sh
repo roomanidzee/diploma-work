@@ -5,8 +5,10 @@ set -o nounset
 
 cmd="$*"
 
-if [ "$1" = 'launch-dev' ]; then
-  yarn run launch-dev --env dev
+if [ "$1" = 'launch-app' ]; then
+  yarn run launch-app --env dev
+elif [ "$1" = 'launch-tests']; then
+  yarn run launch-tests --env test
 else
   exec "$cmd"
 fi

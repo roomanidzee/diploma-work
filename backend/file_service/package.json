@@ -7,7 +7,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "launch-dev": "nodemon",
+    "launch-app": "nodemon",
     "launch-tests": "mocha -r ts-node/register tests/**/*.spec.ts --exit"
   },
   "nodemonConfig": {

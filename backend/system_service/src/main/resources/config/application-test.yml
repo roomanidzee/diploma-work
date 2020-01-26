@@ -4,14 +4,14 @@ spring:
 
   data:
     mongodb:
-      host: localhost
+      host: std_mongo_test
       port: 27018
       database: studeeper_db
       username: studeeper_user
       password: studeeper_pwd
 
   redis:
-    host: localhost
+    host: std_redis_test
     port: 6380
     database: 0
 
@@ -20,7 +20,7 @@ server:
 
 files:
   server:
-    host: localhost
+    host: std_files_app
     port: 5001
 
 jwt:
