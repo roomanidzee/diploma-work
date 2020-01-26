@@ -1,5 +1,5 @@
 import { Service } from "typedi";
-import { Request } from "express";
+import mime = require('mime-types')
 import logger from '../config/logger';
 import * as fs from "fs";
 import * as path from "path";
@@ -7,8 +7,9 @@ import base_path from "../config/files";
 import { MongoService, FileObject } from './MongoService';
 
 type FileInfo = {
-    folder: string,
-    files: FileInfo[] | string
+    path: string,
+    type: string,
+    size: number
 }
 
 @Service()
@@ -63,29 +64,18 @@ export class FileService {
         const directories = fs.readdirSync(dirPath);
 
         directories.forEach((dir) => {
+            const dirEntry = path.join(dirPath, dir);
+            const fileStat = fs.statSync(dirEntry);
 
-            let files: string[] = [];
-            const folderName = path.basename(dir);
-            
-            const dirFiles = fs.readdirSync(dir);
-
-            dirFiles.forEach((dirFile) => {
-
-                const filePath = path.join(dir, dirFile);
-                const fileStat = fs.lstatSync(filePath);
-                
-                if(fileStat.isDirectory()){
-                    result.push({
-                        folder: dir,
-                        files: this.listFiles(filePath)
-                    });
-                }else{
-                    result.push({
-                        folder: dir,
-                        files: filePath
-                    })
-                }
-            });
+            if(fileStat.isDirectory()){
+                result = result.concat(this.listFiles(dirEntry));
+            }else{
+                result.push({
+                    path: dirEntry,
+                    type: mime.lookup(dirEntry),
+                    size: fs.statSync(dirEntry)["size"]
+                })
+            }
 
         });
 

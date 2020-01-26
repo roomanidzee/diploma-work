@@ -4,7 +4,7 @@ const logger = new Logger("app");
 logger.appenders
       .set("std-log", {
           type: "stdout",
-          levels: ["debug", "info", "trace"]
+          levels: ["debug", "info", "trace", "error"]
       })
       .set("error-log", {
           type: "stderr",

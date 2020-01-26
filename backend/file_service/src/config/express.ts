@@ -4,7 +4,8 @@ import { routingControllersToSpec } from 'routing-controllers-openapi';
 import { FileController } from "../controllers/FileController";
 import express = require('express');
 import fileUpload = require('express-fileupload');
-import * as logger from 'morgan';
+import * as httpLogger from 'morgan';
+import logger from './logger';
 import * as path from "path";
 import * as bodyParser from 'body-parser';
 
@@ -12,7 +13,7 @@ const swaggerUI = require('swagger-ui-express');
 const config = require('config-yml');
 const app = express();
 
-app.use(logger('dev'));
+app.use(httpLogger('dev'));
 app.use(bodyParser.urlencoded({
     extended: false
 }));
