@@ -57,4 +57,28 @@ app.get('/api/docs', (_req, res) => {
 
 app.use('/api/docs/ui', swaggerUI.serve, swaggerUI.setup(null, docsUIOptions));
 
+app.use((error, req, res, next) => {
+
+    logger.error(error.message);
+
+    if(!error.statusCode){
+        error.statusCode = 500;
+    }
+
+    const date = new Date();
+    const options = {  
+        weekday: "long", year: "numeric", month: "short",  
+        day: "numeric", hour: "2-digit", minute: "2-digit"  
+    };
+
+    res.status(error.statusCode)
+       .json({
+        status_code: error.statusCode,
+        error_time: date.toLocaleTimeString("ru-ru", options),
+        message: "An error occured",
+        debug_message: error.message
+    });
+
+});
+
 export default app;
