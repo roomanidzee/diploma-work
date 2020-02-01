@@ -1,27 +1,7 @@
 <template>
   <div>
     <section class="hero is-success is-fullheight">
-      <div class="hero-head">
-       <nav class="navbar">
-         <div class="container">
-           <div class="navbar-brand">
-            <a class="navbar-item">
-              <img src="../assets/logo.png" alt="Logo">
-            </a>
-          </div>
-           <div id="navbarMenuHeroA" class="navbar-menu">
-             <div class="navbar-end">
-               <a class="navbar-item is-active">
-                 Главная страница
-               </a>
-               <a class="navbar-item">
-                 Личный кабинет
-               </a>
-             </div>
-           </div>
-         </div>
-       </nav>
-     </div>
+     <Header />
      <div class="hero-body">
        <div class="container has-text-centered">
          <h1 class="title">
@@ -54,7 +34,12 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import Header from '@/components/common/main/header';
 
-@Component
+@Component({
+  components: {
+    Header,
+  },
+})
 export default class MainPage extends Vue {}
 </script>
