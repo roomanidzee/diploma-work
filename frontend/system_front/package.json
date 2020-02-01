@@ -3,11 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "launch-dev": "yarn run serve --port 8001",
-    "launch-prod": "yarn run build && http-server ./dist -p 3000"
+    "launch-lint": "vue-cli-service lint",
+    "launch-dev": "vue-cli-service serve --port 8001",
+    "launch-prod": "vue-cli-service build && http-server ./dist -p 3000",
+    "launch-tests": "jest --passWithNoTests"
   },
   "dependencies": {
     "buefy": "^0.8.10",
@@ -22,6 +21,7 @@
     "webpack-stream": "^5.2.1"
   },
   "devDependencies": {
+    "@types/jest": "^25.1.1",
     "@vue/cli-plugin-babel": "^4.1.0",
     "@vue/cli-plugin-eslint": "^4.1.0",
     "@vue/cli-plugin-pwa": "^4.1.0",
@@ -31,11 +31,16 @@
     "@vue/cli-service": "^4.1.0",
     "@vue/eslint-config-airbnb": "^4.0.0",
     "@vue/eslint-config-typescript": "^4.0.0",
+    "@vue/test-utils": "^1.0.0-beta.31",
+    "babel-core": "^6.26.3",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
     "http-server": "^0.12.1",
+    "jest": "^25.1.0",
     "lint-staged": "^9.5.0",
+    "ts-jest": "^25.1.0",
     "typescript": "~3.5.3",
+    "vue-jest": "^3.0.5",
     "vue-template-compiler": "^2.6.11"
   },
   "gitHooks": {
@@ -46,5 +51,19 @@
       "vue-cli-service lint",
       "git add"
     ]
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "ts",
+      "json",
+      "vue"
+    ],
+    "transform": {
+      ".*\\.(vue)$": "vue-jest",
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testURL": "http://localhost/",
+    "testRegex": "(/tests/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$"
   }
 }
