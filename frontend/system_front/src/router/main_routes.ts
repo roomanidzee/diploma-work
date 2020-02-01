@@ -1,5 +1,5 @@
-const Home = () => import(/* webpackChunkName: "group-main" */ '../views/Home.vue');
-const About = () => import(/* webpackChunkName: "group-main" */ '../views/About.vue');
+const Home = () => import(/* webpackChunkName: "group-main" */ '../views/main/Home.vue');
+const About = () => import(/* webpackChunkName: "group-main" */ '../views/about/About.vue');
 
 const mainRoutes = [
   {

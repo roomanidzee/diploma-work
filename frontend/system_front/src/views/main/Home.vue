@@ -5,7 +5,7 @@
 </template>
 
 <script>
-// @ is an alias to /src
+
 import MainPage from '@/components/main/MainPage.vue';
 
 export default {

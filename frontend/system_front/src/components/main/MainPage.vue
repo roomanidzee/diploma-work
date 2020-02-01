@@ -33,13 +33,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
 import Header from '@/components/common/main/header';
 
-@Component({
+export default {
   components: {
     Header,
   },
-})
-export default class MainPage extends Vue {}
+};
 </script>
