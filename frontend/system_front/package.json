@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "launch-dev": "yarn run serve",
+    "launch-dev": "yarn run serve --port 8001",
     "launch-prod": "yarn run build && http-server ./dist -p 3000"
   },
   "dependencies": {

@@ -13,17 +13,19 @@ services:
       context: system_front
       dockerfile: docker/app/Dockerfile
       args:
-        - PORT=3000
+        - PROD_PORT=3000
+        - DEV_PORT=8001
 
     container_name: std_frontend
 
     volumes: 
       - ./system_front:/code
 
-    command: launch-prod
+    command: launch-dev
 
     ports:
       - "3000:3000"
+      - "8001:8001"
 
 networks:
   std_network:
