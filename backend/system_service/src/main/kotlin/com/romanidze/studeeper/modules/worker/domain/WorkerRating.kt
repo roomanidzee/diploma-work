@@ -29,6 +29,9 @@ data class WorkerRating(
     @Field("profile_id")
     val profileID: String,
 
+    @Field("score_description")
+    val scoreDescription: String,
+
     @Field("value")
     val value: Long
 

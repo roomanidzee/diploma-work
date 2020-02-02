@@ -4,9 +4,13 @@ import com.mongodb.client.result.DeleteResult
 import com.mongodb.client.result.UpdateResult
 
 import com.romanidze.studeeper.modules.worker.domain.WorkerRating
+import com.romanidze.studeeper.modules.worker.domain.WorkerRatingAggregated
 import com.romanidze.studeeper.modules.worker.repositories.interfaces.WorkerRatingRepository
 
+import org.springframework.data.domain.Sort
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate
+import org.springframework.data.mongodb.core.aggregation.Aggregation
+import org.springframework.data.mongodb.core.aggregation.AggregationResults
 import org.springframework.data.mongodb.core.query.Criteria
 import org.springframework.data.mongodb.core.query.Query
 import org.springframework.data.mongodb.core.query.Update
@@ -40,6 +44,7 @@ class WorkerRatingRepositoryImpl(private val mongoTemplate: ReactiveMongoTemplat
 
         val updateFunc = Update()
         updateFunc.set("profile_id", item.profileID)
+        updateFunc.set("score_description", item.scoreDescription)
         updateFunc.set("value", item.value)
 
         return this.mongoTemplate.updateFirst(updateQuery, updateFunc, WorkerRating::class.java)
@@ -53,6 +58,42 @@ class WorkerRatingRepositoryImpl(private val mongoTemplate: ReactiveMongoTemplat
         )
 
         return this.mongoTemplate.find(searchQuery, WorkerRating::class.java)
+
+    }
+
+    override fun aggregateRatings(): Flux<WorkerRatingAggregated>{
+
+        val agg = Aggregation.newAggregation(
+            Aggregation.group("profile_id").sum("value").`as`("value"),
+            Aggregation.project("profile_id").`and`("value").previousOperation(),
+            Aggregation.sort(Sort.Direction.ASC, "value")
+        )
+
+        val aggResult = this.mongoTemplate.aggregate(
+            agg,
+            WorkerRating::class.java,
+            WorkerRatingAggregated::class.java
+        )
+
+        return aggResult.getMappedResults()
+
+    }
+
+    override fun aggregateRatingsForWorker(profileID: String): Mono<WorkerRatingAggregated>{
+
+        val agg = Aggregation.newAggregation(
+            Aggregation.match(Criteria.where("_id").`is`(profileID))
+            //Aggregation.group("profile_id").sum("value").`as`("value"),
+            Aggregation.project("profile_id").`and`("value").previousOperation()
+        )
+
+        val aggResult = this.mongoTemplate.aggregate(
+            agg,
+            WorkerRating::class.java,
+            WorkerRatingAggregated::class.java
+        )
+
+        return aggResult.getMappedResults()
 
     }
 
