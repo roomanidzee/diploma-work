@@ -58,4 +58,14 @@ class ProfileRepositoryImpl(private val mongoTemplate: ReactiveMongoTemplate): P
 
     }
 
+    override fun findByIDs(profileIDs: Set<String>): Flux<Profile> {
+
+        val searchQuery = Query.query(
+            Criteria.where("_id").`in`(profileIDs)
+        )
+
+        return this.mongoTemplate.find(searchQuery, Profile::class.java)
+
+    }
+
 }

@@ -45,4 +45,13 @@ class FacilityRecordServiceImpl(
         ).map { this.mapper.domainToDTO(it) }
 
     }
+
+    override fun getAllFacilities(): Flux<FacilityRecordDTO>{
+
+       return this.repo.findAll()
+                       .map { 
+                          this.mapper.domainToDTO(it)
+                       }
+
+    }
 }

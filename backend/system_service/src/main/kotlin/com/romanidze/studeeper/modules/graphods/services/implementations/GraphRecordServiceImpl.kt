@@ -45,5 +45,14 @@ class GraphRecordServiceImpl(
 
     }
 
+    override fun getAllRecords(): Flux<GraphRecordDTO> {
+
+        return this.repo.findAll()
+                        .map {
+                            this.mapper.domainToDTO(it)
+                        }
+
+    }
+
 
 }

@@ -40,4 +40,11 @@ class ProfileServiceImpl(private val profileMapper: ProfileMapper,
         }
     }
 
+    override fun getByIDs(profileIDs: Set<String>): Flux<ProfileDTO> {
+
+        return this.profileRepository.findByIDs(profileIDs)
+                                     .map(this.profileMapper::domainToDTO)
+
+    }
+
 }

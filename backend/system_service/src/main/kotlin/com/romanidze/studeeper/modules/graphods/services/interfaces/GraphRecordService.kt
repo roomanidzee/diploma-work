@@ -14,5 +14,6 @@ interface GraphRecordService {
     fun getByProfile(profileID: String): Flux<GraphRecordDTO>
     fun getByGroupmates(groupmates: Set<String>): Flux<GraphRecordDTO>
     fun getByFacilities(facilities: Set<String>): Flux<GraphRecordDTO>
+    fun getAllRecords(): Flux<GraphRecordDTO>
 
 }

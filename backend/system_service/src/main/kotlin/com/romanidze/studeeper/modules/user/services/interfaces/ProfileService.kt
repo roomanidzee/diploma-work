@@ -19,5 +19,6 @@ interface ProfileService {
     fun getAllProfiles(): Flux<ProfileDTO>
     fun save(profileDTO: ProfileDTO): Mono<MessageResponseDTO>
     fun getProfileInfo(authentication: Authentication): Mono<ProfileDTO>
+    fun getByIDs(profileIDs: Set<String>): Flux<ProfileDTO>
 
 }

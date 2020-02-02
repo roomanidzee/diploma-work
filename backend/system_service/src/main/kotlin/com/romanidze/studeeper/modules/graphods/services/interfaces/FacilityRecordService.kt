@@ -14,4 +14,5 @@ interface FacilityRecordService {
     fun getByTitle(title: String): Flux<FacilityRecordDTO>
     fun getBySpec(speciality: String): Flux<FacilityRecordDTO>
     fun getBySpecAndGrad(speciality: String, graduation: LocalDateTime): Flux<FacilityRecordDTO>
+    fun getAllFacilities(): Flux<FacilityRecordDTO>
 }
