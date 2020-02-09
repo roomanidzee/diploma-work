@@ -2,6 +2,7 @@ package com.romanidze.studeeper.modules.worker.handlers
 
 import com.romanidze.studeeper.modules.user.dto.MessageResponseDTO
 import com.romanidze.studeeper.modules.worker.dto.WorkerRatingDTO
+import com.romanidze.studeeper.modules.worker.dto.WorkerRatingAggregatedDTO
 import com.romanidze.studeeper.modules.worker.services.interfaces.WorkerRatingService
 
 import org.springframework.stereotype.Component
@@ -35,6 +36,22 @@ class WorkerRatingHandler(private val service: WorkerRatingService){
 
         return ServerResponse.ok()
                              .body(this.service.getAllRatings(), WorkerRatingDTO::class.java).toMono()
+
+    }
+
+    fun aggregatedRatings(req: ServerRequest): Mono<ServerResponse>{
+
+        return ServerResponse.ok()
+                            .body(this.service.getAggregatedRatings(), WorkerRatingAggregatedDTO::class.java).toMono()
+
+    }
+
+    fun aggregateRatingsForWorker(req: ServerRequest): Mono<ServerResponse>{
+
+        val workerID = req.pathVariable("worker_id")
+
+        return ServerResponse.ok()
+                            .body(this.service.getRatingForWorker(workerID), WorkerRatingAggregatedDTO::class.java).toMono()
 
     }
 

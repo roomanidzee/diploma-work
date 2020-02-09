@@ -33,6 +33,11 @@ class WorkerRatingRoutes{
                         POST("/add_rating", handler::rateWorker)
                     }
 
+                    "/worker".nest{
+                        GET("/ratings/aggregated", handler::aggregatedRatings)
+                        GET("/{worker_id}/rating", handler::aggregateRatingsForWorker)
+                    }
+
                 }    
 
             }
