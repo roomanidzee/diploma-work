@@ -75,16 +75,16 @@ class WorkerRatingRepositoryImpl(private val mongoTemplate: ReactiveMongoTemplat
             WorkerRatingAggregated::class.java
         )
 
-        return aggResult.getMappedResults()
+        return aggResult.publish()
 
     }
 
     override fun aggregateRatingsForWorker(profileID: String): Mono<WorkerRatingAggregated>{
 
         val agg = Aggregation.newAggregation(
-            Aggregation.match(Criteria.where("_id").`is`(profileID))
-            //Aggregation.group("profile_id").sum("value").`as`("value"),
-            Aggregation.project("profile_id").`and`("value").previousOperation()
+            Aggregation.match(Criteria.where("_id").`is`(profileID)),
+            Aggregation.group("profile_id").sum("value").`as`("value"),
+            Aggregation.project("profile_id").and("value").previousOperation()
         )
 
         val aggResult = this.mongoTemplate.aggregate(
@@ -93,7 +93,7 @@ class WorkerRatingRepositoryImpl(private val mongoTemplate: ReactiveMongoTemplat
             WorkerRatingAggregated::class.java
         )
 
-        return aggResult.getMappedResults()
+        return aggResult.publishNext()
 
     }
 
