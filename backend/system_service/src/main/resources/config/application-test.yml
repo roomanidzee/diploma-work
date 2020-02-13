@@ -32,3 +32,9 @@ jwt:
 
 logging:
   config: classpath:logging/logback-spring.xml
+
+sendgrid:
+  config:
+    base-url: https://example
+    api-key: kkhgckgcgckgchkgckgc
+    mail-endpoint: /v3/mail/send 
