@@ -28,7 +28,7 @@ class EmailSendServiceImpl(
     override fun sendMail(mailObj: MailDTO): Flux<Unit> {
 
         val sendGridObj = SendGridMailDTO(mailObj)
-        val requestBody = BodyInserters.fromObject(sendGridObj)
+        val requestBody = BodyInserters.fromValue(sendGridObj)
 
         return this.sendGridClient.post()
                                 .uri(this.props.mailEndpoint)
@@ -36,8 +36,8 @@ class EmailSendServiceImpl(
                                 .retrieve()
                                 .onStatus(
                                     {t: HttpStatus -> t.is4xxClientError},
-                                    {c: ClientResponse -> Mono.error(Exception("Error on mail send"))}
-                                ).bodyToFlux(Unit::class)
+                                    { Mono.error(Exception("Error on mail send"))}
+                                ).bodyToFlux(Unit::class.java)
 
     }
 

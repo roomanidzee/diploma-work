@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Mono
 import reactor.core.publisher.Flux
+import reactor.kotlin.core.publisher.toMono
 
 /**
  * 19.11.2019
@@ -44,7 +45,7 @@ class RegistrationServiceImpl(
 
         val emailSend: Flux<Unit> = this.emailService.sendMail(mailObj)
 
-        return emailSend.flatMap {
+        return emailSend.toMono().flatMap {
             userRepo.save(newUser)
                 .map {
                     RegistrationResponseDTO(it.username, it.state!!)

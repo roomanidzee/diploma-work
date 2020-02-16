@@ -1,7 +1,5 @@
 package com.romanidze.studeeper.modules.email.dto
 
-import com.fasterxml.jackson.annotation.JsonRootName
-
 /**
  * 13.02.2020
  *
@@ -33,7 +31,9 @@ data class SendGridMailDTO(
         personalizations = setOf<EmailReceivers>(
             EmailReceivers(
                 to=setOf<EmailObj>(
-                    email=mailObj.to
+                    EmailObj(
+                      email=mailObj.to
+                    )
                 )
             )
         ),
