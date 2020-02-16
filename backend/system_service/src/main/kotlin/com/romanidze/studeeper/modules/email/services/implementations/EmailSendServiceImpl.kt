@@ -5,12 +5,10 @@ import com.romanidze.studeeper.modules.email.dto.MailDTO
 import com.romanidze.studeeper.modules.email.dto.SendGridMailDTO
 import com.romanidze.studeeper.modules.email.client.SendGridMailProperties
 
-import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 import org.springframework.stereotype.Service
 import org.springframework.http.HttpStatus
 import org.springframework.web.reactive.function.client.WebClient
-import org.springframework.web.reactive.function.client.ClientResponse
 import org.springframework.web.reactive.function.BodyInserters
 
 /**
@@ -25,7 +23,7 @@ class EmailSendServiceImpl(
     private val sendGridClient: WebClient
 ): EmailSendService {
 
-    override fun sendMail(mailObj: MailDTO): Flux<Unit> {
+    override fun sendMail(mailObj: MailDTO): Mono<Unit> {
 
         val sendGridObj = SendGridMailDTO(mailObj)
         val requestBody = BodyInserters.fromValue(sendGridObj)
@@ -37,7 +35,7 @@ class EmailSendServiceImpl(
                                 .onStatus(
                                     {t: HttpStatus -> t.is4xxClientError},
                                     { Mono.error(Exception("Error on mail send"))}
-                                ).bodyToFlux(Unit::class.java)
+                                ).bodyToMono(Unit::class.java)
 
     }
 

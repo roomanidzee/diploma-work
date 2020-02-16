@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.server.ServerRequest
 import org.springframework.web.reactive.function.server.ServerResponse
 import reactor.core.publisher.Mono
-import reactor.kotlin.core.publisher.toMono
 
 /**
  * 03.01.2020
@@ -32,14 +31,14 @@ class EmployerVacancyHandler(private val service: EmployerVacancyService) {
         val employerID = req.pathVariable("id")
 
         return ServerResponse.ok()
-                             .body(this.service.getByEmployer(employerID), EmployerVacancyDTO::class.java).toMono()
+                             .body(this.service.getByEmployer(employerID), EmployerVacancyDTO::class.java)
 
     }
 
     fun getAllVacancies(req: ServerRequest): Mono<ServerResponse>{
 
         return ServerResponse.ok()
-                             .body(this.service.getAllVacancies(), EmployerVacancyDTO::class.java).toMono()
+                             .body(this.service.getAllVacancies(), EmployerVacancyDTO::class.java)
 
     }
 
@@ -48,7 +47,7 @@ class EmployerVacancyHandler(private val service: EmployerVacancyService) {
         val vacancyID = req.pathVariable("id")
 
         return ServerResponse.ok()
-                             .body(this.service.getById(vacancyID), EmployerVacancyDTO::class.java).toMono()
+                             .body(this.service.getById(vacancyID), EmployerVacancyDTO::class.java)
 
     }
 

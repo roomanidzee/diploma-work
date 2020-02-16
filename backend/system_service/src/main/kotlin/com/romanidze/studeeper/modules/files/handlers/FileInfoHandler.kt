@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.server.ServerRequest
 import org.springframework.web.reactive.function.server.ServerResponse
 import reactor.core.publisher.Mono
-import reactor.kotlin.core.publisher.toMono
 
 /**
  * 06.01.2020
@@ -21,14 +20,13 @@ class FileInfoHandler(private val service: FileInfoService){
     fun getFilesInfo(req: ServerRequest): Mono<ServerResponse>{
 
         return ServerResponse.ok()
-                             .body(this.service.getFilesInfo(), FileInfoDTO::class.java).toMono()
-
+                             .body(this.service.getFilesInfo(), FileInfoDTO::class.java)
     }
 
     fun listExternalFiles(req: ServerRequest): Mono<ServerResponse>{
 
         return ServerResponse.ok()
-                             .body(this.service.listExternalFiles(), FileInfoServiceDTO::class.java).toMono()
+                             .body(this.service.listExternalFiles(), FileInfoServiceDTO::class.java)
 
     }
 

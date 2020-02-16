@@ -1,19 +1,15 @@
 package com.romanidze.studeeper.modules.security.services.implementations
 
-import com.romanidze.studeeper.modules.email.dto.MailDTO
 import com.romanidze.studeeper.modules.security.dto.RegistrationDTO
 import com.romanidze.studeeper.modules.security.dto.RegistrationResponseDTO
 import com.romanidze.studeeper.modules.security.enums.Role
 import com.romanidze.studeeper.modules.security.enums.State
-import com.romanidze.studeeper.modules.email.services.interfaces.EmailSendService
 import com.romanidze.studeeper.modules.security.services.interfaces.RegistrationService
 import com.romanidze.studeeper.modules.user.domain.User
 import com.romanidze.studeeper.modules.user.repositories.interfaces.UserRepository
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Mono
-import reactor.core.publisher.Flux
-import reactor.kotlin.core.publisher.toMono
 
 /**
  * 19.11.2019
@@ -24,8 +20,7 @@ import reactor.kotlin.core.publisher.toMono
 @Service
 class RegistrationServiceImpl(
         private val encoder: PasswordEncoder,
-        private val userRepo: UserRepository,
-        private val emailService: EmailSendService
+        private val userRepo: UserRepository
 ): RegistrationService {
     override fun register(data: RegistrationDTO): Mono<RegistrationResponseDTO> {
 
@@ -36,21 +31,10 @@ class RegistrationServiceImpl(
              state = State.NOT_CONFIRMED.toString()
         )
 
-        val mailObj = MailDTO(
-            from = "admin@studeeper.com",
-            to = "*тут должна быть почта юзера*",
-            subject = "Email confirmation",
-            message = "Please, confirm your email"
-        )
-
-        val emailSend: Flux<Unit> = this.emailService.sendMail(mailObj)
-
-        return emailSend.toMono().flatMap {
-            userRepo.save(newUser)
+        return userRepo.save(newUser)
                 .map {
                     RegistrationResponseDTO(it.username, it.state!!)
                 }
-        }
 
     }
 }

@@ -5,6 +5,7 @@ import com.romanidze.studeeper.modules.user.dto.MessageResponseDTO
 import com.romanidze.studeeper.modules.user.dto.ProfileDTO
 import com.romanidze.studeeper.modules.user.mappers.ProfileMapper
 import com.romanidze.studeeper.modules.user.repositories.interfaces.ProfileRepository
+import com.romanidze.studeeper.modules.user.services.interfaces.ProfileConfirmationService
 import com.romanidze.studeeper.modules.user.services.interfaces.ProfileService
 import org.springframework.security.core.Authentication
 
@@ -14,9 +15,12 @@ import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 @Service
-class ProfileServiceImpl(private val profileMapper: ProfileMapper,
-                         private val profileRepository: ProfileRepository,
-                         private val authenticationService: AuthenticationService): ProfileService {
+class ProfileServiceImpl(
+    private val profileMapper: ProfileMapper,
+    private val profileRepository: ProfileRepository,
+    private val authenticationService: AuthenticationService,
+    private val confirmService: ProfileConfirmationService
+): ProfileService {
 
     override fun getAllProfiles(): Flux<ProfileDTO> {
         return this.profileRepository.findAll()
@@ -26,9 +30,13 @@ class ProfileServiceImpl(private val profileMapper: ProfileMapper,
     override fun save(profileDTO: ProfileDTO): Mono<MessageResponseDTO> {
 
         val profile = this.profileMapper.dtoToDomain(profileDTO)
+        val savedProfile = this.profileRepository.save(profile)
 
-        return this.profileRepository.save(profile)
-                .map { MessageResponseDTO(message="Profile saved.") }
+        val sendedMail = savedProfile.flatMap {
+            this.confirmService.createConfirmation(it)
+        }
+
+        return sendedMail.map { MessageResponseDTO(message="Profile saved.") }
 
     }
 

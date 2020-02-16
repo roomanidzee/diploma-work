@@ -1,7 +1,7 @@
 package com.romanidze.studeeper.modules.email.services.interfaces
 
 import com.romanidze.studeeper.modules.email.dto.MailDTO
-import reactor.core.publisher.Flux
+import reactor.core.publisher.Mono
 
 /**
  * 13.02.2020
@@ -10,5 +10,5 @@ import reactor.core.publisher.Flux
  * @version 1.0
  */
 interface EmailSendService{
-    fun sendMail(mailObj: MailDTO): Flux<Unit>
+    fun sendMail(mailObj: MailDTO): Mono<Unit>
 }

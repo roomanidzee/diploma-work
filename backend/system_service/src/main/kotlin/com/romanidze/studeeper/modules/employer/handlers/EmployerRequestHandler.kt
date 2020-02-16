@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.server.ServerRequest
 import org.springframework.web.reactive.function.server.ServerResponse
 import reactor.core.publisher.Mono
-import reactor.kotlin.core.publisher.toMono
 
 /**
  * 03.01.2020
@@ -43,7 +42,7 @@ class EmployerRequestHandler(private val service: EmployerRequestService) {
         val employerID = req.pathVariable("employer_id")
 
         return ServerResponse.ok()
-                             .body(this.service.getByEmployer(employerID), EmployerRequestDTO::class.java).toMono()
+                             .body(this.service.getByEmployer(employerID), EmployerRequestDTO::class.java)
 
     }
 
@@ -52,7 +51,7 @@ class EmployerRequestHandler(private val service: EmployerRequestService) {
         val requestID = req.pathVariable("id")
 
         return ServerResponse.ok()
-                .body(this.service.getByID(requestID), EmployerRequestDTO::class.java).toMono()
+                .body(this.service.getByID(requestID), EmployerRequestDTO::class.java)
 
     }
 
@@ -61,7 +60,7 @@ class EmployerRequestHandler(private val service: EmployerRequestService) {
         val workerID = req.pathVariable("worker_id")
 
         return ServerResponse.ok()
-                .body(this.service.getByWorker(workerID), EmployerRequestDTO::class.java).toMono()
+                .body(this.service.getByWorker(workerID), EmployerRequestDTO::class.java)
 
     }
 
@@ -70,7 +69,7 @@ class EmployerRequestHandler(private val service: EmployerRequestService) {
         val status = req.queryParam("request_status").get()
 
         return ServerResponse.ok()
-                .body(this.service.getByStatus(status), EmployerRequestDTO::class.java).toMono()
+                .body(this.service.getByStatus(status), EmployerRequestDTO::class.java)
 
     }
 

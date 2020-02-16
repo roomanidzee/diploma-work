@@ -11,7 +11,6 @@ import org.springframework.web.reactive.function.server.ServerRequest
 import org.springframework.web.reactive.function.server.ServerResponse
 
 import reactor.core.publisher.Mono
-import reactor.kotlin.core.publisher.toMono
 
 import java.time.format.DateTimeFormatter
 import java.time.LocalDateTime
@@ -22,6 +21,7 @@ import java.time.LocalDateTime
  * @author Andrey Romanov (steampart@gmail.com)
  * @version 1.0
  */
+@Component
 class EmployerInfoHandler(
     private val graphService: GraphRecordService,
     private val facilityService: FacilityRecordService
@@ -30,7 +30,7 @@ class EmployerInfoHandler(
     fun getAllFacilities(req: ServerRequest): Mono<ServerResponse>{
 
         return ServerResponse.ok()
-                             .body(this.facilityService.getAllFacilities(), FacilityRecordDTO::class.java).toMono()
+                             .body(this.facilityService.getAllFacilities(), FacilityRecordDTO::class.java)
 
     }
 
@@ -39,7 +39,7 @@ class EmployerInfoHandler(
         val facilityTitle = req.queryParam("facility_title").get()
 
         return ServerResponse.ok()
-                             .body(this.facilityService.getByTitle(facilityTitle), FacilityRecordDTO::class.java).toMono()
+                             .body(this.facilityService.getByTitle(facilityTitle), FacilityRecordDTO::class.java)
 
     }
 
@@ -48,7 +48,7 @@ class EmployerInfoHandler(
         val facilitySpec = req.queryParam("facility_spec").get()
 
         return ServerResponse.ok()
-                             .body(this.facilityService.getBySpec(facilitySpec), FacilityRecordDTO::class.java).toMono()
+                             .body(this.facilityService.getBySpec(facilitySpec), FacilityRecordDTO::class.java)
 
     }
 
@@ -63,14 +63,17 @@ class EmployerInfoHandler(
         )
 
         return ServerResponse.ok()
-                             .body(this.facilityService.getBySpecAndGrad(facilitySpec, graduationTime), FacilityRecordDTO::class.java).toMono()
+                             .body(
+                               this.facilityService.getBySpecAndGrad(facilitySpec, graduationTime),
+                               FacilityRecordDTO::class.java
+                             )
 
     }
 
     fun getAllGraphs(req: ServerRequest): Mono<ServerResponse> {
 
         return ServerResponse.ok()
-                             .body(this.graphService.getAllRecords(), GraphRecordDTO::class.java).toMono()
+                             .body(this.graphService.getAllRecords(), GraphRecordDTO::class.java)
 
     }
 

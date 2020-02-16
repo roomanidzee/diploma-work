@@ -11,7 +11,6 @@ import org.springframework.web.reactive.function.server.ServerRequest
 import org.springframework.web.reactive.function.server.ServerResponse
 
 import reactor.core.publisher.Mono
-import reactor.kotlin.core.publisher.toMono
 
 /**
  *
@@ -32,7 +31,7 @@ class ProfileHandler(private val profileService: ProfileService) {
      */
     fun all(req: ServerRequest): Mono<ServerResponse> {
         return ServerResponse.ok()
-                .body(this.profileService.getAllProfiles(), ProfileDTO::class.java).toMono()
+                .body(this.profileService.getAllProfiles(), ProfileDTO::class.java)
     }
 
     /**

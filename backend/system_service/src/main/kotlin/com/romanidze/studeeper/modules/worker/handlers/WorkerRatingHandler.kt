@@ -10,7 +10,6 @@ import org.springframework.web.reactive.function.server.ServerRequest
 import org.springframework.web.reactive.function.server.ServerResponse
 
 import reactor.core.publisher.Mono
-import reactor.kotlin.core.publisher.toMono
 
 /**
  *
@@ -35,14 +34,14 @@ class WorkerRatingHandler(private val service: WorkerRatingService){
     fun allRatings(req: ServerRequest): Mono<ServerResponse>{
 
         return ServerResponse.ok()
-                             .body(this.service.getAllRatings(), WorkerRatingDTO::class.java).toMono()
+                             .body(this.service.getAllRatings(), WorkerRatingDTO::class.java)
 
     }
 
     fun aggregatedRatings(req: ServerRequest): Mono<ServerResponse>{
 
         return ServerResponse.ok()
-                            .body(this.service.getAggregatedRatings(), WorkerRatingAggregatedDTO::class.java).toMono()
+                            .body(this.service.getAggregatedRatings(), WorkerRatingAggregatedDTO::class.java)
 
     }
 
@@ -51,7 +50,10 @@ class WorkerRatingHandler(private val service: WorkerRatingService){
         val workerID = req.pathVariable("worker_id")
 
         return ServerResponse.ok()
-                            .body(this.service.getRatingForWorker(workerID), WorkerRatingAggregatedDTO::class.java).toMono()
+                            .body(
+                              this.service.getRatingForWorker(workerID),
+                              WorkerRatingAggregatedDTO::class.java
+                            )
 
     }
 
