@@ -2,21 +2,20 @@ version: "2.4"
 
 services:
 
-  studeeper_front:
+  studeeper_front_dev:
 
     networks:
       - std_network
 
-    image: "romanidze/std_frontend:latest"
+    image: "romanidze/std_frontend_dev:latest"
 
     build:
       context: system_front
-      dockerfile: docker/app/Dockerfile
+      dockerfile: docker/app/dev/Dockerfile
       args:
-        - PROD_PORT=3000
         - DEV_PORT=8001
 
-    container_name: std_frontend
+    container_name: std_frontend_dev
 
     volumes: 
       - ./system_front:/code
@@ -24,8 +23,28 @@ services:
     command: launch-dev
 
     ports:
-      - "3000:3000"
       - "8001:8001"
+
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+
+  studeeper_front_prod:
+
+    networks:
+      - std_network
+
+    image: "romanidze/std_frontend_prod:latest"
+
+    build:
+      context: system_front
+      dockerfile: docker/app/prod/Dockerfile
+
+    container_name: std_frontend_prod
+
+    command: launch-prod
+
+    ports:
+      - "3000:3000"
 
 networks:
   std_network:
