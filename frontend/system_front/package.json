@@ -6,7 +6,6 @@
     "launch-lint": "vue-cli-service lint",
     "launch-dev": "vue-cli-service serve --port 8001",
     "launch-build": "vue-cli-service build",
-    "launch-prod": "vue-cli-service build && http-server ./dist -p 3000",
     "launch-tests": "jest --passWithNoTests"
   },
   "dependencies": {

@@ -43,6 +43,9 @@ services:
 
     command: launch-prod
 
+    volumes:
+      - ./system_front/dist:/usr/share/nginx/html
+
     ports:
       - "3000:3000"
 
