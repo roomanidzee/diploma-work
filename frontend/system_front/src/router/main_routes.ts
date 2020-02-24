@@ -21,8 +21,8 @@ const mainRoutes = [
     component: Profile,
   },
   {
-    path: '/info',
-    name: 'info_test',
+    path: '/people',
+    name: 'people_info',
     component: Info,
   },
 ];
