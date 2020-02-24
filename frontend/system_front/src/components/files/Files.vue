@@ -1,5 +1,5 @@
 <template>
-    <Card />
+    <Card/>
 </template>
 
 <script lang="ts">
