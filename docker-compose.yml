@@ -50,6 +50,7 @@ services:
     depends_on:
       - mongo
       - redis
+      - system_backend
 
     extends:
 

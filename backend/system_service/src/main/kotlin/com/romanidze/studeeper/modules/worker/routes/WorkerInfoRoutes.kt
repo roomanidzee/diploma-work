@@ -16,7 +16,7 @@ import org.springframework.web.reactive.function.server.router
 class WorkerInfoRoutes{
 
     @Bean
-    fun infoRouter(handler: WorkerInfoHandler) = 
+    fun workerInfoRouter(handler: WorkerInfoHandler) = 
             router {
 
                 (accept(MediaType.APPLICATION_JSON) and "/api").nest {

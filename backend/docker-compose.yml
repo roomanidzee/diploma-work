@@ -19,6 +19,7 @@ services:
 
     volumes:
       - ./system_service:/code
+      - ./system_service/build/libs:/code/build/libs
 
     command: launch-prod
 
@@ -39,10 +40,10 @@ services:
 
     container_name: std_files_app
 
-    volumes: 
+    volumes:
       - ./file_service:/code
 
-    command: launch-dev
+    command: launch-app
 
     ports:
       - "5000:5000"

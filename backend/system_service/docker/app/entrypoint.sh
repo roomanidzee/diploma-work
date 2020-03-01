@@ -13,9 +13,6 @@ until mongo_ready; do
   >&2 printf '\n'
 done
 
-# need for redownload all dependencies
-gradle clean build --no-daemon -x test;
-
 cmd="$*"
 
 if [ "$1" = 'launch-dev' ]; then
