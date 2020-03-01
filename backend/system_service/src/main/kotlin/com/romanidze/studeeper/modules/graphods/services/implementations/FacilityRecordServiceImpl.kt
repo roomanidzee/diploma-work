@@ -6,6 +6,7 @@ import com.romanidze.studeeper.modules.graphods.repositories.interfaces.Facility
 import com.romanidze.studeeper.modules.graphods.services.interfaces.FacilityRecordService
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
+import reactor.core.publisher.Mono
 import java.time.LocalDateTime
 
 /**
@@ -52,6 +53,17 @@ class FacilityRecordServiceImpl(
                        .map { 
                           this.mapper.domainToDTO(it)
                        }
+
+    }
+
+    override fun createFacility(facility: FacilityRecordDTO): Mono<FacilityRecordDTO>{
+
+        val domainEntity = this.mapper.dtoToDomain(facility)
+
+        return this.repo.save(domainEntity)
+                        .map {
+                            this.mapper.domainToDTO(it)
+                        }
 
     }
 }

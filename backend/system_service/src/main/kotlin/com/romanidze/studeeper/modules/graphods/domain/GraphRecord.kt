@@ -33,6 +33,6 @@ data class GraphRecord(
     val profileID: String,
 
     @Field("groupmates")
-    val groupmates: Set<String>
+    val groupmates: Set<String>?
 
 )

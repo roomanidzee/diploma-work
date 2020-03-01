@@ -41,7 +41,7 @@ class GraphRecordRepositoryImpl(private val mongoTemplate: ReactiveMongoTemplate
         val updateFunc = Update()
         updateFunc.set("facility_id", item.facilityID)
         updateFunc.set("profile_id", item.profileID)
-        updateFunc.set("groupmates", item.groupmates)
+        updateFunc.set("groupmates", item.groupmates!!)
 
         return this.mongoTemplate.updateFirst(updateQuery, updateFunc, GraphRecord::class.java)
 
@@ -74,6 +74,14 @@ class GraphRecordRepositoryImpl(private val mongoTemplate: ReactiveMongoTemplate
         )
 
         return this.mongoTemplate.find(searchQuery, GraphRecord::class.java)
+
+    }
+
+    override fun insertMany(graphods: Flux<GraphRecord>): Flux<GraphRecord>{
+
+        val mappedList = graphods.collectList()
+
+        return this.mongoTemplate.insertAll(mappedList)
 
     }
 

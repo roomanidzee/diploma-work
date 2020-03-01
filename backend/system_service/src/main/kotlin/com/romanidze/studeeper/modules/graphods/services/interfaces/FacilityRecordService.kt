@@ -2,6 +2,7 @@ package com.romanidze.studeeper.modules.graphods.services.interfaces
 
 import com.romanidze.studeeper.modules.graphods.dto.FacilityRecordDTO
 import reactor.core.publisher.Flux
+import reactor.core.publisher.Mono
 import java.time.LocalDateTime
 
 /**
@@ -15,4 +16,5 @@ interface FacilityRecordService {
     fun getBySpec(speciality: String): Flux<FacilityRecordDTO>
     fun getBySpecAndGrad(speciality: String, graduation: LocalDateTime): Flux<FacilityRecordDTO>
     fun getAllFacilities(): Flux<FacilityRecordDTO>
+    fun createFacility(facility: FacilityRecordDTO): Mono<FacilityRecordDTO>
 }
