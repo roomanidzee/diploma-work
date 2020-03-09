@@ -1,6 +1,6 @@
 <template>
     <div>
-        <section class = "hero is-primary is-fullheight">
+        <section class = "hero has-background-info is-fullheight">
             <div class = "hero-body">
                 <div class = "container has-text-centered">
                     <UserForm />

@@ -10,24 +10,30 @@
             <div class="tile">
               <div class = "tile is-parent">
                 <div class="tile is-parent is-vertical">
-                  <article class="tile is-child notification is-primary">
-                    <p class="title">Работники</p>
-                    <p class="subtitle">Посмотреть список работников</p>
-                  </article>
+                  <router-link to="/people">
+                    <article class="tile is-child notification is-primary">
+                      <p class="title">Люди</p>
+                      <p class="subtitle">Найти тех людей, которые нужны вам</p>
+                    </article>
+                  </router-link>
                 </div>
               </div>
               <div class="tile is-parent is-vertical">
-                <article class="tile is-child notification is-primary">
-                  <p class="title">Заявки</p>
-                  <p class="subtitle">Распределить те заявки, которые у вас есть</p>
-                </article>
+                <router-link to="/requests">
+                  <article class="tile is-child notification is-primary">
+                    <p class="title">Заявки</p>
+                    <p class="subtitle">Информация о ваших заявках</p>
+                  </article>
+                </router-link>
               </div>
             </div>
             <div class="tile is-parent">
-              <article class="tile is-child is-8 notification is-danger">
-                <p class="title">Файлы</p>
-                <p class="subtitle">Поработать с имеющимися файлами</p>
-              </article>
+                <router-link to="/files">
+                  <article class="tile is-child is-8 notification is-danger">
+                    <p class="title">Файлы</p>
+                    <p class="subtitle">Информация о ваших файлах</p>
+                  </article>
+                </router-link>
             </div>
           </div>
         </div>
