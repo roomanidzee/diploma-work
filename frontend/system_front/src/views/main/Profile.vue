@@ -1,6 +1,6 @@
 <template>
   <div class="profile">
-    <ProfilePage/>
+    <profile-page/>
   </div>
 </template>
 
@@ -11,7 +11,7 @@ import ProfilePage from '@/components/profile/ProfilePage.vue';
 export default {
   name: 'profile',
   components: {
-    ProfilePage,
+    'profile-page': ProfilePage,
   },
 };
 </script>

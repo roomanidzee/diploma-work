@@ -3,7 +3,7 @@
         <section class = "hero has-background-info is-fullheight">
             <div class = "hero-body">
                 <div class = "container has-text-centered">
-                    <UserForm />
+                    <registration-form />
                 </div>
             </div>
         </section>
@@ -12,11 +12,11 @@
 
 <script lang = "ts">
 
-import UserForm from '@/components/common/form/user_form';
+import RegistrationForm from '@/components/auth/register/registration_form';
 
 export default {
   components: {
-    UserForm,
+    'registration-form': RegistrationForm,
   },
 };
 </script>

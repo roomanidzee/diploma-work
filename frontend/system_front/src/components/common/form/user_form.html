@@ -1,17 +1,21 @@
 <section>
 
-    <b-field label="Имя пользователя" class="has-text-white">
-        <b-input maxlength="30"></b-input>
-    </b-field>
-
-    <b-field label="Пароль">
-        <b-input type="password" password-reveal>
-        </b-input>
-    </b-field>
-
-    <div class="buttons">
-        <router-link to="/profile" class="button">
-            <b-button type="is-warning">Далее</b-button>
-        </router-link>
-    </div>
+    <form @submit.prevent="performAction">
+        <b-field label="Имя пользователя" class="has-text-white">
+            <b-input maxlength="30" v-model="username"></b-input>
+        </b-field>
+    
+        <b-field label="Пароль">
+            <b-input type="password" password-reveal v-model="password"></b-input>
+        </b-field>
+    
+        <div class="buttons">
+            <b-button 
+                type="is-warning"
+                native-type="submit"
+            >
+                Далее
+            </b-button>
+        </div>
+    </form>
 </section>

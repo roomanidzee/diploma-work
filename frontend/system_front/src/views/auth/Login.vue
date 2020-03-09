@@ -1,6 +1,6 @@
 <template>
     <div>
-        <LoginPage/>
+        <login-page/>
     </div>
 </template>
 
@@ -11,7 +11,7 @@ import LoginPage from '@/components/auth/login/LoginPage.vue';
 export default {
   name: 'login_page',
   components: {
-    LoginPage,
+    'login-page': LoginPage,
   },
 };
 

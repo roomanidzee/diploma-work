@@ -3,7 +3,7 @@
     <section class="hero has-background-info is-fullheight">
       <div class="hero-body">
         <div class="container has-text-centered">
-          <UserForm />
+          <login-form />
           <h2 class="subtitle has-text-white">У вас ещё нет аккаунта?</h2>
           <div class="buttons">
             <router-link to="/register" class="button" tag="span">
@@ -17,11 +17,11 @@
 </template>
 
 <script lang = "ts">
-import UserForm from '@/components/common/form/user_form';
+import LoginForm from '@/components/auth/login/login_form';
 
 export default {
   components: {
-    UserForm,
+    'login-form': LoginForm,
   },
 };
 </script>

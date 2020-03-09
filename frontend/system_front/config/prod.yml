@@ -1,0 +1,7 @@
+service_app:
+  host: system_backend
+  port: 8000
+
+files_app:
+  host: files_backend
+  port: 5000

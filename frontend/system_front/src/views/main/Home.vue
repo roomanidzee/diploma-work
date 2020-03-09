@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <MainPage/>
+    <main-page/>
   </div>
 </template>
 
@@ -11,7 +11,7 @@ import MainPage from '@/components/main/MainPage.vue';
 export default {
   name: 'home',
   components: {
-    MainPage,
+    'main-page': MainPage,
   },
 };
 </script>

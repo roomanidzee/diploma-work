@@ -1,6 +1,6 @@
 <template>
     <div>
-        <RegisterPage/>
+        <register-page/>
     </div>
 </template>
 
@@ -11,7 +11,7 @@ import RegisterPage from '@/components/auth/register/RegisterPage.vue';
 export default {
   name: 'register_page',
   components: {
-    RegisterPage,
+    'register-page': RegisterPage,
   },
 };
 

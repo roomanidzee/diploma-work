@@ -1,0 +1,7 @@
+service_app:
+    host: localhost
+    port: 8000
+
+files_app:
+    host: localhost
+    port: 5000

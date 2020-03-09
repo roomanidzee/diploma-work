@@ -4,14 +4,17 @@
   "private": true,
   "scripts": {
     "launch-lint": "vue-cli-service lint",
-    "launch-dev": "vue-cli-service serve --port 8001",
-    "launch-build": "vue-cli-service build",
+    "launch-dev": "vue-cli-service serve --port 8001 --env dev",
+    "launch-build": "vue-cli-service build --env prod",
     "launch-tests": "jest --passWithNoTests"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "buefy": "^0.8.10",
     "chokidar": "^3.3.1",
+    "config-yml": "^0.10.3",
     "core-js": "^3.4.4",
+    "inversify-props": "^2.0.1",
     "register-service-worker": "^1.6.2",
     "vue": "^2.6.10",
     "vue-class-component": "^7.0.2",
@@ -22,8 +25,10 @@
     "webpack-stream": "^5.2.1"
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
     "@types/chokidar": "^2.1.3",
     "@types/jest": "^25.1.1",
+    "@types/reflect-metadata": "^0.1.0",
     "@vue/cli-plugin-babel": "^4.1.0",
     "@vue/cli-plugin-eslint": "^4.1.0",
     "@vue/cli-plugin-pwa": "^4.1.0",
@@ -40,6 +45,7 @@
     "http-server": "^0.12.1",
     "jest": "^25.1.0",
     "lint-staged": "^9.5.0",
+    "reflect-metadata": "^0.1.13",
     "ts-jest": "^25.1.0",
     "typescript": "~3.5.3",
     "vue-jest": "^3.0.5",

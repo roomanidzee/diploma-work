@@ -1,5 +1,5 @@
 <template>
-  <People/>
+  <people-page/>
 </template>
 
 <script>
@@ -9,7 +9,7 @@ import People from '@/components/people/People.vue';
 export default {
   name: 'people',
   components: {
-    People,
+    'people-page': People,
   },
 };
 </script>
