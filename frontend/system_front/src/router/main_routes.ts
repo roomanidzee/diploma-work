@@ -3,6 +3,8 @@ const About = () => import(/* webpackChunkName: "group-main" */ '../views/about/
 
 const Profile = () => import(/* webpackChunkName: "group-profile" */ '../views/main/Profile.vue');
 
+const Search = () => import(/* webpackChunkName: "group-search" */ '../views/main/Search.vue');
+
 const mainRoutes = [
   {
     path: '/',
@@ -18,6 +20,11 @@ const mainRoutes = [
     path: '/profile',
     name: 'profile',
     component: Profile,
+  },
+  {
+    path: '/search',
+    name: 'search-page',
+    component: Search,
   },
 ];
 

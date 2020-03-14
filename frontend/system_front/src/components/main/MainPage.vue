@@ -1,7 +1,7 @@
 <template>
   <div>
     <section class="hero is-success is-fullheight">
-      <Header />
+      <header-elem />
       <div class="hero-body">
         <div class="container has-text-centered">
           <h1 class="title">Studeeper</h1>
@@ -35,7 +35,7 @@ import Header from '@/components/common/main/header';
 
 export default {
   components: {
-    Header,
+    'header-elem': Header,
   },
 };
 </script>
