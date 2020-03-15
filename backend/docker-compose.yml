@@ -122,5 +122,42 @@ services:
 
     container_name: std_kafka_topics_init
 
+  clickhouse:
+    networks:
+      - std_network
+
+    image: 'yandex/clickhouse-server:20.3.2.1'
+
+    container_name: std_clickhouse
+
+    volumes:
+      - './docker_config/clickhouse/config.xml:/etc/clickhouse-server/config.xml'
+      - './docker_config/clickhouse/ddl.sql:/docker-entrypoint-initdb.d'
+
+    ports:
+      - '8123:8123'
+      - '9000:9000'
+      - '9009:9009'
+
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 262144
+        hard: 262144
+
+  clickhouse-gui:
+    networks: 
+      - std_network
+
+    image: 'spoonest/clickhouse-tabix-web-client:stable'
+
+    # links:
+    #    - clickhouse
+
+    ports:
+      - '9009:80'
+
+    container_name: std_analytics
+
 networks:
   std_network:

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<yandex>
+
+	<dictionary>
+
+		<name>mongo_profiles_dictionary</name>
+
+		<source>
+			<mongodb>
+                <host>std_mongo</host>
+                <port>27017</port>
+                <user>studeeper_user</user>
+                <password>studeeper_pwd</password>
+                <db>studeeper_db</db>
+                <collection>profiles</collection>
+            </mongodb>
+		</source>
+
+		<layout>
+			<complex_key_hashed />
+		</layout>
+
+		<structure>
+			
+            <key>
+                <attribute>
+                    <name>_id</name>
+                    <type>String</type>
+                </attribute>
+            </key>
+
+			<attribute>
+				<name>user_id</name>
+				<type>String</type>
+			</attribute>
+
+            <attribute>
+				<name>surname</name>
+				<type>String</type>
+			</attribute>
+
+            <attribute>
+				<name>name</name>
+				<type>String</type>
+			</attribute>
+
+            <attribute>
+				<name>patronymic</name>
+				<type>String</type>
+			</attribute>
+
+		</structure>
+
+	</dictionary>
+
+    <dictionary>
+
+		<name>mongo_facilities_dictionary</name>
+
+		<source>
+			<mongodb>
+                <host>std_mongo</host>
+                <port>27017</port>
+                <user>studeeper_user</user>
+                <password>studeeper_pwd</password>
+                <db>studeeper_db</db>
+                <collection>facilities</collection>
+            </mongodb>
+		</source>
+
+		<layout>
+			<complex_key_hashed />
+		</layout>
+
+		<structure>
+			
+            <key>
+                <attribute>
+                    <name>_id</name>
+                    <type>String</type>
+                </attribute>
+            </key>
+
+			<attribute>
+				<name>title</name>
+				<type>String</type>
+			</attribute>
+
+            <attribute>
+				<name>speciality</name>
+				<type>String</type>
+			</attribute>
+
+		</structure>
+
+	</dictionary>
+
+    <dictionary>
+
+		<name>mongo_graphods_dictionary</name>
+
+		<source>
+			<mongodb>
+                <host>std_mongo</host>
+                <port>27017</port>
+                <user>studeeper_user</user>
+                <password>studeeper_pwd</password>
+                <db>studeeper_db</db>
+                <collection>graph_records</collection>
+            </mongodb>
+		</source>
+
+		<layout>
+			<complex_key_hashed />
+		</layout>
+
+		<structure>
+			
+            <key>
+                <attribute>
+                    <name>_id</name>
+                    <type>String</type>
+                </attribute>
+            </key>
+
+			<attribute>
+				<name>facility_id</name>
+				<type>String</type>
+			</attribute>
+
+            <attribute>
+				<name>profile_id</name>
+				<type>String</type>
+			</attribute>
+
+            <attribute>
+                <name>groupmates</name>
+                <type>Array(String)</type?
+            </attribute>
+
+		</structure>
+
+	</dictionary>
+
+</yandex>

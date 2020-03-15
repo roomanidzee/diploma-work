@@ -60,7 +60,37 @@ services:
       service: kafka-topics-init
 
     depends_on:
-      - kafka  
+      - kafka 
+
+  clickhouse:
+
+    networks:
+      - std_network
+
+    extends:
+
+      file: backend/docker-compose.yml
+      service: clickhouse
+
+    depends_on:
+      - kafka 
+      - system_backend
+
+  clickhouse-gui:
+
+    networks:
+      - std_network
+
+    extends:
+
+      file: backend/docker-compose.yml
+      service: clickhouse-gui
+
+    depends_on:
+      - clickhouse
+
+    links:
+      - clickhouse
 
   system_backend:
 
@@ -70,6 +100,7 @@ services:
     depends_on:
       - mongo
       - redis
+      - kafka
 
     extends: 
       
@@ -86,6 +117,7 @@ services:
     depends_on:
       - mongo
       - redis
+      - kafka
       - system_backend
 
     extends:
@@ -106,6 +138,10 @@ services:
       service: studeeper_front_prod
 
     container_name: std_frontend
+
+    depends_on:
+      - system_backend
+      - files_backend
 
 networks:
   std_network:
