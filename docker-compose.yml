@@ -26,6 +26,42 @@ services:
 
     container_name: std_redis
 
+  zookeeper:
+
+    networks:
+      - std_network
+
+    extends:
+
+      file: backend/docker-compose.yml
+      service: zookeeper-service
+
+  kafka:
+
+    networks:
+      - std_network
+
+    extends:
+    
+      file: backend/docker-compose.yml
+      service: kafka-service
+
+    depends_on:
+      - zookeeper
+
+  kafka-topics:
+
+    networks:
+      - std_network
+
+    extends:
+
+      file: backend/docker-compose.yml
+      service: kafka-topics-init
+
+    depends_on:
+      - kafka  
+
   system_backend:
 
     networks:

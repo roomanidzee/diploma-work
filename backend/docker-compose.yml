@@ -75,5 +75,52 @@ services:
     ports:
       - "6379:6379"
 
+  zookeeper-service:
+    networks: 
+      - std_network
+
+    image: 'confluentinc/cp-zookeeper:5.3.3'
+
+    container_name: std_zk
+
+    environment: 
+      - ZOOKEEPER_CLIENT_PORT=2181
+      - ZOOKEEPER_TICK_TIME=2000
+
+  kafka-service:
+    networks: 
+      - std_network
+
+    image: 'confluentinc/cp-kafka:5.3.3'
+
+    container_name: std_kafka
+
+    environment: 
+      - KAFKA_HEAP_OPTS=-Xmx700m
+      - KAFKA_ZOOKEEPER_CONNECT=std_zk:2181
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://std_kafka:9092,PLAINTEXT_HOST://localhost:9094
+      - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      - KAFKA_INTER_BROKER_LISTENER_NAME=PLAINTEXT
+      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+
+    ports:
+      - '9092:9092'
+      - '9094:9094'
+
+  kafka-topics-init:
+    networks: 
+      - std_network
+
+    image: 'roomanidze/kafka-topics-init:latest'
+
+    build: 
+
+      context: docker_config/kafka/topics_creation
+      dockerfile: Dockerfile
+      args:
+        - NEW_KAFKA_TOPICS=student_file_source,student_facility_source,request_source
+
+    container_name: std_kafka_topics_init
+
 networks:
   std_network:
