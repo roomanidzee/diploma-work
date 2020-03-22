@@ -28,7 +28,7 @@ class FacilitySourceListener(
    private val graphRecordService: GraphRecordService,
    private val registrationService: RegistrationService,
    private val profileService: ProfileService,
-   private val consumerConfig: KafkaReceiver<Any, Any>,
+   private val consumerConfig: KafkaReceiver<String, String>,
    private val objectMapper: ObjectMapper,
    private val passwordEncoder: PasswordEncoder
 ) {

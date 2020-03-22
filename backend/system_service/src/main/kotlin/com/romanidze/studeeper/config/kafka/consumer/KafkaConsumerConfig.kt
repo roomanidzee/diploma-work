@@ -17,7 +17,7 @@ import reactor.kafka.receiver.ReceiverOptions
 class KafkaConsumerConfig(private val kafkaConsumerProps: KafkaConsumerProperties) {
 
     @Bean
-    fun consumerProps(): KafkaReceiver<Any, Any> {
+    fun consumerProps(): KafkaReceiver<String, String> {
 
         val consumerConfigProps = mapOf(
            ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.java,
@@ -27,8 +27,8 @@ class KafkaConsumerConfig(private val kafkaConsumerProps: KafkaConsumerPropertie
            ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG to kafkaConsumerProps.bootstrapServers
         )
 
-        val consumerOptions =
-                ReceiverOptions.create<Any, Any>(consumerConfigProps)
+        val consumerOptions: ReceiverOptions<String, String> =
+                ReceiverOptions.create<String, String>(consumerConfigProps)
                                .subscription(mutableListOf(kafkaConsumerProps.topic))
 
         return KafkaReceiver.create(consumerOptions)
