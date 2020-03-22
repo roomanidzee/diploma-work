@@ -11,7 +11,8 @@ project.extra.set("versions", mapOf(
         "kotlin_test" to "3.4.2",
         "reactor-kotlin-ext" to "1.0.1.RELEASE",
         "swagger" to "3.0.0-SNAPSHOT",
-        "reactor-kafka" to "1.2.2.RELEASE"
+        "reactor-kafka" to "1.2.2.RELEASE",
+        "kafka-clients" to "2.4.1"
 ))
 
 plugins {
@@ -77,6 +78,7 @@ dependencies {
     kapt("com.github.pozo.mapstruct-kotlin:mapstruct-kotlin-processor:${versions["mapstruct"]}")
 
     implementation("io.projectreactor.kafka:reactor-kafka:${versions["reactor-kafka"]}")
+    implementation("org.apache.kafka:kafka-clients:${versions["kafka-clients"]}")
 
     compile("org.springframework.boot:spring-boot-configuration-processor")
     kapt("org.springframework.boot:spring-boot-configuration-processor")

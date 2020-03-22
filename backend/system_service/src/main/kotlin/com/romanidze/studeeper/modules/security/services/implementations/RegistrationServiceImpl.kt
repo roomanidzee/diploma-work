@@ -22,18 +22,21 @@ class RegistrationServiceImpl(
         private val encoder: PasswordEncoder,
         private val userRepo: UserRepository
 ): RegistrationService {
-    override fun register(data: RegistrationDTO): Mono<RegistrationResponseDTO> {
+    override fun register(
+        data: RegistrationDTO,
+        roles: List<String>?
+    ): Mono<RegistrationResponseDTO> {
 
         val newUser = User(
-             username = data.username,
-             password = this.encoder.encode(data.password),
-             roles = mutableListOf(Role.USER.toString()),
-             state = State.NOT_CONFIRMED.toString()
+            username = data.username,
+            password = this.encoder.encode(data.password),
+            roles = roles ?: mutableListOf(Role.USER.toString()),
+            state = State.NOT_CONFIRMED.toString()
         )
 
         return userRepo.save(newUser)
                 .map {
-                    RegistrationResponseDTO(it.username, it.state!!)
+                    RegistrationResponseDTO(it.id!!, it.username, it.state!!)
                 }
 
     }

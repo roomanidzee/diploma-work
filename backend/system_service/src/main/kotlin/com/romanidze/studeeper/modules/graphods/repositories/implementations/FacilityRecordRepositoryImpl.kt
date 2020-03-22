@@ -44,6 +44,7 @@ class FacilityRecordRepositoryImpl(private val mongoTemplate: ReactiveMongoTempl
         updateFunc.set("title", item.title)
         updateFunc.set("graduation", item.graduation)
         updateFunc.set("speciality", item.speciality)
+        updateFunc.set("facility_group", item.facilityGroup)
 
         return this.mongoTemplate.updateFirst(updateQuery, updateFunc, FacilityRecord::class.java)
 

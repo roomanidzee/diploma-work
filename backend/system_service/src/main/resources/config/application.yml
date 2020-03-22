@@ -15,6 +15,13 @@ spring:
     port: 6379
     database: 0
 
+  kafka:
+    consumer:
+      bootstrap-servers: "std_kafka:9092"
+      group-id: student-consumer
+      client-id: student-consumer-kotlin
+      topic: student_facility_source
+
 server:
   port: 8000
 

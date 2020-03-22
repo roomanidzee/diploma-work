@@ -22,6 +22,7 @@ data class RegistrationDTO(
 )
 
 data class RegistrationResponseDTO(
+    val id: String,
     val username: String,
     val state: String
 )

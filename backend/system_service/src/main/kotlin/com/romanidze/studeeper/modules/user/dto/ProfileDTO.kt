@@ -2,6 +2,7 @@ package com.romanidze.studeeper.modules.user.dto
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.pozo.KotlinBuilder
+import java.util.UUID
 
 /**
  *
@@ -13,15 +14,15 @@ import com.github.pozo.KotlinBuilder
 @KotlinBuilder
 data class ProfileDTO(
 
-  @JsonProperty("profile_id")
-  val id: String,
+        @JsonProperty("profile_id")
+        val id: String = UUID.randomUUID().toString(),
 
-  @JsonProperty("user_id")
-  val userID: String,
+        @JsonProperty("user_id")
+        val userID: String,
 
-  val surname: String,
-  val name: String,
-  val patronymic: String,
-  val email: String
+        val surname: String,
+        val name: String,
+        val patronymic: String,
+        val email: String
 
 )

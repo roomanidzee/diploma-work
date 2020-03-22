@@ -14,6 +14,11 @@
       "name": "sendgrid.config",
       "type": "com.romanidze.studeeper.modules.email.client.SendGridMailProperties",
       "sourceType": "com.romanidze.studeeper.modules.email.client.SendGridMailProperties"
+    },
+    {
+      "name": "spring.kafka.consumer",
+      "type": "com.romanidze.studeeper.config.kafka.consumer.KafkaConsumerProperties",
+      "sourceType": "com.romanidze.studeeper.config.kafka.consumer.KafkaConsumerProperties"
     }
   ],
   "properties": [
@@ -70,6 +75,30 @@
       "type": "java.lang.String",
       "description": "Endpoint for sending emails.",
       "sourceType": "com.romanidze.studeeper.modules.email.client.SendGridMailProperties"
+    },
+    {
+      "name": "spring.kafka.consumer.bootstrap-servers",
+      "type": "java.lang.String",
+      "description": "Kafka consumer bootstrap servers.",
+      "sourceType": "com.romanidze.studeeper.config.kafka.consumer.KafkaConsumerProperties"
+    },
+    {
+      "name": "spring.kafka.consumer.group-id",
+      "type": "java.lang.String",
+      "description": "Kafka consumer group id.",
+      "sourceType": "com.romanidze.studeeper.config.kafka.consumer.KafkaConsumerProperties"
+    },
+    {
+      "name": "spring.kafka.consumer.client-id",
+      "type": "java.lang.String",
+      "description": "Kafka consumer client id.",
+      "sourceType": "com.romanidze.studeeper.config.kafka.consumer.KafkaConsumerProperties"
+    },
+    {
+      "name": "spring.kafka.consumer.topic",
+      "type": "java.lang.String",
+      "description": "Kafka consumer topic.",
+      "sourceType": "com.romanidze.studeeper.config.kafka.consumer.KafkaConsumerProperties"
     }
   ]
 }

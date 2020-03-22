@@ -2,6 +2,7 @@ package com.romanidze.studeeper.modules.security.services.interfaces
 
 import com.romanidze.studeeper.modules.security.dto.RegistrationDTO
 import com.romanidze.studeeper.modules.security.dto.RegistrationResponseDTO
+import com.romanidze.studeeper.modules.security.enums.Role
 import reactor.core.publisher.Mono
 
 /**
@@ -14,6 +15,6 @@ import reactor.core.publisher.Mono
  */
 interface RegistrationService {
 
-    fun register(data: RegistrationDTO): Mono<RegistrationResponseDTO>
+    fun register(data: RegistrationDTO, roles: List<String>?): Mono<RegistrationResponseDTO>
 
 }

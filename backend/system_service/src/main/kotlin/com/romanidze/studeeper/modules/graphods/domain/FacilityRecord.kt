@@ -34,5 +34,8 @@ data class FacilityRecord (
         val graduation: LocalDateTime,
 
         @Field("speciality")
-        val speciality: String
+        val speciality: String,
+
+        @Field("facility_group")
+        val facilityGroup: String
 )
