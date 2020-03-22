@@ -13,3 +13,10 @@ mongo:
   database: studeeper_db
   user: studeeper_user
   password: studeeper_pwd
+
+kafka:
+  host: std_kafka
+  port: 9092
+  topics: 
+    - student_file_source
+    - student_facility_source

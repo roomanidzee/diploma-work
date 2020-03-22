@@ -15,9 +15,16 @@ export class MongoService{
 
     saveFileInfo(userID: string, inputFile: any): FileObject{
 
+        const mimeTypeCompare = {
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": "xlsx",
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.template": "docx",
+            "application/pdf": "pdf",
+            "text/csv": "csv"
+        };
+
         const objectData = {
             user_id: userID,
-            path: `${base_path}/${userID}/${inputFile.mimetype}/${inputFile.name}`,
+            path: `${base_path}/${userID}/${mimeTypeCompare[inputFile.mimetype]}/${inputFile.name}`,
             type: inputFile.mimetype,
             size: inputFile.size
         };
