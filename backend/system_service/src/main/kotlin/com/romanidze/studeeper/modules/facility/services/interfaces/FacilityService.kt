@@ -14,5 +14,4 @@ import reactor.core.publisher.Mono
  */
 interface FacilityService{
     fun makeFacility(facility: FacilityRecordDTO): Mono<FacilityRecordDTO>
-    fun uploadStudents(students: Flux<GraphRecordDTO>): Flux<GraphRecordDTO>
 }

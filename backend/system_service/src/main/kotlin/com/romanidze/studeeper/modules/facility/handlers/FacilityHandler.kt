@@ -30,13 +30,4 @@ class FacilityHandler(private val service: FacilityService){
 
     }
 
-    fun uploadStudents(req: ServerRequest): Mono<ServerResponse>{
-
-        val studentsFlux = req.bodyToFlux(GraphRecordDTO::class.java)
-
-        return ServerResponse.ok()
-                             .body(this.service.uploadStudents(studentsFlux), GraphRecordDTO::class.java)
-
-    }
-
 }

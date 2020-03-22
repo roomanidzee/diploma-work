@@ -28,7 +28,7 @@ export class FileController {
 
     }
 
-    @Post("/facilities/uploadStudents")
+    @Post("/facility/upload_students")
     uploadStudents(@Req() req: Request, @Res() resp: Response) {
 
         const kafkaService = Container.get(KafkaService);

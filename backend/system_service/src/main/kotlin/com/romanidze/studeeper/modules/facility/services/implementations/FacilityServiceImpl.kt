@@ -20,16 +20,11 @@ import reactor.core.publisher.Mono
  */
 @Service
 class FacilityServiceImpl(
-    private val graphRecordService: GraphRecordService,
     private val facilityRecordService: FacilityRecordService
 ): FacilityService {
 
     override fun makeFacility(facility: FacilityRecordDTO): Mono<FacilityRecordDTO>{
         return this.facilityRecordService.createFacility(facility)
-    }
-
-    override fun uploadStudents(students: Flux<GraphRecordDTO>): Flux<GraphRecordDTO>{
-        return this.graphRecordService.createMultipleRecords(students)
     }
 
 }

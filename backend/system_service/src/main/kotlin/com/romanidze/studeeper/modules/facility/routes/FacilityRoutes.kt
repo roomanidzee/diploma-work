@@ -24,7 +24,6 @@ class FacilityRoutes{
                     "/facility".nest{
 
                         POST("/create_facility", handler::makeFacility)
-                        POST("/upload_students", handler::uploadStudents)
 
                     }
 
