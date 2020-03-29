@@ -2,7 +2,7 @@
   <div>
     <section class="hero has-background-info is-fullheight">
       <div class="hero-body">
-        <div class="container has-text-centered">
+        <div class="container">
           <login-form />
           <h2 class="subtitle has-text-white">У вас ещё нет аккаунта?</h2>
           <div class="buttons">

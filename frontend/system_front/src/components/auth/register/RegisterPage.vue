@@ -2,7 +2,7 @@
     <div>
         <section class = "hero has-background-info is-fullheight">
             <div class = "hero-body">
-                <div class = "container has-text-centered">
+                <div class = "container">
                     <registration-form />
                 </div>
             </div>
