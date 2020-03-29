@@ -1,36 +1,58 @@
 <template>
-    
-    <section class="hero is-link">
+  <section class="hero is-link">
+    <div class="hero-body">
+      <div class="container">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img
+                src="https://bulma.io/images/placeholders/1280x960.png"
+                alt="Изображение заявителя"
+              />
+            </figure>
+          </div>
 
-        <div class="hero-body">
+          <div class="card-content">
+            <div class="content">Здесь будет информация о заявке</div>
+          </div>
 
-            <div class="container">
+          <footer class="card-footer">
+            <a
+              href="#"
+              class="card-footer-item"
+              @click="isAboutActive = !isAboutActive"
+            >Подробнее</a>
+            <a
+              href="#"
+              class="card-footer-item"
+              @click="isDeclineActive = !isDeclineActive"
+            >Отозвать</a>
+          </footer>
+        </div>
 
-                <div class="card">
+        <b-message
+          title="Подробнее"
+          :active.sync="isAboutActive"
+          aria-close-label="Закрыть"
+        >Здесь подробности о заявке</b-message>
 
-                    <div class="card-image">
-                        <figure class="image is-4by3">
-                            <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Изображение заявителя">
-                        </figure>
-                    </div>
-
-                    <div class="card-content">
-                        <div class="content">
-                            Здесь будет информация о заявке
-                        </div> 
-                    </div>
-
-                    <footer class="card-footer">
-                        <a href="#" class="card-footer-item">Подробнее</a>
-                        <a href="#" class="card-footer-item">Отозвать</a>
-                    </footer>     
-
-                </div>    
-
-            </div>    
-
-        </div>    
-
-    </section>    
-
+        <b-message
+          title="Отозвать"
+          :active.sync="isDeclineActive"
+          aria-close-label="Закрыть"
+        >Здесь отзыв заявки</b-message>
+      </div>
+    </div>
+  </section>
 </template>
+
+<script lang="ts">
+export default {
+  data() {
+    return {
+      isAboutActive: true,
+      isDeclineActive: true,
+    };
+  },
+};
+</script>
