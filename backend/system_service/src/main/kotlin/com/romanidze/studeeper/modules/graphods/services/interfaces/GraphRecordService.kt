@@ -16,6 +16,7 @@ interface GraphRecordService {
     fun getByGroupmates(groupmates: Set<String>): Flux<GraphRecordDTO>
     fun getByFacilities(facilities: Set<String>): Flux<GraphRecordDTO>
     fun getAllRecords(): Flux<GraphRecordDTO>
+    fun getBySpecialities(specialities: Set<String>): Flux<GraphRecordDTO>
     fun createGraphRecord(graphod: GraphRecordDTO): Mono<GraphRecordDTO>
     fun createMultipleRecords(graphods: Flux<GraphRecordDTO>): Flux<GraphRecordDTO>
 }

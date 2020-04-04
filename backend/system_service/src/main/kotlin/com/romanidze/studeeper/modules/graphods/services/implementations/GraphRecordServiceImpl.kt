@@ -17,7 +17,8 @@ import reactor.core.publisher.Mono
 @Service
 class GraphRecordServiceImpl(
         private val repo: GraphRecordRepository,
-        private val mapper: GraphRecordMapper): GraphRecordService {
+        private val mapper: GraphRecordMapper
+): GraphRecordService {
 
     override fun getByProfile(profileID: String): Flux<GraphRecordDTO> {
 
@@ -52,6 +53,15 @@ class GraphRecordServiceImpl(
                         .map {
                             this.mapper.domainToDTO(it)
                         }
+
+    }
+
+    override fun getBySpecialities(specialities: Set<String>): Flux<GraphRecordDTO> {
+
+        return this.repo.findBySpecialities(specialities)
+                .map {
+                    this.mapper.domainToDTO(it)
+                }
 
     }
 

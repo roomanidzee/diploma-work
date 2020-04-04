@@ -4,6 +4,7 @@ import com.mongodb.client.result.DeleteResult
 import com.mongodb.client.result.UpdateResult
 
 import com.romanidze.studeeper.modules.graphods.domain.GraphRecord
+import com.romanidze.studeeper.modules.graphods.repositories.interfaces.FacilityRecordRepository
 import com.romanidze.studeeper.modules.graphods.repositories.interfaces.GraphRecordRepository
 
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate
@@ -14,9 +15,13 @@ import org.springframework.stereotype.Repository
 
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
+import java.util.stream.Collectors
 
 @Repository
-class GraphRecordRepositoryImpl(private val mongoTemplate: ReactiveMongoTemplate): GraphRecordRepository{
+class GraphRecordRepositoryImpl(
+        private val mongoTemplate: ReactiveMongoTemplate,
+        private val facilityRepository: FacilityRecordRepository
+): GraphRecordRepository{
 
     override fun findByID(id: String): Mono<GraphRecord> {
         return this.mongoTemplate.findById(id, GraphRecord::class.java)
@@ -74,6 +79,19 @@ class GraphRecordRepositoryImpl(private val mongoTemplate: ReactiveMongoTemplate
         )
 
         return this.mongoTemplate.find(searchQuery, GraphRecord::class.java)
+
+    }
+
+    override fun findBySpecialities(specialities: Set<String>): Flux<GraphRecord> {
+
+        val facilityIDs =
+                this.facilityRepository.findBySpecialities(specialities)
+                                       .map {
+                                           it.id!!
+                                       }.toStream()
+                                        .collect(Collectors.toSet())
+
+        return this.findByFacilities(facilityIDs)
 
     }
 

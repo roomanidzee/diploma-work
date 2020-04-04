@@ -66,6 +66,16 @@ class FacilityRecordRepositoryImpl(private val mongoTemplate: ReactiveMongoTempl
 
     }
 
+    override fun findBySpecialities(specialities: Set<String>): Flux<FacilityRecord> {
+
+        val searchQuery = Query.query(
+                Criteria.where("speciality").`in`(specialities)
+        )
+
+        return this.mongoTemplate.find(searchQuery, FacilityRecord::class.java)
+
+    }
+
     override fun findBySpecialityAndGraduation(speciality: String, graduation: LocalDateTime): Flux<FacilityRecord>{
 
         val searchQuery = Query()

@@ -17,5 +17,6 @@ import java.time.LocalDateTime
 interface FacilityRecordRepository: CRUDRepository<FacilityRecord, String>{
     fun findByTitle(title: String): Flux<FacilityRecord>
     fun findBySpeciality(speciality: String): Flux<FacilityRecord>
+    fun findBySpecialities(specialities: Set<String>): Flux<FacilityRecord>
     fun findBySpecialityAndGraduation(speciality: String, graduation: LocalDateTime): Flux<FacilityRecord>
 }

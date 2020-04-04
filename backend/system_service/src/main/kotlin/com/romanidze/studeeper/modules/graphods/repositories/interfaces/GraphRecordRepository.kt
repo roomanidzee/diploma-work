@@ -16,5 +16,6 @@ interface GraphRecordRepository: CRUDRepository<GraphRecord, String>{
     fun findByProfileID(profileID: String): Flux<GraphRecord>
     fun findByGroupmates(groupmates: Set<String>): Flux<GraphRecord>
     fun findByFacilities(facilities: Set<String>): Flux<GraphRecord>
+    fun findBySpecialities(specialities: Set<String>): Flux<GraphRecord>
     fun insertMany(graphods: Flux<GraphRecord>): Flux<GraphRecord>
 }
