@@ -7,6 +7,7 @@ import org.springframework.web.reactive.function.server.ServerResponse
 import com.romanidze.studeeper.modules.facility.services.interfaces.FacilityService
 import com.romanidze.studeeper.modules.graphods.dto.FacilityRecordDTO
 import com.romanidze.studeeper.modules.graphods.dto.GraphRecordDTO
+import com.romanidze.studeeper.modules.graphods.services.interfaces.GraphRecordService
 
 import reactor.core.publisher.Mono
 
@@ -18,7 +19,10 @@ import reactor.core.publisher.Mono
  * @author Andrey Romanov
  */
 @Component
-class FacilityHandler(private val service: FacilityService){
+class FacilityHandler(
+    private val service: FacilityService,
+    private val graphService: GraphRecordService
+){
 
     fun makeFacility(req: ServerRequest): Mono<ServerResponse>{
 
@@ -27,6 +31,19 @@ class FacilityHandler(private val service: FacilityService){
                       ServerResponse.ok()
                                     .body(this.service.makeFacility(it), FacilityRecordDTO::class.java)
                   } 
+
+    }
+
+    fun showStudents(req: ServerRequest): Mono<ServerResponse>{
+
+        val specialities =
+                req.queryParam("specialities")
+                   .get()
+                   .split(",")
+                   .toSet()
+
+        return ServerResponse.ok()
+                             .body(this.graphService.getBySpecialities(specialities), GraphRecordDTO::class.java)
 
     }
 

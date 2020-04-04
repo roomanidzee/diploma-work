@@ -31,6 +31,7 @@ class InfoRoutes {
                         handler::getFacilityBySpecAndGrad
                     )
                     GET("/graphs", handler::getAllGraphs)
+                    GET("/workers", handler::getWorkersBySpeciality)
 
                 }
 

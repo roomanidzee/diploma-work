@@ -1,6 +1,7 @@
 package com.romanidze.studeeper.modules.security.handlers
 
 import com.romanidze.studeeper.modules.security.dto.RegistrationDTO
+import com.romanidze.studeeper.modules.security.enums.Role
 import com.romanidze.studeeper.modules.security.services.interfaces.RegistrationService
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.server.ServerRequest
@@ -23,7 +24,12 @@ class RegistrationHandler(private val service: RegistrationService) {
         return req.bodyToMono(RegistrationDTO::class.java)
                 .flatMap {
                     ServerResponse.ok()
-                                  .body(this.service.register(it), RegistrationDTO::class.java)
+                                  .body(
+                                          this.service.register(
+                                                  it,
+                                                  roles = mutableListOf(Role.USER.toString())
+                                          ), RegistrationDTO::class.java
+                                  )
                 }
 
     }

@@ -77,4 +77,17 @@ class EmployerInfoHandler(
 
     }
 
+    fun getWorkersBySpeciality(req: ServerRequest): Mono<ServerResponse> {
+
+        val specialities =
+                req.queryParam("specialities")
+                        .get()
+                        .split(",")
+                        .toSet()
+
+        return ServerResponse.ok()
+                .body(this.graphService.getBySpecialities(specialities), GraphRecordDTO::class.java)
+
+    }
+
 }

@@ -24,6 +24,7 @@ class FacilityRoutes{
                     "/facility".nest{
 
                         POST("/create_facility", handler::makeFacility)
+                        GET("/show_students", handler::showStudents)
 
                     }
 
