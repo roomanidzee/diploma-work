@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "analysis-service"
+version = "0.0.1"
+description = "Analysis service for diploma project"
+authors = ["Андрей Романов <romanov_andrey_vl@protonmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+fastapi = "^0.54.1"
+uvicorn = "^0.11.5"
+databases = "^0.3.2"
+motor = "^2.1.0"
+layered-yaml-attrdict-config = "^18.12.3"
+aioredis = "^1.3.1"
+bindsnet = "^0.2.7"
+arq = "^0.19"
+inject = "^4.1.2"
+pandas = "1.0.3"
+numpy = "1.18.3"
+pyhdfs = "^0.3.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.4.1"
+pytest-randomly = "^3.3.1"
+pytest-testmon = "^1.0.2"
+pytest-timeout = "^1.3.4"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
