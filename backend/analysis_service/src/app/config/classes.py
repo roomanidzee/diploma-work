@@ -6,20 +6,20 @@ class Config:
     port: str
     title: str
     version: str
-    is_debug: bool
 
 @dataclass
-class DataSourceConfig:
+class DataSourceConfig(Config):
     redis_url: str
     mongo_url: str
     hdfs_url: str
+    is_debug: bool
 
 @dataclass
-class DevelopmentConfig(Config, DataSourceConfig):
+class DevelopmentConfig(DataSourceConfig):
     is_debug: bool = True
     
 @dataclass
-class ProductionConfig(Config, DataSourceConfig):
+class ProductionConfig(DataSourceConfig):
     is_debug: bool = False
 
 @dataclass

@@ -3,10 +3,10 @@ from starlette.testclient import TestClient
 
 from app.main import create_app
 
-
 @pytest.fixture(scope="module")
 def test_app():
+    return create_app('testing')
 
-    app = create_app('testing')
-    client = TestClient(app)
-    yield client
+@pytest.fixture(scope="module")
+def test_client(test_app):
+    return TestClient(test_app)
