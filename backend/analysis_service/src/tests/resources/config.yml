@@ -1,0 +1,10 @@
+host: '0.0.0.0'
+port: 5000
+title: 'analysis-service'
+version: '0.0.1'
+
+is_debug: true
+
+mongo_url: 'mongodb://studeeper_user:studeeper_pass@localhost:27017/studeper_db'
+redis_url: 'redis://localhost:5379/0'
+hdfs_url: 'hdfs://localhost:8092'
