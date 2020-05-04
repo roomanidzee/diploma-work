@@ -1,8 +1,7 @@
 
 from app.config.classes import (
     DevelopmentConfig,
-    ProductionConfig,
-    TestingConfig
+    ProductionConfig
 )
 from app.modules.common.cache.classes import (
     RedisCache,
