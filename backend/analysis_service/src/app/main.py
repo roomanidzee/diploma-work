@@ -21,7 +21,7 @@ from app.modules.common.db.utils import (
 from app.settings import logging
 
 app = FastAPI()
-base_path = Path(__file__).parent.parent
+base_path = Path(__file__).parent.parent.parent
 
 def register_endpoints(app: FastAPI):
 
