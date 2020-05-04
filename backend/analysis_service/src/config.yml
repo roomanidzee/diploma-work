@@ -13,4 +13,4 @@ mongo:
   db: studeeper_db
 
 redis_url: 'redis://localhost:5379/0'
-hdfs_url: 'hdfs://localhost:8092'
+hdfs_url: 'localhost:50070'

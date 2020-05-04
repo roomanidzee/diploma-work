@@ -22,7 +22,7 @@ def configure(base_path):
         format=log_fmt,
         handlers=[
             TimedRotatingFileHandler(
-                filename=f"{log_path}/hmi_app.({current_time}).log",
+                filename=f"{log_path}/analysis-service.({current_time}).log",
                 encoding='utf-8',
                 when="d"
             ),

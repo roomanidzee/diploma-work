@@ -9,11 +9,10 @@ from app.config.classes import (
     ProductionConfig
 )
 
-from app.modules import (
-    auth, 
-    analyse,
-    simple
-)
+from app.modules.auth import routes as auth_routes
+from app.modules.simple import routes as status_routes
+from app.modules.analyse import routes as analyse_routes
+
 from app.modules.common.db.utils import (
     init_db_conn,
     close_db_conn
@@ -29,17 +28,17 @@ def register_endpoints(app: FastAPI):
     router = APIRouter()
 
     router.include_router(
-        simple.routes.router,
+        status_routes.router,
         prefix='/status',
         tags=['status'],
     )
     router.include_router(
-        auth.routes.router,
+        auth_routes.router,
         prefix='/auth',
         tags=['auth']
     )
     router.include_router(
-        analyse.routes.router,
+        analyse_routes.router,
         prefix='/analyse',
         tags=['analyse']
     )

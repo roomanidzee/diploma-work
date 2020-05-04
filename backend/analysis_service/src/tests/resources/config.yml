@@ -5,6 +5,12 @@ version: '0.0.1'
 
 is_debug: true
 
-mongo_url: 'mongodb://studeeper_user:studeeper_pass@localhost:27017/studeper_db'
+mongo: 
+  host: localhost
+  port: 27017
+  user: studeeper_user
+  password: studeeper_pass
+  db: studeeper_db
+
 redis_url: 'redis://localhost:5379/0'
-hdfs_url: 'hdfs://localhost:8092'
+hdfs_url: 'localhost:50070'
