@@ -6,6 +6,7 @@ from typing import Union
 import lya
 
 from app.config.classes import (
+    MongoDBConfig,
     DevelopmentConfig,
     ProductionConfig,
     TestingConfig
@@ -52,6 +53,10 @@ def init_config(launch_type: str) -> CONFIG_INSTANCE_TYPE:
         raise ValueError("Wrong config file on input path")
 
     config = lya.AttrDict.from_yaml(config_path)
+
+    mongo_config = config['mongo']
+    mongo_class = MongoDBConfig(**mongo_config)
+    config['mongo'] = mongo_class
 
     if launch_type == ConfigEnum.DEV.value:
         return DevelopmentConfig(**config)

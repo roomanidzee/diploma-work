@@ -8,9 +8,17 @@ class Config:
     version: str
 
 @dataclass
+class MongoDBConfig:
+    host: str
+    port: str
+    user: str
+    password: str
+    db: str
+
+@dataclass
 class DataSourceConfig(Config):
     redis_url: str
-    mongo_url: str
+    mongo: MongoDBConfig
     hdfs_url: str
     is_debug: bool
 

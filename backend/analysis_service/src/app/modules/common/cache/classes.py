@@ -25,7 +25,7 @@ class Cache(Protocol):
 class RedisCache(Cache, AsyncObject):
     """Cache implementation with Redis"""
 
-    async def __init__(self, config):
+    async def __init__(self, config: DataSourceConfig):
         super().__init__()
         self.redis_pool = await aioredis.create_redis_pool(config.redis_url)
 

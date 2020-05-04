@@ -1,6 +1,4 @@
 
-import os
-
 from app.config import init_config
 from app.modules.common.cache import factory
 from app.utils import get_config_type
