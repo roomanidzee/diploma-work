@@ -1,7 +1,6 @@
 
 import contextlib
 from abc import abstractmethod
-from typing import Protocol
 from pathlib import Path
 
 from pyhdfs import HdfsClient
@@ -9,7 +8,7 @@ from pyhdfs import HdfsClient
 from app.modules.common import AsyncObject, run_in_executor
 from app.config.classes import DataSourceConfig
 
-class FilesWork(Protocol):
+class FilesWork:
     """Abstract class for working with files"""
 
     @abstractmethod

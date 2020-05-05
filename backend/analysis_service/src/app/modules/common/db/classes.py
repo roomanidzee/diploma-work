@@ -1,6 +1,6 @@
 
 from abc import abstractmethod
-from typing import Protocol, Union, Dict
+from typing import Union, Dict
 
 from app.config import init_config
 from app.utils import get_config_type
@@ -9,7 +9,7 @@ from app.modules.common.db.utils import get_db_client
 
 MODEL_TYPE = Dict[str, Union[str, int]]
 
-class DBIndexer(Protocol):
+class DBIndexer:
     """Abstract class for working with DB"""
 
     @abstractmethod

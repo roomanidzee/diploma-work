@@ -1,13 +1,12 @@
 
 from abc import abstractmethod
-from typing import Protocol
 
 import aioredis
 
 from app.modules.common import AsyncObject, run_in_executor
 from app.config.classes import DataSourceConfig
 
-class Cache(Protocol):
+class Cache:
     """Abstract class for working with cache."""
 
     @abstractmethod
