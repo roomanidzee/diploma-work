@@ -16,13 +16,10 @@ async def validate_file(file_id: str, request: Request) -> responses.JSONRespons
     token = request.headers.get('Authorization', None)
     check_result = await service.check_for_file(token, file_id)
 
-    if check_result:
-        return responses.JSONResponse(
-            content={'exists': True},
-            status_code=200
-        )
-    else:
+    if not check_result:
         return responses.JSONResponse(
             content={'exists': False},
             status_code=400
         )
+    
+    

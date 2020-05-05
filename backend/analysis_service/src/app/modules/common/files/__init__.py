@@ -4,7 +4,7 @@ from app.config.classes import (
     ProductionConfig
 )
 
-from app.main import base_path
+from app.utils import base_path
 
 from app.modules.common.files.classes import HDFSFilesWork, MemoryFilesWork
 
