@@ -1,23 +1,25 @@
 
-from app.modules.common.db import factory
-from app.modules.common.files import factory as files_factory
-from app.modules.auth.services import AuthService
+import pandas as pd
+
+from io import StringIO
+from typing import Dict
+
+from app.modules.common import(
+    db,
+    files,
+    run_in_executor
+)
+
 from app.config import init_config
 from app.utils import get_config_type
 
 class DBService:
     """Service for work with DB instances"""
 
-    async def check_for_file(self, auth_token: str, file_id: str) -> bool:
+    async def check_for_file(self, file_id: str) -> bool:
 
-        auth_service = AuthService()
-        db = await factory(init_config(get_config_type()))
-        files = await files_factory(init_config(get_config_type()))
-        
-        is_token_exists = await auth_service.check_for_user(auth_token)
-
-        if not is_token_exists:
-            return False
+        db = await db.factory(init_config(get_config_type()))
+        files = await files.factory(init_config(get_config_type()))
 
         db_model = await db.find_by_id(file_id)
 
@@ -25,3 +27,24 @@ class DBService:
             return False
 
         return files.check_path(db_model['path'])
+
+class AnalysisService:
+    """Service for preparing the input data"""
+
+    @run_in_executor
+    def retrieve_dataframe(self, content: str) -> pd.DataFrame:
+        return pd.read_table(
+            StringIO(content), sep=';'
+        )
+
+    async def analyse_facility_query(self, file_id: str) -> Dict[str, str]:
+        
+        db = await db.factory(init_config(get_config_type()))
+        files = await files.factory(init_config(get_config_type()))
+
+        db_model = await db.find_by_id(file_id)
+        file_content = await files.read_file(db_model['path'])
+
+        df = await self.retrieve_dataframe(file_content)
+
+        return {}
