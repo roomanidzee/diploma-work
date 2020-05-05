@@ -12,5 +12,8 @@ mongo:
   password: studeeper_pass
   db: studeeper_db
 
-redis_url: 'redis://localhost:5379/0'
+redis:
+  host: localhost
+  port: 6379
+
 hdfs_url: 'localhost:50070'

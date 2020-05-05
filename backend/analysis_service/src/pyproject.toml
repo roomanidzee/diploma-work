@@ -17,6 +17,7 @@ pyhdfs = "^0.3.1"
 nengo-dl = "^3.2.0"
 numpy = "1.18.4"
 pandas = "^1.0.3"
+tensorflow-estimator = "2.1.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.4.1"

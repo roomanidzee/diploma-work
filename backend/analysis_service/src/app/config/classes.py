@@ -15,9 +15,29 @@ class MongoDBConfig:
     password: str
     db: str
 
+    def get_url(self):
+        return "mongodb://{0}:{1}@{2}:{3}/{4}".format(
+            self.user,
+            self.password,
+            self.host,
+            self.port,
+            self.db
+        )
+
+@dataclass
+class RedisConfig:
+    host: str
+    port: str
+
+    def get_url(self):
+        return "redis://{0}:{1}".format(
+            self.host,
+            self.port
+        )
+
 @dataclass
 class DataSourceConfig(Config):
-    redis_url: str
+    redis: RedisConfig
     mongo: MongoDBConfig
     hdfs_url: str
     is_debug: bool

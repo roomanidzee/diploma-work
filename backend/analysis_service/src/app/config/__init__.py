@@ -7,6 +7,7 @@ import lya
 
 from app.config.classes import (
     MongoDBConfig,
+    RedisConfig,
     DevelopmentConfig,
     ProductionConfig,
     TestingConfig
@@ -57,6 +58,10 @@ def init_config(launch_type: str) -> CONFIG_INSTANCE_TYPE:
     mongo_config = config['mongo']
     mongo_class = MongoDBConfig(**mongo_config)
     config['mongo'] = mongo_class
+
+    redis_config = config['redis']
+    redis_class = RedisConfig(**redis_config)
+    config['redis'] = redis_class
 
     if launch_type == ConfigEnum.DEV.value:
         return DevelopmentConfig(**config)

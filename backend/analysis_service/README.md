@@ -1,19 +1,30 @@
 # analysis-service
 
-## Launch
+## Install
 
 ```
 cd src
-export FASTAPI_ENV=development (or export FASTAPI_ENV=production)
-export ANALYSIS_APP_CONFIG_PATH=config.yml
 pip install poetry
 poetry install
+```
+
+## Launch (app)
+
+```
+export FASTAPI_ENV=development (or export FASTAPI_ENV=production)
+export ANALYSIS_APP_CONFIG_PATH=config.yml
 python run.py
 ```
 
-## Tests
+## Launch (periodic tasks)
+
 ```
-cd src
+arq app.settings.arq.WorkerSettings
+```
+
+## Tests
+
+```
 export FASTAPI_ENV=testing
 pytest tests
 ```

@@ -26,7 +26,8 @@ class RedisCache(Cache, AsyncObject):
 
     async def __init__(self, config: DataSourceConfig):
         super().__init__()
-        self.redis_pool = await aioredis.create_redis_pool(config.redis_url)
+        redis_url = config.redis.get_url()
+        self.redis_pool = await aioredis.create_connection(config.redis_url)
 
     async def contains(self, cache_key: str) -> bool:
         return await self.redis_pool.exists(cache_key)
