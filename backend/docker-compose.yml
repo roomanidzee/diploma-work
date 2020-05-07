@@ -48,6 +48,42 @@ services:
     ports:
       - "5000:5000"
 
+  analysis_service_app:
+    networks:
+      - std_network
+
+    image: "romanidze/std_analysis_app:latest"
+
+    build:
+      context: analysis_service/src
+      dockerfile: docker/Dockerfile
+      args:
+        - DOCKERIZE_VERSION=v0.6.1
+        - POETRY_VERSION=1.0.5
+
+    container_name: std_analysis_app
+
+    volumes:
+      - ./analysis_services/src:/code
+
+    ports:
+      - 8005:8000
+
+    command: launch-app
+
+  analysis_service_worker:
+    networks:
+      - std_network
+
+    image: "romanidze/std_analysis_app:latest"
+
+    container_name: std_analysis_app
+
+    volumes:
+      - ./analysis_services/src:/code
+
+    command: launch-worker
+
   mongo:
     networks:
       - std_network
@@ -76,26 +112,26 @@ services:
       - "6379:6379"
 
   zookeeper-service:
-    networks: 
+    networks:
       - std_network
 
-    image: 'confluentinc/cp-zookeeper:5.3.3'
+    image: "confluentinc/cp-zookeeper:5.3.3"
 
     container_name: std_zk
 
-    environment: 
+    environment:
       - ZOOKEEPER_CLIENT_PORT=2181
       - ZOOKEEPER_TICK_TIME=2000
 
   kafka-service:
-    networks: 
+    networks:
       - std_network
 
-    image: 'confluentinc/cp-kafka:5.3.3'
+    image: "confluentinc/cp-kafka:5.3.3"
 
     container_name: std_kafka
 
-    environment: 
+    environment:
       - KAFKA_HEAP_OPTS=-Xmx700m
       - KAFKA_ZOOKEEPER_CONNECT=std_zk:2181
       - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://std_kafka:9092,PLAINTEXT_HOST://localhost:9094
@@ -105,17 +141,16 @@ services:
       - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
 
     ports:
-      - '9092:9092'
-      - '9094:9094'
+      - "9092:9092"
+      - "9094:9094"
 
   kafka-topics-init:
-    networks: 
+    networks:
       - std_network
 
-    image: 'roomanidze/kafka-topics-init:latest'
+    image: "roomanidze/kafka-topics-init:latest"
 
-    build: 
-
+    build:
       context: docker_config/kafka/topics_creation
       dockerfile: Dockerfile
       args:
@@ -127,18 +162,18 @@ services:
     networks:
       - std_network
 
-    image: 'yandex/clickhouse-server:20.3.2.1'
+    image: "yandex/clickhouse-server:20.3.2.1"
 
     container_name: std_clickhouse
 
     volumes:
-      - './docker_config/clickhouse/config.xml:/etc/clickhouse-server/config.xml'
-      - './docker_config/clickhouse/ddl.sql:/docker-entrypoint-initdb.d'
+      - "./docker_config/clickhouse/config.xml:/etc/clickhouse-server/config.xml"
+      - "./docker_config/clickhouse/ddl.sql:/docker-entrypoint-initdb.d"
 
     ports:
-      - '8123:8123'
-      - '9000:9000'
-      - '9009:9009'
+      - "8123:8123"
+      - "9000:9000"
+      - "9009:9009"
 
     ulimits:
       nproc: 65535
@@ -147,16 +182,16 @@ services:
         hard: 262144
 
   clickhouse-gui:
-    networks: 
+    networks:
       - std_network
 
-    image: 'spoonest/clickhouse-tabix-web-client:stable'
+    image: "spoonest/clickhouse-tabix-web-client:stable"
 
     # links:
     #    - clickhouse
 
     ports:
-      - '9009:80'
+      - "9009:80"
 
     container_name: std_analytics
 
