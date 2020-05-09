@@ -31,7 +31,11 @@ CREATE TABLE IF NOT EXISTS student_files(
     facility_title String,
     facility_graduation String,
     facility_speciality String,
-    facility_group String
+    facility_group String,
+    education_info String,
+    competition_info String,
+    underworking_info String,
+    student_speciality_info String
 ) Engine = Kafka SETTINGS
             kafka_broker_list = 'std_kafka:9092',
             kafka_topic_list = 'student_file_source',
@@ -51,7 +55,11 @@ CREATE TABLE IF NOT EXISTS student_files_stats(
     facility_title String,
     facility_graduation String,
     facility_speciality String,
-    facility_group String
+    facility_group String,
+    education_info String,
+    competition_info String,
+    underworking_info String,
+    student_speciality_info String
 ) ENGINE = MergeTree()
 ORDER BY timestamp;
 

@@ -24,7 +24,11 @@ type KafkaObject = {
     facility_title: string,
     facility_graduation: string,
     facility_speciality: string,
-    facility_group: string
+    facility_group: string,
+    education_info: string, // JSON
+    competition_info: string,
+    underworking_info: string,
+    student_speciality_info: string
 }
 
 @Service()
@@ -55,7 +59,11 @@ export class KafkaService{
                 facility_title: data['facility_title'],
                 facility_graduation: data['facility_graduation'],
                 facility_speciality: data['facility_speciality'],
-                facility_group: data['facility_group']
+                facility_group: data['facility_group'],
+                education_info: data['education_info'],
+                competition_info: data['competition_info'],
+                underworking_info: data['underworking_info'],
+                student_speciality_info: data['student_speciality_info']
             };
 
             records.push(record);
