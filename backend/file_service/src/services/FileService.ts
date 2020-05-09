@@ -4,6 +4,7 @@ import logger from '../config/logger';
 import * as fs from "fs";
 import * as path from "path";
 import base_path from "../config/files";
+import { hdfsClient } from "../config/hdfs";
 import { MongoService, FileObject } from './MongoService';
 
 type FileInfo = {
@@ -67,9 +68,9 @@ export class FileService {
             const dirEntry = path.join(dirPath, dir);
             const fileStat = fs.statSync(dirEntry);
 
-            if(fileStat.isDirectory()){
+            if (fileStat.isDirectory()) {
                 result = result.concat(this.listFiles(dirEntry));
-            }else{
+            } else {
                 result.push({
                     path: dirEntry,
                     type: mime.lookup(dirEntry),
@@ -80,6 +81,65 @@ export class FileService {
         });
 
         return result;
+
+    }
+
+}
+
+@Service()
+export class HDFSFileService {
+
+    constructor(
+        private mongoService: MongoService
+    ) { }
+
+    uploadFile(userID: string, fileObj: any): FileObject {
+
+        const userPath = `${base_path}/${userID}`;
+
+        hdfsClient.exists(userPath, function(isExists: boolean){
+
+            if(!isExists){
+                hdfsClient.mkdir(userPath, function(err: Error){
+                    if(err){
+                        throw err;
+                    }
+                })
+            }
+
+        });
+
+        const mimeTypeCompare = {
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": "xlsx",
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.template": "docx",
+            "application/pdf": "pdf",
+            "text/csv": "csv"
+        };
+
+        const dirPath = `${userPath}/${mimeTypeCompare[fileObj.mimetype]}`;
+
+        hdfsClient.exists(dirPath, function(isExists: boolean){
+
+            if(!isExists){
+                hdfsClient.mkdir(userPath, function(err: Error){
+                    if(err){
+                        throw err;
+                    }
+                })
+            }
+
+        });
+
+        const localFileStream = fs.createReadStream(fileObj.tempFilePath);
+        const hdfsFileStream = hdfsClient.createWriteStream(dirPath + fileObj.name);
+        localFileStream.pipe(hdfsFileStream);
+
+        hdfsFileStream.on('error', function(error: Error){
+            throw error
+        });
+
+        return this.mongoService.saveFileInfo(userID, fileObj);
+
 
     }
 

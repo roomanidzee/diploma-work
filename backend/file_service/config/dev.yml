@@ -20,3 +20,8 @@ kafka:
   topics: 
     - student_file_source
     - student_facility_source
+
+hdfs:
+  host: std_hdfs_namenode
+  http_port: 9870
+  rpc_port: 8000

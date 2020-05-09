@@ -66,6 +66,10 @@ services:
     volumes:
       - ./analysis_services/src:/code
 
+    environment: 
+      - FASTAPI_ENV=production
+      - ANALYSIS_APP_CONFIG_PATH=config.yml
+
     ports:
       - 8005:8000
 
@@ -194,6 +198,50 @@ services:
       - "9009:80"
 
     container_name: std_analytics
+
+  std_hdfs_namenode:
+
+    networks:
+      - std_network
+
+    image: bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
+
+    container_name: std_hdfs_namenode
+
+    restart: 
+      
+    ports:
+      - 9870:9870
+      - 9000:9000
+
+    volumes:
+      - hadoop_namenode:/hadoop/dfs/name
+
+    environment:
+      - CLUSTER_NAME=test
+
+    env_file:
+      - ./docker_config/hdfs/config.env
+
+  std_hdfs_datanode:
+
+    networks:
+      - std_network
+
+    image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
+
+    container_name: std_hdfs_datanode
+
+    restart: always
+
+    volumes:
+      - hadoop_datanode:/hadoop/dfs/data
+
+    environment:
+      SERVICE_PRECONDITION: "std_hdfs_namenode:9870"
+
+    env_file:
+      - ./docker_config/hdfs/config.env
 
 networks:
   std_network:
