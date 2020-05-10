@@ -33,6 +33,18 @@ data class FacilityKafkaRecord(
     val facilitySpeciality: String,
 
     @JsonProperty("facility_group")
-    val facilityGroup: String
+    val facilityGroup: String,
+
+    @JsonProperty("education_info")
+    val educationInfo: String,
+
+    @JsonProperty("competition_info")
+    val competitionInfo: String,
+
+    @JsonProperty("underworking_info")
+    val underworkingInfo: String,
+
+    @JsonProperty("student_speciality_info")
+    val studentSpecialityInfo: String
 
 )
