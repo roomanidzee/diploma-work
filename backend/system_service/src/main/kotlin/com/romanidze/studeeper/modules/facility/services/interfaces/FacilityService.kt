@@ -1,9 +1,9 @@
 package com.romanidze.studeeper.modules.facility.services.interfaces
 
+import com.romanidze.studeeper.modules.facility.dto.AnalysisResult
 import com.romanidze.studeeper.modules.graphods.dto.FacilityRecordDTO
-import com.romanidze.studeeper.modules.graphods.dto.GraphRecordDTO
+import org.springframework.security.core.Authentication
 
-import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 /**
@@ -14,4 +14,5 @@ import reactor.core.publisher.Mono
  */
 interface FacilityService{
     fun makeFacility(facility: FacilityRecordDTO): Mono<FacilityRecordDTO>
+    fun analyseData(authentication: Authentication, fileID: String): Mono<AnalysisResult>
 }

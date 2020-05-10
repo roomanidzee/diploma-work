@@ -18,10 +18,13 @@ spring:
 server:
   port: 8000
 
-files:
-  server:
+clients:
+  files:
     host: std_files_app
     port: 5001
+  analysis:
+    host: std_analysis_app
+    port: 8004
 
 jwt:
   properties:

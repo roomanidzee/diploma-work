@@ -19,11 +19,12 @@ import reactor.netty.tcp.TcpClient
 class WebClientConfig {
 
     @Bean
-    fun tcpClient(): TcpClient = TcpClient.create()
-                                        .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 2_000)
-                                        .doOnConnected {
-                                            it.addHandlerLast(ReadTimeoutHandler(2))
-                                              .addHandlerLast(WriteTimeoutHandler(2))
-                                        }
+    fun tcpClient(): TcpClient =
+            TcpClient.create()
+                    .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 2_000)
+                    .doOnConnected {
+                        it.addHandlerLast(ReadTimeoutHandler(2))
+                                .addHandlerLast(WriteTimeoutHandler(2))
+                    }
 
 }

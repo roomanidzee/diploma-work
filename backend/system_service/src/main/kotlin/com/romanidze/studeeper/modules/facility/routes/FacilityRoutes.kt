@@ -25,6 +25,7 @@ class FacilityRoutes{
 
                         POST("/create_facility", handler::makeFacility)
                         GET("/show_students", handler::showStudents)
+                        GET("/analyse/{file_id}", handler::launchAnalysis)
 
                     }
 

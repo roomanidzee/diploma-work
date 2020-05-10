@@ -6,9 +6,14 @@
       "sourceType": "com.romanidze.studeeper.modules.security.properties.JWTProperties"
     },
     {
-      "name": "files.server",
+      "name": "clients.files",
       "type": "com.romanidze.studeeper.modules.files.client.FileServiceProperties",
       "sourceType": "com.romanidze.studeeper.modules.files.client.FileServiceProperties"
+    },
+    {
+      "name": "clients.analysis",
+      "type": "com.romanidze.studeeper.modules.facility.analysis.client.AnalysisServiceProperties",
+      "sourceType": "com.romanidze.studeeper.modules.facility.analysis.client.AnalysisServiceProperties"
     },
     {
       "name": "sendgrid.config",
@@ -47,16 +52,28 @@
       "sourceType": "com.romanidze.studeeper.modules.security.properties.JWTProperties"
     },
     {
-      "name": "files.server.host",
+      "name": "clients.files.host",
       "type": "java.lang.String",
       "description": "Files server host.",
       "sourceType": "com.romanidze.studeeper.modules.files.client.FileServiceProperties"
     },
     {
-      "name": "files.server.port",
+      "name": "clients.files.port",
       "type": "java.lang.String",
       "description": "Files server port.",
       "sourceType": "com.romanidze.studeeper.modules.files.client.FileServiceProperties"
+    },
+    {
+      "name": "clients.analysis.host",
+      "type": "java.lang.String",
+      "description": "Analysis server host.",
+      "sourceType": "com.romanidze.studeeper.modules.facility.analysis.client.AnalysisServiceProperties"
+    },
+    {
+      "name": "clients.analysis.port",
+      "type": "java.lang.String",
+      "description": "Analysis server port.",
+      "sourceType": "com.romanidze.studeeper.modules.facility.analysis.client.AnalysisServiceProperties"
     },
     {
       "name": "sendgrid.config.base-url",
