@@ -36,6 +36,7 @@ data class LoginResponseDTO(
 
     val username: String,
     val token: String,
+    val roles: List<String>,
 
     @JsonProperty("expiration_time")
     val expirationTime: String
