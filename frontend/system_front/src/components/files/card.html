@@ -1,0 +1,24 @@
+<template>
+    <div class="card">
+        <div class="card-content">
+            <p class="title">
+                {{ fileName }}
+            </p>
+            <p class="subtitle">
+                {{ fileType }}
+            </p>
+        </div>
+        <footer class="card-footer">
+            <p class="card-footer-item">
+                <span>
+                    Получить
+                </span>
+            </p>
+            <p class="card-footer-item" v-if="isFacility" v-on:click="sendForAnalyse(fileID)">
+                <span>
+                    Отправить на анализ
+                </span>
+            </p>
+        </footer>
+    </div>
+</template>

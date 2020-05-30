@@ -8,27 +8,35 @@ export default class AppClientImpl implements APIClient {
     this.API_URL = apiURL;
   }
 
-  async get(url: string): Promise<any> {
-    const httpResponse = await axios.get(`${this.API_URL}${url}`);
+  async get(url: string, headersInput?: any): Promise<any> {
+    if (headersInput !== undefined) {
+      return axios.get(`${this.API_URL}${url}`, { headers: headersInput });
+    }
 
-    return httpResponse;
+    return axios.get(`${this.API_URL}${url}`);
   }
 
-  async post(url: string, data: any): Promise<any> {
-    const httpResponse = await axios.post(`${this.API_URL}${url}`, data);
+  async post(url: string, data: any, headersInput?: any): Promise<any> {
+    if (headersInput !== undefined) {
+      return axios.post(`${this.API_URL}${url}`, data, { headers: headersInput });
+    }
 
-    return httpResponse;
+    return axios.post(`${this.API_URL}${url}`, data);
   }
 
-  async put(url: string, data: any): Promise<any> {
-    const httpResponse = await axios.put(`${this.API_URL}${url}`, data);
+  async put(url: string, data: any, headersInput?: any): Promise<any> {
+    if (headersInput !== undefined) {
+      return axios.put(`${this.API_URL}${url}`, data, { headers: headersInput });
+    }
 
-    return httpResponse;
+    return axios.put(`${this.API_URL}${url}`, data);
   }
 
-  async delete(url: string): Promise<any> {
-    const httpResponse = await axios.delete(`${this.API_URL}${url}`);
+  async delete(url: string, headersInput?: any): Promise<any> {
+    if (headersInput !== undefined) {
+      return axios.delete(`${this.API_URL}${url}`, { headers: headersInput });
+    }
 
-    return httpResponse;
+    return axios.delete(`${this.API_URL}${url}`);
   }
 }

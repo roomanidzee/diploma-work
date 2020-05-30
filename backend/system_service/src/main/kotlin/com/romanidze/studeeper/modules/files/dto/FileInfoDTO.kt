@@ -12,6 +12,8 @@ import com.github.pozo.KotlinBuilder
 @KotlinBuilder
 data class FileInfoDTO(
 
+   val id: String,
+
    @JsonProperty("user_id")
    val userID: String,
 

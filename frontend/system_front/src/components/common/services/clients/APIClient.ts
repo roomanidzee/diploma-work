@@ -1,7 +1,7 @@
 
 export default interface APIClient {
-    get(url: string): Promise<any>
-    post(url: string, data: any): Promise<any>
-    put(url: string, data: any): Promise<any>
-    delete(url: string): Promise<any>
+    get(url: string, headersInput?: any): Promise<any>
+    post(url: string, data: any, headersInput?: any): Promise<any>
+    put(url: string, data: any, headersInput?: any): Promise<any>
+    delete(url: string, headersInput?: any): Promise<any>
 }

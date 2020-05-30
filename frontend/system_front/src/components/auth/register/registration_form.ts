@@ -19,14 +19,17 @@ export default class RegistrationForm extends Vue {
         username: this.username,
         password: this.password,
       },
+      {
+        'Content-Type': 'application/json',
+      },
     );
-    resp.then((respValue: any) => {
+    const registerResult = resp.then((respValue: any) => {
       if (respValue.status_code !== 200) {
         return this.$router.push({ name: 'register_page' });
       }
-      return this.$router.push({ name: 'profile' });
+      return this.$router.push({ name: 'login_page' });
     });
 
-    return this.$router.push({ name: 'register_page' });
+    return registerResult;
   }
 }

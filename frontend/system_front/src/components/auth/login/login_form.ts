@@ -19,15 +19,20 @@ export default class LoginForm extends Vue {
         username: this.username,
         password: this.password,
       },
+      {
+        'Content-Type': 'application/json',
+      },
     );
 
-    resp.then((respValue: any) => {
+    const loginResult = resp.then((respValue: any) => {
       if (respValue.status_code !== 200) {
         return this.$router.push({ name: 'login_page' });
       }
+      sessionStorage.setItem('token', respValue.data.token);
+      sessionStorage.setItem('roles', respValue.data.roles.join());
       return this.$router.push({ name: 'profile' });
     });
 
-    return this.$router.push({ name: 'login_page' });
+    return loginResult;
   }
 }

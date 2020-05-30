@@ -5,3 +5,7 @@ service_app:
 files_app:
     host: localhost
     port: 5000
+
+analysis_app:
+    host: localhost
+    port: 5001

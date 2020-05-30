@@ -5,3 +5,7 @@ service_app:
 files_app:
   host: files_backend
   port: 5000
+
+analysis_app:
+  host: analysis_app
+  port: 5001

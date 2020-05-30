@@ -27,6 +27,7 @@ WORKDIR /pysetup
 COPY ./poetry.lock ./pyproject.toml /pysetup/
 
 COPY ./docker/entrypoint.sh /docker-entrypoint.sh
+EXPOSE 5001
 
 RUN poetry config virtualenvs.create false \
     && poetry install
