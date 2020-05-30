@@ -72,8 +72,7 @@ export default class FilesInfoComponent extends Vue{
   }
 
   public handleFileUpload(e: Event){
-    const target = e.target as HTMLInputElement;
-    const file: File = (target.files as FileList)[0]
+    const file: File = (<HTMLInputElement>e.target).files[0];
 
     let formData = new FormData();
     formData.append('input_file', file);

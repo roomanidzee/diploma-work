@@ -5,6 +5,7 @@ const peopleRoutes = [
     path: '/people',
     name: 'people',
     component: PeopleInfo,
+    props: true
   },
 ];
 

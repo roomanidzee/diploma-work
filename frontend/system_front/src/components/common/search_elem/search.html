@@ -3,14 +3,19 @@
         Введите поисковый запрос
     </h3>
 
-    <b-field>
+    <form @submit.prevent="performAction">
 
-        <b-input placeholder="Найти..."
-            type="search"
-            icon="magnify"
-        >
-        </b-input>
+        <b-field>
 
-    </b-field>
+            <b-input placeholder="Найти..."
+                type="submit"
+                icon="magnify"
+                v-model="searchQuery"
+            >
+            </b-input>
+    
+        </b-field>
+
+    </form>
 
 </section>
