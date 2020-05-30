@@ -6,28 +6,27 @@ import { serviceAppClient } from '@/components/common/services/clients';
 @WithRender
 @Component
 export default class RegistrationForm extends Vue {
-    @Prop()
-    private username: String = '';
+  @Prop()
+  private username: String = '';
 
-    @Prop()
-    private password: String = '';
+  @Prop()
+  private password: String = '';
 
-    public performAction(): Promise<Route> {
-      /* TODO: fix soon
-        const resp = serviceAppClient.post(
-          '/api/security/login',
-          {
-          username: this.username,
-          password: this.password,
-        },
-      );
-      resp.then(resp_value => {
-        if (resp_value.status_code !== 200) {
-          return this.$router.push({ name: 'profile' });
-        }
-      });
-      */
-
+  public performAction(): Promise<Route> {
+    const resp = serviceAppClient.post(
+      '/api/security/register',
+      {
+        username: this.username,
+        password: this.password,
+      },
+    );
+    resp.then((respValue: any) => {
+      if (respValue.status_code !== 200) {
+        return this.$router.push({ name: 'register_page' });
+      }
       return this.$router.push({ name: 'profile' });
-    }
+    });
+
+    return this.$router.push({ name: 'register_page' });
+  }
 }

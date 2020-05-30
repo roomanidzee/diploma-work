@@ -13,22 +13,21 @@ export default class LoginForm extends Vue {
   private password: String = '';
 
   public performAction(): Promise<Route> {
-  /* TODO: fix soon
-  const resp = serviceAppClient.post(
-    '/api/security/login',
-    {
-      username: this.username,
-      password: this.password,
-    },
-  );
+    const resp = serviceAppClient.post(
+      '/api/security/login',
+      {
+        username: this.username,
+        password: this.password,
+      },
+    );
 
-  resp.then(resp_value => {
-    if (resp_value.status_code !== 200) {
+    resp.then((respValue: any) => {
+      if (respValue.status_code !== 200) {
+        return this.$router.push({ name: 'login_page' });
+      }
       return this.$router.push({ name: 'profile' });
-    }
-  });
-  */
+    });
 
-    return this.$router.push({ name: 'profile' });
+    return this.$router.push({ name: 'login_page' });
   }
 }
