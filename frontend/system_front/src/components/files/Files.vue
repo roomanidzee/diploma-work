@@ -20,18 +20,6 @@
             </span>
           </label>
       </div>
-
-      <b-field class="file">
-        <b-upload v-model="file">
-            <a class="button is-primary" v-on:click="fileUpload()">
-                <b-icon icon="upload"></b-icon>
-                <span>Загрузить файл</span>
-            </a>
-        </b-upload>
-        <span class="file-name" v-if="file">
-            {{ file.name }}
-        </span>
-      </b-field>
       <div v-for="fileInfo in filesData" v-bind:key="fileInfo">
         <card
           v-bind:fileName="fileInfo.path"
