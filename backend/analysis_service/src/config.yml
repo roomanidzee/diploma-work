@@ -6,14 +6,14 @@ version: '0.0.1'
 is_debug: true
 
 mongo: 
-  host: localhost
+  host: std_mongo
   port: 27017
   user: studeeper_user
   password: studeeper_pass
   db: studeeper_db
 
 redis:
-  host: localhost
+  host: std_redis
   port: 6379
 
-hdfs_url: 'localhost:50070'
+hdfs_url: 'std_hdfs_namenode:9870'

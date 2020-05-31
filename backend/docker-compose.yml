@@ -64,14 +64,14 @@ services:
     container_name: std_analysis_app
 
     volumes:
-      - ./analysis_services/src:/code
+      - ./analysis_service/src:/code
 
     environment: 
       - FASTAPI_ENV=production
       - ANALYSIS_APP_CONFIG_PATH=config.yml
 
     ports:
-      - 8005:8000
+      - 8005:5001
 
     command: launch-app
 

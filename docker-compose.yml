@@ -142,6 +142,62 @@ services:
     depends_on:
       - system_backend
       - files_backend
+      - analysis_service_app
+
+  analysis_service_app:
+
+    networks:
+      - std_network
+
+    extends:
+    
+      file: backend/docker-compose.yml
+      service: analysis_service_app
+
+    container_name: std_analysis_app
+
+    depends_on:
+      - system_backend
+      - files_backend
+
+  analysis_service_worker:
+
+    networks:
+      - std_network
+
+    extends:
+    
+      file: backend/docker-compose.yml
+      service: analysis_service_worker
+
+    container_name: std_analysis_worker
+
+    depends_on:
+      - analysis_service_app
+
+  std_hdfs_namenode:
+
+    networks:
+      - std_network
+
+    extends:
+    
+      file: backend/docker-compose.yml
+      service: std_hdfs_namenode
+
+    container_name: std_hdfs_namenode
+
+  std_hdfs_datanode:
+
+    etworks:
+      - std_network
+
+    extends:
+    
+      file: backend/docker-compose.yml
+      service: std_hdfs_datanode
+
+    container_name: std_hdfs_datanode
 
 networks:
   std_network:
