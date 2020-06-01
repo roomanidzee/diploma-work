@@ -208,7 +208,7 @@ services:
 
     container_name: std_hdfs_namenode
 
-    restart: 
+    restart: always
       
     ports:
       - 9870:9870
