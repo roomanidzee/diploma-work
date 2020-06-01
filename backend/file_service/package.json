@@ -30,7 +30,7 @@
     "express-fileupload": "^1.1.6",
     "kafka-node": "^5.0.0",
     "mime-types": "^2.1.26",
-    "mongoose": "^4.13.20",
+    "mongoose": "^5.7.5",
     "redis": "^2.8.0",
     "reflect-metadata": "^0.1.13",
     "routing-controllers": "^0.8.0",
