@@ -189,7 +189,7 @@ services:
 
   std_hdfs_datanode:
 
-    etworks:
+    networks:
       - std_network
 
     extends:
